@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccmuavexb6dbw"]
+
+[ext_resource type="Script" path="res://scripts/toilet.gd" id="1_4juv6"]
+[ext_resource type="Texture2D" uid="uid://fx5yflj8ayyr" path="res://assets/toilet.png" id="2_d7l5e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cokc"]
+size = Vector2(58, 52)
+
+[node name="toilet_body" type="StaticBody2D"]
+position = Vector2(292, 193)
+collision_layer = 3
+input_pickable = true
+script = ExtResource("1_4juv6")
+
+[node name="toilet_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -34)
+texture = ExtResource("2_d7l5e")
+
+[node name="toilet_collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_1cokc")

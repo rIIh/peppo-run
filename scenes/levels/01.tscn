@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cppgvldgjasuv"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_2o574"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="2_xpls6"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="3_0w8k1"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_2o574")
+
+[node name="poop" parent="." instance=ExtResource("2_xpls6")]
+position = Vector2(183, 704)
+speed = 300.0
+
+[node name="toilet" parent="." instance=ExtResource("3_0w8k1")]
+position = Vector2(186, 235)

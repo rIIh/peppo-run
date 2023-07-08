@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0avtug1we22e"]
+
+[ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_et1sp"]
+[ext_resource type="Texture2D" uid="uid://dwxdjvuq5fsij" path="res://assets/checker-pattern.png" id="1_iwfig"]
+[ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_v8vth"]
+[ext_resource type="Script" path="res://scripts/safe_area.gd" id="4_x7p4y"]
+[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="5_s3vk1"]
+
+[sub_resource type="Resource" id="Resource_sm66w"]
+script = ExtResource("5_s3vk1")
+left = 0.0
+top = 47.0
+right = 0.0
+bottom = 34.0
+
+[sub_resource type="Resource" id="Resource_l8t0s"]
+script = ExtResource("5_s3vk1")
+left = 0.0
+top = 0.0
+right = 0.0
+bottom = 20.0
+
+[node name="root" type="Node" node_paths=PackedStringArray("restart_button", "continue_button")]
+script = ExtResource("1_et1sp")
+level_group = ExtResource("2_v8vth")
+restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/restart_button")
+continue_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/continue_button")
+
+[node name="main_camera" type="Camera2D" parent="."]
+position = Vector2(180, 390)
+
+[node name="background_layer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="background" type="Control" parent="background_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="colored_box" type="ColorRect" parent="background_layer/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.905882, 0.901961, 0.921569, 1)
+
+[node name="checker_pattern" type="TextureRect" parent="background_layer/background"]
+self_modulate = Color(0.858824, 0.85098, 0.886275, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_iwfig")
+stretch_mode = 1
+
+[node name="ui_layer" type="CanvasLayer" parent="."]
+
+[node name="container" type="Control" parent="ui_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="safe_area" type="MarginContainer" parent="ui_layer/container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 47
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 34
+script = ExtResource("4_x7p4y")
+debug_insets = SubResource("Resource_sm66w")
+minimum = SubResource("Resource_l8t0s")
+view_rect = Rect2i(0, 0, 360, 780)
+safe_area = Rect2i(0, 0, 2560, 1392)
+view_padding = SubResource("Resource_sm66w")
+
+[node name="content" type="Control" parent="ui_layer/container/safe_area"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/content"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/content/bottom_node"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 64)
+mouse_filter = 2
+alignment = 1
+
+[node name="restart_button" type="Button" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+layout_mode = 2
+text = "Restart"
+
+[node name="continue_button" type="Button" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+layout_mode = 2
+text = "Continue"

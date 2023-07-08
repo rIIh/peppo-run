@@ -1,0 +1,31 @@
+extends Node
+
+class_name Poop
+
+var game_mode: GameMode
+
+@export
+var tag: String = "orange"
+
+@onready
+var _character: CharacterBody2D = $poop_character
+
+var _index = 0
+var _points: Array[Vector2]
+
+func _process(delta):
+	var point = _points[_index]
+	while point.distance_to(_character.position) < 0.1:
+		_index += 1
+		point = _points[_index]
+
+	_character.velocity = (point - _character.position).normalized()
+
+func check_has_path() -> bool:
+	return $trajectory_planner.check_has_trajectory()
+
+func start_movement():
+	if check_has_path():
+		_index = 0
+		_points = $trajectory_planner.get_points()
+

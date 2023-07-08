@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0avtug1we22e"]
+
+[ext_resource type="Texture2D" uid="uid://dwxdjvuq5fsij" path="res://assets/checker-pattern.png" id="1_iwfig"]
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="2_1o7yj"]
+[ext_resource type="Script" path="res://scripts/draw_path.gd" id="2_em6ot"]
+[ext_resource type="Texture2D" uid="uid://dmcmx17ttva88" path="res://assets/poop.png" id="2_nftck"]
+[ext_resource type="Script" path="res://scripts/poop.gd" id="3_inm4f"]
+[ext_resource type="Texture2D" uid="uid://fx5yflj8ayyr" path="res://assets/toilet.png" id="4_ffjl6"]
+[ext_resource type="Script" path="res://scripts/toilet.gd" id="4_m561y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsdn7"]
+size = Vector2(82, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cokc"]
+size = Vector2(58, 52)
+
+[node name="Node2D" type="Node"]
+
+[node name="background_layer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="background" type="Control" parent="background_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="colored_box" type="ColorRect" parent="background_layer/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.905882, 0.901961, 0.921569, 1)
+
+[node name="checker_pattern" type="TextureRect" parent="background_layer/background"]
+self_modulate = Color(0.858824, 0.85098, 0.886275, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_iwfig")
+stretch_mode = 1
+
+[node name="gameplay" type="Node" parent="."]
+script = ExtResource("2_1o7yj")
+
+[node name="poop" type="Node" parent="gameplay"]
+script = ExtResource("3_inm4f")
+
+[node name="trajectory_planner" type="Node2D" parent="gameplay/poop" node_paths=PackedStringArray("line_renderer", "start_drawing_trigger")]
+script = ExtResource("2_em6ot")
+line_renderer = NodePath("../trajectory_renderer")
+start_drawing_trigger = NodePath("../poop_character")
+
+[node name="trajectory_renderer" type="Line2D" parent="gameplay/poop"]
+width = 6.0
+default_color = Color(0.956863, 0.741176, 0.321569, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="poop_character" type="CharacterBody2D" parent="gameplay/poop"]
+position = Vector2(171, 757)
+input_pickable = true
+
+[node name="poop_collider" type="CollisionShape2D" parent="gameplay/poop/poop_character"]
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_hsdn7")
+
+[node name="poop_sprite" type="Sprite2D" parent="gameplay/poop/poop_character"]
+z_index = 1
+position = Vector2(0, -48)
+texture = ExtResource("2_nftck")
+
+[node name="toilet" type="Node" parent="gameplay"]
+script = ExtResource("4_m561y")
+
+[node name="toilet_body" type="StaticBody2D" parent="gameplay/toilet"]
+position = Vector2(178, 193)
+input_pickable = true
+
+[node name="toilet_sprite" type="Sprite2D" parent="gameplay/toilet/toilet_body"]
+position = Vector2(0, -34)
+texture = ExtResource("4_ffjl6")
+
+[node name="toilet_collider" type="CollisionShape2D" parent="gameplay/toilet/toilet_body"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_1cokc")
