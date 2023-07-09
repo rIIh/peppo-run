@@ -1,4 +1,3 @@
-@tool
 extends CharacterBody2D
 
 class_name Poop
@@ -22,42 +21,28 @@ var trajectory_planner: DrawPath :
 var tag: String = "orange"
 
 @export
-var color: Color = Color("f4bd52")
-
-@export
 var speed: float = 100
 
 @export
-var sitting_sprite: Texture2D
-
-@export
-var waiting_sprite: Texture2D
+var style: PoopStyle = preload("res://resources/poops/orange.tres")
 
 var _index = 0
 var _points: Array[Vector2]
 
-var _state: State = State.waiting
+var _state: State = State.waiting :
+	set(value): 
+		if _state != value:
+			state_changed.emit(value)
+		_state = value
 var state: State :
 	get: return _state
 
 
-func _ready():
-	if waiting_sprite and state == State.waiting:
-		$poop_sprite.texture = waiting_sprite
-	
-	if color:
-		$static/trajectory_renderer.default_color = color
+signal state_changed(state: State)
+signal sit_tween_completed
+
 
 func _process(delta):
-	if Engine.is_editor_hint():
-		if color:
-			$static/trajectory_renderer.default_color = color
-		if waiting_sprite:
-			$poop_sprite.texture = waiting_sprite
-	
-	if Engine.is_editor_hint():
-		return
-
 	if _points and state == State.walking:
 		if (_index >= _points.size()): return
 
@@ -97,8 +82,8 @@ func _sit_down(toilet: Node2D):
 	_sit_tween.tween_method(func(v): self.translate(v - self.position), self.position, toilet.position, .5)
 	_sit_tween.tween_callback(
 		func():
-			$poop_sprite.texture = sitting_sprite
 			game_mode.report_sitted(self)
+			sit_tween_completed.emit()
 	)
 
 var _fight_tween: Tween

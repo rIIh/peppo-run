@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PoopStyle" load_steps=5 format=3 uid="uid://hj87240wohe6"]
+
+[ext_resource type="Script" path="res://scripts/poop/poop_style.gd" id="1_5rfa0"]
+[ext_resource type="Texture2D" uid="uid://c4ewwxwcmk18r" path="res://assets/poops/purple/poop__sitting.png" id="2_3jyr3"]
+[ext_resource type="Texture2D" uid="uid://ccuxjf2t2lai2" path="res://assets/poops/purple/poop__waiting.png" id="3_78s6v"]
+[ext_resource type="Texture2D" uid="uid://cawmxw7tkikb" path="res://assets/poops/purple/poop__walking.png" id="4_d6w8s"]
+
+[resource]
+script = ExtResource("1_5rfa0")
+line_color = Color(0.431373, 0.32549, 0.368627, 1)
+waiting = ExtResource("3_78s6v")
+walking = ExtResource("4_d6w8s")
+sitting = ExtResource("2_3jyr3")

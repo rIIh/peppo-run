@@ -33,9 +33,10 @@ func restart():
 
 	_instantiated_scene_node = current_level.instantiate()
 	_instantiated_scene_node.state_changed.connect(_handle_state_change)
-	
+
 	add_child(_instantiated_scene_node)
 	continue_button.visible = false
+
 
 func go_to_next_level():
 	assert(level_group.has_next_level(index))

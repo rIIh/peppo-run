@@ -18,13 +18,16 @@ var failed: bool = false
 
 var _assignments: Dictionary = {}
 
-var _state: State = State.drawing
+var _state: State = State.drawing :
+	set(value):
+		if (_state != value):
+			state_changed.emit(value)
+		_state = value
 var state: State :
 	get: return _state
 
 
 signal state_changed(state: State)
-
 
 func _ready():
 	for child in get_children():
@@ -70,7 +73,6 @@ func report_fighting(position: Vector2):
 	add_child(smoke)
 
 func _update_state():
-	var prev_state = self.state
 	match(state):
 		State.drawing:
 			if _assignments.size() == toilets.size():
@@ -84,6 +86,3 @@ func _update_state():
 			elif sitted_poops.size() == toilets.size():
 				_state = State.success
 
-
-	if prev_state != state:
-		state_changed.emit(_state)
