@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://to5yokpp7om7"]
+
+[ext_resource type="Texture2D" uid="uid://c4ntnkhv6bx2y" path="res://assets/particles/smoke.tres" id="2_wgip8"]
+[ext_resource type="Material" uid="uid://ccfvugc2gpydq" path="res://materials/fighting_second.tres" id="3_8x6m2"]
+[ext_resource type="Material" uid="uid://dma364nqbwh7v" path="res://materials/fighting_main.tres" id="3_r4xn7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o1w2a"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="particles_root" type="Node2D"]
+
+[node name="smoke_small_fast" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_o1w2a")
+process_material = ExtResource("3_8x6m2")
+texture = ExtResource("2_wgip8")
+fixed_fps = 60
+
+[node name="smoke_large_slow" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_o1w2a")
+process_material = ExtResource("3_r4xn7")
+texture = ExtResource("2_wgip8")
+fixed_fps = 60

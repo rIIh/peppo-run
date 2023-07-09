@@ -9,7 +9,7 @@ enum State {
 	success,
 }
 
-var smoke_fighting_prefab: PackedScene = preload("res://prefabs/smoke_fighting.tscn")
+var smoke_fighting_prefab: PackedScene = preload("res://prefabs/fighting_particles.tscn")
 
 var poops: Array[Poop] = []
 var toilets: Array[Toilet] = []
