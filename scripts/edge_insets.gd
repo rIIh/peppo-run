@@ -32,10 +32,6 @@ static func from_rect_inside_rect(inner_rect: Rect2, outer_rect: Rect2):
 	var right = outer_rect.size.x - left - inner_rect.size.x
 	var bottom = outer_rect.size.y - top - inner_rect.size.y
 	
-	print(outer_rect, ', ', inner_rect)
-	print(left, ', ', top, ', ', right, ', ', bottom)
-	print('------')
-	
 	return EdgeInsets.new(left, top, right, bottom)
 
 

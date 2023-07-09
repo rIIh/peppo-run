@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0avtug1we22e"]
+[gd_scene load_steps=14 format=3 uid="uid://d0avtug1we22e"]
 
 [ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_et1sp"]
 [ext_resource type="Texture2D" uid="uid://dwxdjvuq5fsij" path="res://assets/checker-pattern.png" id="1_iwfig"]
 [ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_v8vth"]
 [ext_resource type="Script" path="res://scripts/safe_area.gd" id="4_x7p4y"]
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="5_s3vk1"]
+[ext_resource type="PackedScene" uid="uid://cf6ytkqnlpimf" path="res://scenes/game_viewport.tscn" id="6_4vm6l"]
+[ext_resource type="Texture2D" uid="uid://d1f6oyfxrqs1n" path="res://assets/ui/bottom.png" id="6_18rks"]
+[ext_resource type="Texture2D" uid="uid://5x0vt0adouwm" path="res://assets/ui/arrow_back.png" id="7_06eac"]
+[ext_resource type="Texture2D" uid="uid://bcn3juhtqu6qj" path="res://assets/ui/restart.png" id="8_wqike"]
+[ext_resource type="Texture2D" uid="uid://bs53dwra8ykww" path="res://assets/ui/menu.png" id="9_wxmd7"]
 
 [sub_resource type="Resource" id="Resource_sm66w"]
 script = ExtResource("5_s3vk1")
@@ -20,14 +25,54 @@ top = 0.0
 right = 0.0
 bottom = 20.0
 
-[node name="root" type="Node" node_paths=PackedStringArray("restart_button", "continue_button")]
+[sub_resource type="GDScript" id="GDScript_ulfc3"]
+script/source = "@tool
+extends ColorRect
+
+var _safe_area: SafeArea
+
+@onready
+var _height = 0 :
+	set(value):
+		if size.y != value:
+			size = Vector2(size.x, value)
+
+		_height = value
+
+
+func _enter_tree():
+	_safe_area = _get_safe_area()
+	_height = _safe_area.view_padding.bottom if _safe_area else 0
+
+
+func _process(delta):
+	if Engine.is_editor_hint():
+		if not _safe_area:
+			_safe_area = _get_safe_area()
+
+		if _safe_area:
+			_height = _safe_area.view_padding.bottom
+
+
+func _exit_tree():
+	_safe_area = null
+	_height = 0
+
+
+func _get_safe_area() -> SafeArea:
+	var parent = get_parent()
+	while parent and not parent is SafeArea:
+		parent = parent.get_parent()
+
+	return parent
+"
+
+[node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "restart_button", "continue_button")]
 script = ExtResource("1_et1sp")
 level_group = ExtResource("2_v8vth")
+level_spawn_parent = NodePath("ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport/game_viewport")
 restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/restart_button")
 continue_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/continue_button")
-
-[node name="main_camera" type="Camera2D" parent="."]
-position = Vector2(180, 390)
 
 [node name="background_layer" type="CanvasLayer" parent="."]
 layer = -1
@@ -87,9 +132,28 @@ theme_override_constants/margin_bottom = 34
 script = ExtResource("4_x7p4y")
 debug_insets = SubResource("Resource_sm66w")
 minimum = SubResource("Resource_l8t0s")
-view_rect = Rect2i(0, 0, 360, 780)
+view_rect = Rect2i(0, 0, 375, 812)
 safe_area = Rect2i(0, 0, 2560, 1392)
 view_padding = SubResource("Resource_sm66w")
+
+[node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 70
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ui_layer/container/safe_area/padding"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(375, 661)
+render_target_update_mode = 4
+
+[node name="game_viewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("6_4vm6l")]
 
 [node name="content" type="Control" parent="ui_layer/container/safe_area"]
 layout_mode = 2
@@ -105,23 +169,60 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/content/bottom_node"]
+[node name="bottom_padding_fill" type="ColorRect" parent="ui_layer/container/safe_area/content/bottom_node"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.745098, 0.717647, 0.776471, 1)
+script = SubResource("GDScript_ulfc3")
+
+[node name="bottom_nav_bar_background" type="TextureRect" parent="ui_layer/container/safe_area/content/bottom_node"]
+self_modulate = Color(0.745098, 0.717647, 0.776471, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_18rks")
+stretch_mode = 1
+
+[node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/content/bottom_node"]
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
 offset_top = -31.0
+offset_right = 74.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(0, 64)
 mouse_filter = 2
 alignment = 1
 
-[node name="restart_button" type="Button" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="back_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
 layout_mode = 2
-text = "Restart"
+texture_normal = ExtResource("7_06eac")
 
-[node name="continue_button" type="Button" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="restart_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
 layout_mode = 2
-text = "Continue"
+texture_normal = ExtResource("8_wqike")
+
+[node name="menu_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+layout_mode = 2
+texture_normal = ExtResource("9_wxmd7")
+
+[node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+layout_mode = 2
+texture_normal = ExtResource("7_06eac")
+flip_h = true

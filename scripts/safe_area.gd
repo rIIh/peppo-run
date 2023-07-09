@@ -23,6 +23,7 @@ func _ready():
 	resized.connect(calculate)
 	calculate()
 
+
 func calculate():
 	var editor_resolution = Vector2i(ProjectSettings.get_setting(
 		"display/window/size/viewport_width"),
@@ -35,8 +36,6 @@ func calculate():
 	safe_area = DisplayServer.get_display_safe_area()
 	view_padding = debug_insets if Engine.is_editor_hint() and debug_insets else EdgeInsets.from_rect_inside_rect(safe_area, view_rect).only_positive()
 	
-	print(view_padding)
- 
 	add_theme_constant_override("margin_left", max(view_padding.left, minimum.left))
 	add_theme_constant_override("margin_top", max(view_padding.top, minimum.top))
 	add_theme_constant_override("margin_right", max(view_padding.right, minimum.right))

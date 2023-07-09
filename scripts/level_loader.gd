@@ -6,12 +6,15 @@ var level_group: LevelGroup
 var _index := 0
 var index: int :
 	get: return _index
+	
+@export
+var level_spawn_parent: Node
 
 @export
-var restart_button: Button
+var restart_button: BaseButton
 
 @export
-var continue_button: Button
+var continue_button: BaseButton
 
 var current_level: PackedScene :
 	get: return level_group.get_level_scene(index)
@@ -34,7 +37,11 @@ func restart():
 	_instantiated_scene_node = current_level.instantiate()
 	_instantiated_scene_node.state_changed.connect(_handle_state_change)
 
-	add_child(_instantiated_scene_node)
+	if level_spawn_parent:
+		level_spawn_parent.add_child(_instantiated_scene_node)
+	else:
+		add_child(_instantiated_scene_node)
+	
 	continue_button.visible = false
 
 

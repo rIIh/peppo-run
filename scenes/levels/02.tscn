@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://brvds4qm8qmmj"]
+[gd_scene load_steps=6 format=3 uid="uid://brvds4qm8qmmj"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_6gtyl"]
 [ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="2_4vh40"]
+[ext_resource type="Script" path="res://scripts/utility/keep_rect_in_camera.gd" id="2_v14i6"]
 [ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="3_4t4wt"]
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="3_8386j"]
 
 [node name="level" type="Node"]
 script = ExtResource("1_6gtyl")
+
+[node name="play_area" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 375.0
+offset_bottom = 812.0
+script = ExtResource("2_v14i6")
 
 [node name="poop" parent="." instance=ExtResource("2_4vh40")]
 position = Vector2(86, 716)
