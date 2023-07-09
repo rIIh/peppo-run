@@ -69,7 +69,7 @@ func report_fighting(position: Vector2):
 	_update_state()
 	
 	var smoke = smoke_fighting_prefab.instantiate()
-	smoke.position = position
+	smoke.position = position + Vector2.UP * 40
 	add_child(smoke)
 
 func _update_state():

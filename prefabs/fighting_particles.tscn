@@ -11,6 +11,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [node name="particles_root" type="Node2D"]
+z_index = 2
 
 [node name="smoke_small_fast" type="GPUParticles2D" parent="."]
 texture_filter = 1
