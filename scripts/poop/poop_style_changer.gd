@@ -15,6 +15,15 @@ var sprite: Sprite2D
 @export
 var line_renderer: Line2D
 
+@export
+var animation_player: AnimationPlayer
+
+@onready
+var _last_position := poop.position
+var _is_walking: bool = false
+
+@onready
+var _state := poop.state
 
 func _ready():
 	_setup()
@@ -43,10 +52,20 @@ func _update_nodes():
 			line_renderer.default_color = style.line_color
 
 func _process(delta):
+	if not Engine.is_editor_hint():
+		if _is_walking:
+			var delta_x = (poop.position - _last_position).x
+			var to_right = delta_x > 0
+			if abs(delta_x) > 2.5 * delta:
+				_last_position = poop.position
+				sprite.scale.x = 1 if to_right else -1
+
+		elif sprite.scale.x != 1:
+			sprite.scale.x = 1
+
 	if Engine.is_editor_hint():
 		_setup()
 		_update_nodes()
-
 
 func _handle_state_change(state: Poop.State):
 	if sprite and style:
@@ -54,8 +73,29 @@ func _handle_state_change(state: Poop.State):
 			Poop.State.waiting:
 				sprite.texture = style.waiting
 			Poop.State.walking:
+				_is_walking = true
 				sprite.texture = style.walking
 			Poop.State.sitting:
-				await poop.sit_tween_completed
+				await poop.walking_tween_completed
+
+				_is_walking = false
 				if (poop.state == Poop.State.sitting):
 					sprite.texture = style.sitting
+			Poop.State.fighting:
+				await poop.walking_tween_completed
+				
+				_is_walking = false
+			Poop.State.exploded:
+				_is_walking = false
+
+	_state = state
+	
+	if animation_player:
+		var animation = animation_player.get_animation(Poop.State.find_key(_state))
+		var frame_count = animation.track_get_key_count(0) if animation else 1
+
+		if animation:
+			animation_player.play(Poop.State.find_key(_state))
+
+		if sprite and sprite.hframes != frame_count:
+			sprite.hframes = frame_count

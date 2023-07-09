@@ -21,5 +21,6 @@ position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_1cokc")
 
 [node name="toilet_tag" type="Sprite2D" parent="."]
+self_modulate = Color(0.90625, 0.6875, 0.488281, 1)
 position = Vector2(1, -51)
 texture = ExtResource("3_q5gbr")

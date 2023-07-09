@@ -1,11 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsvx2aifffouw"]
+[gd_scene load_steps=5 format=3 uid="uid://dsvx2aifffouw"]
 
 [ext_resource type="Script" path="res://scripts/safe_area.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="2_ns7b1"]
+
+[sub_resource type="Resource" id="Resource_vnmyi"]
+script = ExtResource("2_ns7b1")
+left = 0.0
+top = 47.0
+right = 0.0
+bottom = 34.0
+
+[sub_resource type="Resource" id="Resource_64ni5"]
+script = ExtResource("2_ns7b1")
+left = 0.0
+top = 0.0
+right = 0.0
+bottom = 0.0
 
 [node name="SafeArea" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 47
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 34
 script = ExtResource("1")
+debug_insets = SubResource("Resource_vnmyi")
+minimum = SubResource("Resource_64ni5")
+view_rect = Rect2i(0, 0, 360, 780)
+safe_area = Rect2i(0, 0, 2560, 1392)
+view_padding = SubResource("Resource_vnmyi")
 
 [connection signal="resized" from="." to="." method="_on_SafeArea_resized"]

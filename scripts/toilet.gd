@@ -30,7 +30,6 @@ func _process(delta):
 		_update_nodes()
 
 
-
 func _setup():
 	if not poop_style:
 		poop_style = preload("res://resources/poops/orange.tres")

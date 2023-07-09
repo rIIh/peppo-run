@@ -1,9 +1,0 @@
-[gd_resource type="AnimatedTexture" load_steps=2 format=3 uid="uid://ter8lydc8wbj"]
-
-[ext_resource type="Texture2D" uid="uid://cawmxw7tkikb" path="res://assets/poops/purple/poop__walking.png" id="1_dgu00"]
-
-[resource]
-frames = 2
-frame_0/texture = ExtResource("1_dgu00")
-frame_1/texture = ExtResource("1_dgu00")
-frame_1/duration = 1.0
