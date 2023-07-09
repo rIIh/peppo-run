@@ -1,5 +1,6 @@
 extends Control
 
+# TODO: add border gizmo
 class_name KeepRectInCamera
 
 var camera: Camera2D

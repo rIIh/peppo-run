@@ -12,12 +12,12 @@ script = ExtResource("1_2o574")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 375.0
-offset_bottom = 812.0
+offset_bottom = 730.0
 script = ExtResource("2_5snxg")
 
 [node name="poop" parent="." instance=ExtResource("2_xpls6")]
-position = Vector2(183, 704)
+position = Vector2(183, 590)
 speed = 300.0
 
 [node name="toilet" parent="." instance=ExtResource("3_0w8k1")]
-position = Vector2(186, 235)
+position = Vector2(186, 159)
