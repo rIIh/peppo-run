@@ -8,6 +8,7 @@
 size = Vector2(58, 52)
 
 [node name="toilet_body" type="StaticBody2D"]
+texture_filter = 1
 collision_layer = 3
 input_pickable = true
 script = ExtResource("1_4juv6")

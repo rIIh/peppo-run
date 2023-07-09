@@ -143,6 +143,6 @@ shape = SubResource("RectangleShape2D_hsdn7")
 
 [node name="poop_sprite" type="Sprite2D" parent="."]
 z_index = 1
-texture_filter = 6
+texture_filter = 1
 position = Vector2(0, -42)
 texture = ExtResource("3_tc0yr")

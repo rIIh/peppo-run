@@ -14,7 +14,6 @@ particles_anim_loop = false
 z_index = 2
 
 [node name="smoke_small_fast" type="GPUParticles2D" parent="."]
-texture_filter = 1
 material = SubResource("CanvasItemMaterial_o1w2a")
 process_material = ExtResource("3_8x6m2")
 texture = ExtResource("2_wgip8")

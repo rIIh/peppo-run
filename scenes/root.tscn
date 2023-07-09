@@ -141,6 +141,7 @@ layout_mode = 2
 theme_override_constants/margin_bottom = 70
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ui_layer/container/safe_area/padding"]
+texture_filter = 1
 layout_mode = 2
 stretch = true
 
@@ -148,6 +149,9 @@ stretch = true
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
+use_taa = true
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 physics_object_picking = true
 physics_object_picking_sort = true
 size = Vector2i(375, 661)
