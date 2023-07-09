@@ -7,6 +7,8 @@ enum State {
 	waiting,
 	walking,
 	sitting,
+	fighting,
+	exploded,
 }
 
 var game_mode: GameMode
@@ -82,7 +84,7 @@ func start_movement():
 		_state = State.walking
 
 var _sit_tween: Tween
-func sit_down(toilet: Node2D):
+func _sit_down(toilet: Node2D):
 	if state == State.sitting: return
 	if not toilet is Toilet: return
 
@@ -99,3 +101,22 @@ func sit_down(toilet: Node2D):
 			game_mode.report_sitted(self)
 	)
 
+var _fight_tween: Tween
+func collide(body: Node2D):
+	if body is Toilet and trajectory_planner.target_toilet == body:
+		_sit_down(body)
+		
+	if body is Poop and body != self:
+		_state = State.fighting
+		game_mode.report_death()
+		
+		if _fight_tween:
+			_fight_tween.kill()
+			
+		var target_position = (body.position + self.position) / 2
+		_fight_tween = create_tween()
+		_fight_tween.tween_method(func(v): self.translate(v - self.position), self.position, target_position, .25)
+		_fight_tween.tween_callback(func(): $poop_sprite.visible = false)
+		
+		
+		

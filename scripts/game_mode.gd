@@ -13,6 +13,7 @@ enum State {
 var poops: Array[Poop] = []
 var toilets: Array[Toilet] = []
 var sitted_poops: Array[Poop] = []
+var failed: bool = false
 
 var _assignments: Dictionary = {}
 
@@ -59,6 +60,10 @@ func report_sitted(poop: Poop):
 	_update_state()
 
 
+func report_death():
+	failed = true
+	_update_state()
+
 func _update_state():
 	var prev_state = self.state
 	match(state):
@@ -69,7 +74,9 @@ func _update_state():
 				for poop in poops:
 					poop.start_movement()
 		State.running:
-			if sitted_poops.size() == toilets.size():
+			if failed:
+				_state = State.failed
+			elif sitted_poops.size() == toilets.size():
 				_state = State.success
 
 
