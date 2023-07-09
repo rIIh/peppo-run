@@ -9,6 +9,7 @@ enum State {
 	success,
 }
 
+var smoke_fighting_prefab: PackedScene = preload("res://prefabs/smoke_fighting.tscn")
 
 var poops: Array[Poop] = []
 var toilets: Array[Toilet] = []
@@ -60,9 +61,13 @@ func report_sitted(poop: Poop):
 	_update_state()
 
 
-func report_death():
+func report_fighting(position: Vector2):
 	failed = true
 	_update_state()
+	
+	var smoke = smoke_fighting_prefab.instantiate()
+	smoke.position = position
+	add_child(smoke)
 
 func _update_state():
 	var prev_state = self.state

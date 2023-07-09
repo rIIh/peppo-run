@@ -108,12 +108,12 @@ func collide(body: Node2D):
 		
 	if body is Poop and body != self:
 		_state = State.fighting
-		game_mode.report_death()
+		var target_position = (body.position + self.position) / 2
+		game_mode.report_fighting(target_position)
 		
 		if _fight_tween:
 			_fight_tween.kill()
 			
-		var target_position = (body.position + self.position) / 2
 		_fight_tween = create_tween()
 		_fight_tween.tween_method(func(v): self.translate(v - self.position), self.position, target_position, .25)
 		_fight_tween.tween_callback(func(): $poop_sprite.visible = false)
