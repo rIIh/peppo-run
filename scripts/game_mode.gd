@@ -9,6 +9,21 @@ enum State {
 	success,
 }
 
+@onready
+var _play_area: PlayArea = NodeUtilities.get_child_of_type(self, PlayArea)
+var play_area: PlayArea : 
+	get: return _play_area
+
+var _go_button: BaseButton
+var go_button: BaseButton :
+	set(value):
+		if (_go_button):
+			_go_button.pressed.disconnect(_handle_go_pressed)
+
+		_go_button = value
+		if (_go_button):
+			_go_button.pressed.connect(_handle_go_pressed)
+
 var smoke_fighting_prefab: PackedScene = preload("res://prefabs/fighting_particles.tscn")
 
 var poops: Array[Poop] = []
@@ -67,12 +82,14 @@ func report_sitted(poop: Poop):
 func report_fighting(position: Vector2):
 	failed = true
 	_update_state()
-	
+
 	var smoke = smoke_fighting_prefab.instantiate()
 	smoke.position = position + Vector2.UP * 40
 	add_child(smoke)
 
-func _update_state():
+
+
+func _handle_go_pressed():
 	match(state):
 		State.drawing:
 			if _assignments.size() == toilets.size():
@@ -80,6 +97,10 @@ func _update_state():
 
 				for poop in poops:
 					poop.start_movement()
+
+
+func _update_state():
+	match(state):
 		State.running:
 			if failed:
 				_state = State.failed

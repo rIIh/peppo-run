@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0uduq3j28cv"]
+
+[ext_resource type="Script" path="res://scripts/background_layer.gd" id="1_aswgh"]
+[ext_resource type="Texture2D" uid="uid://dwxdjvuq5fsij" path="res://assets/checker-pattern.png" id="1_dwntd"]
+
+[node name="background_layer" type="CanvasLayer"]
+layer = -1
+script = ExtResource("1_aswgh")
+
+[node name="background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="colored_box" type="ColorRect" parent="background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.72549, 0.823529, 1, 1)
+
+[node name="checker_pattern" type="TextureRect" parent="background"]
+self_modulate = Color(0.776471, 0.854902, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dwntd")
+stretch_mode = 1

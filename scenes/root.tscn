@@ -1,15 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0avtug1we22e"]
+[gd_scene load_steps=17 format=3 uid="uid://d0avtug1we22e"]
 
 [ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_et1sp"]
-[ext_resource type="Texture2D" uid="uid://dwxdjvuq5fsij" path="res://assets/checker-pattern.png" id="1_iwfig"]
 [ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_v8vth"]
+[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="3_mlub3"]
 [ext_resource type="Script" path="res://scripts/safe_area.gd" id="4_x7p4y"]
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="5_s3vk1"]
 [ext_resource type="PackedScene" uid="uid://cf6ytkqnlpimf" path="res://scenes/game_viewport.tscn" id="6_4vm6l"]
-[ext_resource type="Texture2D" uid="uid://d1f6oyfxrqs1n" path="res://assets/ui/bottom.png" id="6_18rks"]
 [ext_resource type="Texture2D" uid="uid://5x0vt0adouwm" path="res://assets/ui/arrow_back.png" id="7_06eac"]
+[ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="7_pdgi6"]
+[ext_resource type="Texture2D" uid="uid://my437uyb7wx2" path="res://assets/ui/back.png" id="8_tw7o3"]
 [ext_resource type="Texture2D" uid="uid://bcn3juhtqu6qj" path="res://assets/ui/restart.png" id="8_wqike"]
-[ext_resource type="Texture2D" uid="uid://bs53dwra8ykww" path="res://assets/ui/menu.png" id="9_wxmd7"]
+[ext_resource type="Texture2D" uid="uid://dddflpoa3wujy" path="res://assets/ui/hint.png" id="9_hlfnk"]
+[ext_resource type="Texture2D" uid="uid://cupo5ina3im36" path="res://assets/ui/settings.png" id="9_wlcs4"]
+[ext_resource type="Texture2D" uid="uid://chejjj2xvkjbd" path="res://assets/ui/start.png" id="10_w5dek"]
 
 [sub_resource type="Resource" id="Resource_sm66w"]
 script = ExtResource("5_s3vk1")
@@ -21,9 +24,9 @@ bottom = 34.0
 [sub_resource type="Resource" id="Resource_l8t0s"]
 script = ExtResource("5_s3vk1")
 left = 0.0
-top = 0.0
+top = 24.0
 right = 0.0
-bottom = 20.0
+bottom = 34.0
 
 [sub_resource type="GDScript" id="GDScript_ulfc3"]
 script/source = "@tool
@@ -67,44 +70,15 @@ func _get_safe_area() -> SafeArea:
 	return parent
 "
 
-[node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "restart_button", "continue_button")]
+[node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "restart_button", "go_button", "continue_button")]
 script = ExtResource("1_et1sp")
 level_group = ExtResource("2_v8vth")
 level_spawn_parent = NodePath("ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport/game_viewport")
-restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/restart_button")
-continue_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/continue_button")
+restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio/restart_button")
+go_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/go_button")
+continue_button = NodePath("ui_layer/container/safe_area/content/continue_button")
 
-[node name="background_layer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="background" type="Control" parent="background_layer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="colored_box" type="ColorRect" parent="background_layer/background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.905882, 0.901961, 0.921569, 1)
-
-[node name="checker_pattern" type="TextureRect" parent="background_layer/background"]
-self_modulate = Color(0.858824, 0.85098, 0.886275, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_iwfig")
-stretch_mode = 1
+[node name="background_layer" parent="." instance=ExtResource("3_mlub3")]
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
 
@@ -138,7 +112,8 @@ view_padding = SubResource("Resource_sm66w")
 
 [node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 70
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 96
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ui_layer/container/safe_area/padding"]
 texture_filter = 1
@@ -149,19 +124,60 @@ stretch = true
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
-use_taa = true
-canvas_item_default_texture_filter = 0
+canvas_item_default_texture_filter = 2
 audio_listener_enable_2d = true
 physics_object_picking = true
 physics_object_picking_sort = true
-size = Vector2i(375, 661)
+size = Vector2i(375, 571)
 render_target_update_mode = 4
+
+[node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("3_mlub3")]
 
 [node name="game_viewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("6_4vm6l")]
 
 [node name="content" type="Control" parent="ui_layer/container/safe_area"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 112.5
+offset_top = -193.0
+offset_right = 174.5
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("7_06eac")
+flip_h = true
+
+[node name="Button2" type="Button" parent="ui_layer/container/safe_area/content"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.5
+offset_right = -108.5
+offset_bottom = 64.0
+grow_horizontal = 2
+icon = ExtResource("8_tw7o3")
+flat = true
+
+[node name="Button" type="Button" parent="ui_layer/container/safe_area/content"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 103.5
+offset_right = 163.5
+offset_bottom = 64.0
+grow_horizontal = 2
+icon = ExtResource("9_wlcs4")
+flat = true
 
 [node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/content"]
 layout_mode = 1
@@ -175,26 +191,32 @@ mouse_filter = 2
 
 [node name="bottom_padding_fill" type="ColorRect" parent="ui_layer/container/safe_area/content/bottom_node"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -187.5
+offset_right = 187.5
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.745098, 0.717647, 0.776471, 1)
 script = SubResource("GDScript_ulfc3")
 
 [node name="bottom_nav_bar_background" type="TextureRect" parent="ui_layer/container/safe_area/content/bottom_node"]
-self_modulate = Color(0.745098, 0.717647, 0.776471, 1)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -187.5
 offset_top = -89.0
+offset_right = 1312.5
+offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("6_18rks")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_pdgi6")
 stretch_mode = 1
 
 [node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/content/bottom_node"]
@@ -205,28 +227,43 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -31.0
-offset_right = 74.0
+offset_left = -167.5
+offset_top = -102.0
+offset_right = 167.5
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(0, 64)
 mouse_filter = 2
+theme_override_constants/separation = 35
 alignment = 1
 
-[node name="back_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area/content/bottom_node/row"]
 layout_mode = 2
-texture_normal = ExtResource("7_06eac")
+theme_override_constants/margin_bottom = -17
 
-[node name="restart_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="aspect_ratio" type="AspectRatioContainer" parent="ui_layer/container/safe_area/content/bottom_node/row/padding"]
+layout_mode = 2
+alignment_vertical = 2
+
+[node name="hint_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row/padding/aspect_ratio"]
+layout_mode = 2
+texture_normal = ExtResource("9_hlfnk")
+stretch_mode = 3
+
+[node name="go_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+layout_mode = 2
+texture_normal = ExtResource("10_w5dek")
+
+[node name="padding2" type="MarginContainer" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -17
+
+[node name="aspect_ratio" type="AspectRatioContainer" parent="ui_layer/container/safe_area/content/bottom_node/row/padding2"]
+layout_mode = 2
+alignment_vertical = 2
+
+[node name="restart_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio"]
 layout_mode = 2
 texture_normal = ExtResource("8_wqike")
-
-[node name="menu_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
-layout_mode = 2
-texture_normal = ExtResource("9_wxmd7")
-
-[node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
-layout_mode = 2
-texture_normal = ExtResource("7_06eac")
-flip_h = true
+stretch_mode = 3

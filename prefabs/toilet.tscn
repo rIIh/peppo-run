@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccmuavexb6dbw"]
 
 [ext_resource type="Script" path="res://scripts/toilet.gd" id="1_4juv6"]
-[ext_resource type="Texture2D" uid="uid://fx5yflj8ayyr" path="res://assets/toilet.png" id="2_d7l5e"]
-[ext_resource type="Texture2D" uid="uid://q8n5740hbcf8" path="res://assets/toilet_tag.png" id="3_q5gbr"]
+[ext_resource type="Texture2D" uid="uid://bbn4qidv3bv51" path="res://assets/toilet@4x.png" id="2_w6eg4"]
+[ext_resource type="Texture2D" uid="uid://c6k1igujvn22" path="res://assets/toilet_tag@4x.png" id="3_vv2t2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cokc"]
 size = Vector2(58, 52)
@@ -14,8 +14,10 @@ input_pickable = true
 script = ExtResource("1_4juv6")
 
 [node name="toilet_sprite" type="Sprite2D" parent="."]
+texture_filter = 6
 position = Vector2(0, -34)
-texture = ExtResource("2_d7l5e")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_w6eg4")
 
 [node name="toilet_collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
@@ -23,5 +25,7 @@ shape = SubResource("RectangleShape2D_1cokc")
 
 [node name="toilet_tag" type="Sprite2D" parent="."]
 self_modulate = Color(0.90625, 0.6875, 0.488281, 1)
+texture_filter = 6
 position = Vector2(1, -51)
-texture = ExtResource("3_q5gbr")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_vv2t2")

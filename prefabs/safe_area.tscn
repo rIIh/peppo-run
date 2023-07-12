@@ -31,5 +31,3 @@ minimum = SubResource("Resource_64ni5")
 view_rect = Rect2i(0, 0, 375, 812)
 safe_area = Rect2i(0, 0, 2560, 1392)
 view_padding = SubResource("Resource_vnmyi")
-
-[connection signal="resized" from="." to="." method="_on_SafeArea_resized"]

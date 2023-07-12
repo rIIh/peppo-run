@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://fdygvwcgo7af"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_pqoug"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_c57vj"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_plfvk"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_5028v"]
+[ext_resource type="Script" path="res://scripts/worker.gd" id="7_3ke00"]
+[ext_resource type="Texture2D" uid="uid://dlhpv4u5v1l1o" path="res://assets/workers/worker__waiting@4x.png" id="7_i0dmu"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="8_o3xvs"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="8_w3mtn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrxt2"]
+size = Vector2(74, 95)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcy8g"]
+radius = 166.1
+
+[node name="level" type="Node"]
+script = ExtResource("1_pqoug")
+
+[node name="play_area" parent="." instance=ExtResource("8_w3mtn")]
+offset_left = -44.0
+offset_top = -10.0
+offset_right = 424.0
+offset_bottom = 782.0
+
+[node name="poop" parent="." instance=ExtResource("3_c57vj")]
+position = Vector2(86, 716)
+speed = 300.0
+
+[node name="poop2" parent="." instance=ExtResource("3_c57vj")]
+position = Vector2(289, 709)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_plfvk")
+
+[node name="toilet" parent="." instance=ExtResource("5_5028v")]
+position = Vector2(321, 260)
+
+[node name="toilet2" parent="." instance=ExtResource("5_5028v")]
+position = Vector2(322, 117)
+tag = "purple"
+poop_style = ExtResource("4_plfvk")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(177, 422)
+script = ExtResource("7_3ke00")
+
+[node name="WorkerWaiting_4x" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 6
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_i0dmu")
+
+[node name="collider" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hrxt2")
+
+[node name="detector" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/detector"]
+shape = SubResource("CircleShape2D_kcy8g")
+
+[node name="verticall_wall" parent="." instance=ExtResource("8_o3xvs")]
+position = Vector2(106, 264)
+height = 322

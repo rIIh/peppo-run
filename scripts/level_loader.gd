@@ -14,6 +14,9 @@ var level_spawn_parent: Node
 var restart_button: BaseButton
 
 @export
+var go_button: BaseButton
+
+@export
 var continue_button: BaseButton
 
 var current_level: PackedScene :
@@ -36,6 +39,7 @@ func restart():
 
 	_instantiated_scene_node = current_level.instantiate()
 	_instantiated_scene_node.state_changed.connect(_handle_state_change)
+	_instantiated_scene_node.go_button = go_button
 
 	if level_spawn_parent:
 		level_spawn_parent.add_child(_instantiated_scene_node)

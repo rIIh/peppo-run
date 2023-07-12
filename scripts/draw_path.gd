@@ -57,6 +57,7 @@ func _clear_points():
 		line_renderer.clear_points()
 
 
+var _play_area: PlayArea
 func _try_start_drawing(viewport: Node, event: InputEvent, shape_idx: int):
 	if poop.game_mode.state != GameMode.State.drawing: return
 
@@ -68,12 +69,36 @@ func _try_start_drawing(viewport: Node, event: InputEvent, shape_idx: int):
 
 		_add_point(poop.position)
 
+		if _play_area:
+			_play_area.mouse_exited_play_area.disconnect(_handle_mouse_exited_play_area)
+
+		_play_area = poop.game_mode.play_area
+		if _play_area:
+			_play_area.mouse_exited_play_area.connect(_handle_mouse_exited_play_area)
+		print("connect")
+
+
+func _handle_mouse_exited_play_area():
+	print(_drawing)
+	if _drawing:
+		_drawing = false
+		_clear_points()
+
+		if _play_area:
+			_play_area.blink()
+			_play_area.mouse_exited_play_area.disconnect(_handle_mouse_exited_play_area)
+			_play_area = null
+
 
 func _try_end_drawing(event: InputEvent):
 	if not _drawing: return
 
 	if event is InputEventMouseButton and event.button_index == 1 and not event.is_pressed():
 		_drawing = false
+
+		if _play_area:
+			_play_area.mouse_exited_play_area.disconnect(_handle_mouse_exited_play_area)
+			_play_area = null
 
 		var toilets = poop.game_mode.toilets.filter(func(t): return t.check_is_hovered())
 		if toilets.size() != 1:

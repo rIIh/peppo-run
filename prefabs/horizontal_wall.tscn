@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddprdycqwc6cd"]
+
+[ext_resource type="Script" path="res://scripts/horizontal_wall.gd" id="1_071nf"]
+[ext_resource type="Texture2D" uid="uid://dtm6tbnxgkylh" path="res://assets/objects/horizontal_wall@4x.png" id="2_8vip8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbg1t"]
+resource_local_to_scene = true
+size = Vector2(217, 10)
+
+[node name="horizontal_wall" type="StaticBody2D"]
+position = Vector2(95, 131)
+script = ExtResource("1_071nf")
+width = 217
+
+[node name="wall_sprite" type="NinePatchRect" parent="."]
+offset_right = 868.0
+offset_bottom = 40.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_8vip8")
+region_rect = Rect2(0, 0, 48, 40)
+patch_margin_left = 10
+patch_margin_top = 20
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(108.5, 5)
+shape = SubResource("RectangleShape2D_jbg1t")

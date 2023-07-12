@@ -23,7 +23,7 @@ var _last_position := poop.position
 var _is_walking: bool = false
 
 @onready
-var _state := poop.state
+var _state: Poop.State = poop.state if not Engine.is_editor_hint() else -1
 
 func _ready():
 	_setup()
@@ -58,10 +58,11 @@ func _process(delta):
 			var to_right = delta_x > 0
 			if abs(delta_x) > 2.5 * delta:
 				_last_position = poop.position
-				sprite.scale.x = 1 if to_right else -1
+				if to_right and sprite.scale.x < 0 or not to_right and sprite.scale.x > 0:
+					sprite.scale.x = -sprite.scale.x
 
-		elif sprite.scale.x != 1:
-			sprite.scale.x = 1
+		elif sprite.scale.x < 0:
+			sprite.scale.x = -sprite.scale.x
 
 	if Engine.is_editor_hint():
 		_setup()
@@ -93,6 +94,12 @@ func _handle_state_change(state: Poop.State):
 	if animation_player:
 		var animation = animation_player.get_animation(Poop.State.find_key(_state))
 		var frame_count = animation.track_get_key_count(0) if animation else 1
+		if _state == Poop.State.walking and frame_count != style.walking_frame_count:
+			print(style.walking_frame_count)
+			for i in range(style.walking_frame_count, frame_count):
+				animation.track_remove_key(0, i + 1)
+	
+			frame_count = style.walking_frame_count
 
 		if animation:
 			animation_player.play(Poop.State.find_key(_state))

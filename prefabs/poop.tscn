@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/poop.gd" id="1_wa74g"]
 [ext_resource type="Script" path="res://scripts/poop/poop_style_changer.gd" id="2_s4xoi"]
 [ext_resource type="Resource" uid="uid://bxmo20wqjared" path="res://resources/poops/orange.tres" id="3_qtnn3"]
-[ext_resource type="Texture2D" uid="uid://g70ye0uqqmgi" path="res://assets/poops/orange/poop__waiting.png" id="3_tc0yr"]
 [ext_resource type="Script" path="res://scripts/draw_path.gd" id="4_qmamc"]
+[ext_resource type="Texture2D" uid="uid://4gvhr7gqttit" path="res://assets/poops/orange/poop__waiting@4x.png" id="5_a6j8o"]
 
 [sub_resource type="Animation" id="Animation_v5wp1"]
 length = 0.001
@@ -17,7 +17,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
 
@@ -32,7 +32,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
 
@@ -47,7 +47,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
 
@@ -64,7 +64,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3, 4]
 }
 
@@ -123,6 +123,7 @@ line_renderer = NodePath("../trajectory_renderer")
 start_drawing_trigger = NodePath("../..")
 
 [node name="trajectory_renderer" type="Line2D" parent="static"]
+texture_filter = 6
 width = 6.0
 default_color = Color(0.90625, 0.6875, 0.488281, 1)
 begin_cap_mode = 2
@@ -143,6 +144,7 @@ shape = SubResource("RectangleShape2D_hsdn7")
 
 [node name="poop_sprite" type="Sprite2D" parent="."]
 z_index = 1
-texture_filter = 1
+texture_filter = 6
 position = Vector2(0, -42)
-texture = ExtResource("3_tc0yr")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_a6j8o")
