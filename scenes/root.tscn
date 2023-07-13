@@ -79,6 +79,7 @@ go_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/go_bu
 continue_button = NodePath("ui_layer/container/safe_area/content/continue_button")
 
 [node name="background_layer" parent="." instance=ExtResource("3_mlub3")]
+tile_offset = Vector2(0, 0)
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
 
@@ -131,7 +132,9 @@ physics_object_picking_sort = true
 size = Vector2i(375, 571)
 render_target_update_mode = 4
 
-[node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("3_mlub3")]
+[node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" node_paths=PackedStringArray("offset_node") instance=ExtResource("3_mlub3")]
+offset_node = NodePath("../..")
+tile_offset = Vector2(0, -111)
 
 [node name="game_viewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("6_4vm6l")]
 
@@ -198,6 +201,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
