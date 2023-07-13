@@ -10,25 +10,22 @@
 script = ExtResource("1_6gtyl")
 
 [node name="play_area" parent="." instance=ExtResource("5_0kkjn")]
-offset_left = 1.0
-offset_top = 111.0
-offset_right = 376.0
-offset_bottom = 679.0
+offset_bottom = 570.0
 
 [node name="poop" parent="." instance=ExtResource("2_4vh40")]
-position = Vector2(94, 633)
+position = Vector2(94, 522)
 speed = 300.0
 
 [node name="poop2" parent="." instance=ExtResource("2_4vh40")]
-position = Vector2(297, 629)
+position = Vector2(297, 518)
 tag = "purple"
 speed = 300.0
 style = ExtResource("3_4t4wt")
 
 [node name="toilet" parent="." instance=ExtResource("3_8386j")]
-position = Vector2(284, 244)
+position = Vector2(284, 133)
 
 [node name="toilet2" parent="." instance=ExtResource("3_8386j")]
-position = Vector2(101, 249)
+position = Vector2(101, 138)
 tag = "purple"
 poop_style = ExtResource("3_4t4wt")

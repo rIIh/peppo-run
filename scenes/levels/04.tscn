@@ -19,15 +19,15 @@ script = ExtResource("1_oxube")
 [node name="play_area" parent="." instance=ExtResource("6_k5g8d")]
 offset_left = -1.0
 offset_top = 129.0
-offset_right = 379.0
-offset_bottom = 769.0
+offset_right = 374.0
+offset_bottom = 699.0
 
 [node name="poop" parent="." instance=ExtResource("3_tfwo6")]
-position = Vector2(86, 716)
+position = Vector2(86, 610)
 speed = 300.0
 
 [node name="poop2" parent="." instance=ExtResource("3_tfwo6")]
-position = Vector2(289, 709)
+position = Vector2(289, 603)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_kck34")

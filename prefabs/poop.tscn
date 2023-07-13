@@ -94,8 +94,9 @@ func _handle_body_entered(body: Node2D):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uyyo"]
 size = Vector2(82, 63)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsdn7"]
-size = Vector2(102, 108)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3goe"]
+radius = 41.0
+height = 100.0
 
 [node name="poop_character" type="CharacterBody2D"]
 collision_layer = 3
@@ -139,8 +140,8 @@ position = Vector2(0, -32.5)
 shape = SubResource("RectangleShape2D_2uyyo")
 
 [node name="poop_collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -47)
-shape = SubResource("RectangleShape2D_hsdn7")
+position = Vector2(0, -41)
+shape = SubResource("CapsuleShape2D_l3goe")
 
 [node name="poop_sprite" type="Sprite2D" parent="."]
 z_index = 1

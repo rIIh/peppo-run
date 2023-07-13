@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwsr07xmf10qp"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_ggri5"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_cdwsk"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_d2ldc"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_r4awv"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_uldux"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="6_lhovu"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="7_nk276"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_ggri5")
+
+[node name="play_area" parent="." instance=ExtResource("2_cdwsk")]
+offset_bottom = 570.0
+
+[node name="poop" parent="." instance=ExtResource("3_d2ldc")]
+position = Vector2(272, 416)
+speed = 300.0
+
+[node name="poop3" parent="." instance=ExtResource("3_d2ldc")]
+position = Vector2(272, 295)
+speed = 300.0
+
+[node name="poop2" parent="." instance=ExtResource("3_d2ldc")]
+position = Vector2(95, 291)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_r4awv")
+
+[node name="toilet" parent="." instance=ExtResource("5_uldux")]
+position = Vector2(100, 420)
+
+[node name="toilet3" parent="." instance=ExtResource("5_uldux")]
+position = Vector2(100, 520)
+
+[node name="toilet2" parent="." instance=ExtResource("5_uldux")]
+position = Vector2(272, 520)
+tag = "purple"
+poop_style = ExtResource("4_r4awv")
+
+[node name="verticall_wall" parent="." instance=ExtResource("6_lhovu")]
+position = Vector2(185, 203)
+height = 350
+
+[node name="horizontal_wall" parent="." instance=ExtResource("7_nk276")]
+position = Vector2(-11, 547)
+width = 397

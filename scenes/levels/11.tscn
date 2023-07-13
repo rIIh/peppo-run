@@ -13,37 +13,34 @@
 size = Vector2(74, 95)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kcy8g"]
-radius = 166.1
+radius = 115.156
 
 [node name="level" type="Node"]
 script = ExtResource("1_pqoug")
 
 [node name="play_area" parent="." instance=ExtResource("8_w3mtn")]
-offset_left = -44.0
-offset_top = -10.0
-offset_right = 424.0
-offset_bottom = 782.0
+offset_bottom = 570.0
 
 [node name="poop" parent="." instance=ExtResource("3_c57vj")]
-position = Vector2(86, 716)
+position = Vector2(197, 548)
 speed = 300.0
 
 [node name="poop2" parent="." instance=ExtResource("3_c57vj")]
-position = Vector2(289, 709)
+position = Vector2(305, 547)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_plfvk")
 
 [node name="toilet" parent="." instance=ExtResource("5_5028v")]
-position = Vector2(321, 260)
+position = Vector2(321, 184)
 
 [node name="toilet2" parent="." instance=ExtResource("5_5028v")]
-position = Vector2(322, 117)
+position = Vector2(322, 87)
 tag = "purple"
 poop_style = ExtResource("4_plfvk")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(177, 422)
+position = Vector2(205, 317)
 script = ExtResource("7_3ke00")
 
 [node name="WorkerWaiting_4x" type="Sprite2D" parent="CharacterBody2D"]
@@ -61,5 +58,5 @@ shape = SubResource("RectangleShape2D_hrxt2")
 shape = SubResource("CircleShape2D_kcy8g")
 
 [node name="verticall_wall" parent="." instance=ExtResource("8_o3xvs")]
-position = Vector2(106, 264)
-height = 322
+position = Vector2(106, 205)
+height = 232

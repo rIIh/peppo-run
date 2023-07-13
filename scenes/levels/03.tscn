@@ -29,4 +29,4 @@ poop_style = ExtResource("3_1mkb6")
 
 [node name="play_area" parent="." instance=ExtResource("5_q7y7r")]
 offset_top = 135.0
-offset_bottom = 703.0
+offset_bottom = 705.0

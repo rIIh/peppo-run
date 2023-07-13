@@ -10,6 +10,7 @@
 script = ExtResource("1_2o574")
 
 [node name="play_area" parent="." instance=ExtResource("2_tqh6h")]
+offset_bottom = 570.0
 
 [node name="poop" parent="." instance=ExtResource("2_xpls6")]
 position = Vector2(93, 501)
