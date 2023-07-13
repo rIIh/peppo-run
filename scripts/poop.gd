@@ -92,6 +92,7 @@ func _sit_down(toilet: Node2D):
 	if not toilet is Toilet: return
 
 	_state = State.sitting
+	_self_fighter.enabled = false
 
 	if _sit_tween:
 		_sit_tween.kill()
