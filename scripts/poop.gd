@@ -17,6 +17,9 @@ var _trajectory_planner: DrawPath = $static/trajectory_planner
 var trajectory_planner: DrawPath :
 	get: return _trajectory_planner
 
+@onready
+var _self_fighter: Fighter = NodeUtilities.get_child_of_type(self, Fighter)
+
 @export
 var tag: String = "orange"
 
@@ -30,7 +33,7 @@ var _index = 0
 var _points: Array[Vector2]
 
 var _state: State = State.waiting :
-	set(value): 
+	set(value):
 		if _state != value:
 			state_changed.emit(value)
 		_state = value
@@ -42,6 +45,19 @@ var _fighting_with: Poop
 
 signal state_changed(state: State)
 signal walking_tween_completed
+
+func _ready():
+	if _self_fighter:
+		_self_fighter.will_enter_to_fight.connect(
+			func():
+				game_mode.report_fighting()
+				_state = State.fighting
+		)
+		_self_fighter.entered_to_fight.connect(
+			func():
+				$poop_sprite.visible = false
+				walking_tween_completed.emit()
+		)
 
 
 func _process(delta):
@@ -92,26 +108,3 @@ var _fight_tween: Tween
 func collide(body: Node2D):
 	if body is Toilet and trajectory_planner.target_toilet == body:
 		_sit_down(body)
-	
-	if body is Poop and body != self:
-		var should_goto_fight = state == State.walking and body.state == State.walking
-		should_goto_fight = should_goto_fight or body._fighting_with == self
-		
-		if not should_goto_fight:
-			return
-
-		_fighting_with = body
-		_state = State.fighting
-		var target_position = (body.position + self.position) / 2
-		game_mode.report_fighting(target_position)
-		
-		if _fight_tween:
-			_fight_tween.kill()
-			walking_tween_completed.emit()
-			
-		_fight_tween = create_tween()
-		_fight_tween.tween_method(func(v): self.translate(v - self.position), self.position, target_position, .25)
-		_fight_tween.tween_callback(func(): $poop_sprite.visible = false)
-		
-		
-		

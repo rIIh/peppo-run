@@ -79,13 +79,9 @@ func report_sitted(poop: Poop):
 	_update_state()
 
 
-func report_fighting(position: Vector2):
+func report_fighting():
 	failed = true
 	_update_state()
-
-	var smoke = smoke_fighting_prefab.instantiate()
-	smoke.position = position + Vector2.UP * 40
-	add_child(smoke)
 
 
 
