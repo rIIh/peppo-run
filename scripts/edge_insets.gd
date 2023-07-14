@@ -42,3 +42,6 @@ func only_positive() -> EdgeInsets:
 		right if right > 0 else 0,
 		bottom if bottom > 0 else 0,
 	)
+	
+func _to_string():
+	return "(l: %s, t: %s, r: %s, b: %s)" % [left, top, right, bottom]

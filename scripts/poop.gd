@@ -66,7 +66,7 @@ func _process(delta):
 
 		var target = _points[_index]
 		var position = self.position
-		while target.distance_to(position) < 1:
+		while target.distance_to(position) < 4:
 			_index += 1
 			if (_index >= _points.size()): return
 

@@ -15,7 +15,7 @@ radius = 36.5
 height = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kcy8g"]
-radius = 134.015
+radius = 115.039
 
 [node name="level" type="Node"]
 script = ExtResource("1_pqoug")
