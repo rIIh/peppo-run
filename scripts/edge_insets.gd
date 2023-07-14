@@ -43,5 +43,8 @@ func only_positive() -> EdgeInsets:
 		bottom if bottom > 0 else 0,
 	)
 	
+func divide(value: float):
+	return EdgeInsets.new(left / value, top / value, right / value, bottom / value)
+	
 func _to_string():
 	return "(l: %s, t: %s, r: %s, b: %s)" % [left, top, right, bottom]

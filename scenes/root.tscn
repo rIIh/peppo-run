@@ -6,13 +6,13 @@
 [ext_resource type="Script" path="res://scripts/safe_area.gd" id="4_x7p4y"]
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="5_s3vk1"]
 [ext_resource type="PackedScene" uid="uid://cf6ytkqnlpimf" path="res://scenes/game_viewport.tscn" id="6_4vm6l"]
-[ext_resource type="Texture2D" uid="uid://5x0vt0adouwm" path="res://assets/ui/arrow_back.png" id="7_06eac"]
+[ext_resource type="Texture2D" uid="uid://cjnmpnvkpxmf0" path="res://assets/ui/type=buttons__back@4x.png" id="7_es235"]
 [ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="7_pdgi6"]
-[ext_resource type="Texture2D" uid="uid://my437uyb7wx2" path="res://assets/ui/back.png" id="8_tw7o3"]
-[ext_resource type="Texture2D" uid="uid://bcn3juhtqu6qj" path="res://assets/ui/restart.png" id="8_wqike"]
-[ext_resource type="Texture2D" uid="uid://dddflpoa3wujy" path="res://assets/ui/hint.png" id="9_hlfnk"]
-[ext_resource type="Texture2D" uid="uid://cupo5ina3im36" path="res://assets/ui/settings.png" id="9_wlcs4"]
-[ext_resource type="Texture2D" uid="uid://chejjj2xvkjbd" path="res://assets/ui/start.png" id="10_w5dek"]
+[ext_resource type="Texture2D" uid="uid://cojm3m3wqksr5" path="res://assets/ui/type=buttons__settings@4x.png" id="9_vywtu"]
+[ext_resource type="Texture2D" uid="uid://djtogrvxviep1" path="res://assets/ui/type=buttons__hint@4x.png" id="11_em6a1"]
+[ext_resource type="Script" path="res://scripts/scale_texture_button.gd" id="12_8q4ua"]
+[ext_resource type="Texture2D" uid="uid://cwp3cnmha1gen" path="res://assets/ui/type=buttons__go@4x.png" id="13_ah134"]
+[ext_resource type="Texture2D" uid="uid://scuornplo16v" path="res://assets/ui/type=buttons__restart@4x.png" id="14_an8bu"]
 
 [sub_resource type="Resource" id="Resource_sm66w"]
 script = ExtResource("5_s3vk1")
@@ -43,9 +43,13 @@ var _height = 0 :
 		_height = value
 
 
-func _enter_tree():
+func _ready():
 	_safe_area = _get_safe_area()
+	await _safe_area.ready
+	
 	_height = _safe_area.view_padding.bottom if _safe_area else 0
+	print(\"bottom fill size: %s\" % _height)
+	print(\"safe area padding: %s\" % _safe_area.view_padding)
 
 
 func _process(delta):
@@ -108,7 +112,7 @@ script = ExtResource("4_x7p4y")
 debug_insets = SubResource("Resource_sm66w")
 minimum = SubResource("Resource_l8t0s")
 view_rect = Rect2i(0, 0, 375, 812)
-safe_area = Rect2i(0, 0, 2560, 1392)
+_safe_area = null
 view_padding = SubResource("Resource_sm66w")
 
 [node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
@@ -143,22 +147,28 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 112.5
-offset_top = -193.0
-offset_right = 174.5
-offset_bottom = -127.0
+offset_left = 106.5
+offset_top = -171.0
+offset_right = 168.5
+offset_bottom = -105.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("7_06eac")
+texture_normal = ExtResource("7_es235")
+ignore_texture_size = true
+stretch_mode = 0
 flip_h = true
+script = ExtResource("12_8q4ua")
+texture_scale = Vector2(0.25, 0.25)
 
-[node name="Button2" type="Button" parent="ui_layer/container/safe_area/content"]
+[node name="Button2" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -167,10 +177,14 @@ offset_left = -168.5
 offset_right = -108.5
 offset_bottom = 64.0
 grow_horizontal = 2
-icon = ExtResource("8_tw7o3")
-flat = true
+texture_normal = ExtResource("7_es235")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_8q4ua")
+texture_scale = Vector2(0.25, 0.25)
 
-[node name="Button" type="Button" parent="ui_layer/container/safe_area/content"]
+[node name="Button" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -179,8 +193,11 @@ offset_left = 103.5
 offset_right = 163.5
 offset_bottom = 64.0
 grow_horizontal = 2
-icon = ExtResource("9_wlcs4")
-flat = true
+texture_normal = ExtResource("9_vywtu")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_8q4ua")
+texture_scale = Vector2(0.25, 0.25)
 
 [node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/content"]
 layout_mode = 1
@@ -201,6 +218,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
@@ -223,20 +241,17 @@ texture = ExtResource("7_pdgi6")
 stretch_mode = 1
 
 [node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/content/bottom_node"]
-custom_minimum_size = Vector2(335, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -167.5
-offset_top = -102.0
-offset_right = 167.5
-offset_bottom = -4.0
+offset_left = -187.5
+offset_top = -98.0
+offset_right = 187.5
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(0, 64)
 mouse_filter = 2
 theme_override_constants/separation = 35
 alignment = 1
@@ -250,13 +265,22 @@ layout_mode = 2
 alignment_vertical = 2
 
 [node name="hint_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row/padding/aspect_ratio"]
+custom_minimum_size = Vector2(82, 86)
 layout_mode = 2
-texture_normal = ExtResource("9_hlfnk")
-stretch_mode = 3
+texture_normal = ExtResource("11_em6a1")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_8q4ua")
+texture_scale = Vector2(0.25, 0.25)
 
 [node name="go_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+custom_minimum_size = Vector2(94, 98)
 layout_mode = 2
-texture_normal = ExtResource("10_w5dek")
+texture_normal = ExtResource("13_ah134")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_8q4ua")
+texture_scale = Vector2(0.25, 0.25)
 
 [node name="padding2" type="MarginContainer" parent="ui_layer/container/safe_area/content/bottom_node/row"]
 layout_mode = 2
@@ -267,6 +291,10 @@ layout_mode = 2
 alignment_vertical = 2
 
 [node name="restart_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio"]
+custom_minimum_size = Vector2(82, 86)
 layout_mode = 2
-texture_normal = ExtResource("8_wqike")
-stretch_mode = 3
+texture_normal = ExtResource("14_an8bu")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_8q4ua")
+texture_scale = Vector2(0.25, 0.25)
