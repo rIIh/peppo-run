@@ -22,8 +22,10 @@ window/size/viewport_height=812
 
 [layer_names]
 
+2d_physics/layer_3="poop"
 2d_physics/layer_4="walls"
 2d_physics/layer_5="play_area"
+2d_physics/layer_6="eye_detector"
 
 [physics]
 

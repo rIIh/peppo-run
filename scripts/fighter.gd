@@ -10,6 +10,9 @@ var enabled: bool = true
 @export
 var body: Area2D
 
+@export
+var sprite_to_hide: Sprite2D
+
 @onready
 var parent: Node2D = get_parent()
 
@@ -72,4 +75,9 @@ func _move_to(position: Vector2):
 
 	_move_tween = create_tween()
 	_move_tween.tween_method(func(v): parent.translate(v - parent.position), parent.position, position, .125).set_ease(Tween.EASE_IN)
-	_move_tween.tween_callback(func(): entered_to_fight.emit())
+	_move_tween.tween_callback(
+		func(): 
+			entered_to_fight.emit()
+			if sprite_to_hide:
+				sprite_to_hide.visible = false
+	)

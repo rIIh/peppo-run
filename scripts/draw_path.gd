@@ -17,6 +17,7 @@ var target_toilet: Toilet :
 
 var _drawing: bool = false
 var _points : Array[Vector2] = []
+var _offset: Vector2
 
 signal trajectory_created(points: Array[Vector2])
 
@@ -24,7 +25,7 @@ func get_points() -> Array[Vector2]:
 	if _drawing:
 		return []
 
-	return Array(_points)
+	return _points
 
 
 func check_has_trajectory() -> bool:
@@ -67,7 +68,7 @@ func _try_start_drawing(viewport: Node, event: InputEvent, shape_idx: int):
 		_drawing = true;
 		_clear_points()
 
-		_add_point(poop.position)
+#		_add_point(poop.position)
 
 		if _play_area:
 			_play_area.mouse_exited_play_area.disconnect(_handle_mouse_exited_play_area)
@@ -75,7 +76,6 @@ func _try_start_drawing(viewport: Node, event: InputEvent, shape_idx: int):
 		_play_area = poop.game_mode.play_area
 		if _play_area:
 			_play_area.mouse_exited_play_area.connect(_handle_mouse_exited_play_area)
-		print("connect")
 
 
 func _handle_mouse_exited_play_area():
@@ -110,6 +110,7 @@ func _try_end_drawing(event: InputEvent):
 			_clear_points()
 		else:
 			_target_toilet = toilet_target
+			_offset = _points[0] - position
 
 
 func _input(event):
