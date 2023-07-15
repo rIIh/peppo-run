@@ -45,13 +45,19 @@ var state: State :
 signal state_changed(state: State)
 
 func _ready():
-	for child in get_children():
+	_init_children(get_children())
+	
+
+
+func _init_children(nodes: Array[Node]):
+	for child in nodes:
+		if child is PlayArea:
+			_init_children(child.get_children())
 		if child is Poop:
 			poops.append(child)
 			child.game_mode = self
 		if child is Toilet:
 			toilets.append(child)
-
 
 func assign_poop_to_toilet(poop: Poop, toilet: Toilet) -> bool:
 	if _state != State.drawing: return false

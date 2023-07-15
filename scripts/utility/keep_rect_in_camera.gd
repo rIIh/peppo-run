@@ -7,7 +7,7 @@ class_name PlayArea
 @onready
 var _initial_color: Color = $border.self_modulate
 
-var camera: Camera2D
+var game_viewport: GameViewport
 
 signal mouse_exited_play_area
 
@@ -21,6 +21,10 @@ func _ready():
 		$play_area__trigger/play_area__collider.shape.size = self.size
 		$play_area__trigger/play_area__collider.position = self.size / 2
 
+
+func _enter_tree():
+	game_viewport = NodeUtilities.get_parent_of_type(self, GameViewport)
+	
 
 var _tween: Tween
 func blink():
@@ -36,18 +40,26 @@ func blink():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not Engine.is_editor_hint():
-		var camera = get_viewport().get_camera_2d()
+		var scale_factor = get_tree().root.content_scale_factor
+		var camera: Camera2D = game_viewport.camera if game_viewport else get_viewport().get_camera_2d()
 		if not camera:
 			return
 		
-		camera.position = get_rect().get_center()
-		var scale_x = get_viewport_rect().size.x / get_rect().size.x
-		var scale_y = get_viewport_rect().size.y / get_rect().size.y
+		var target_view_rect: Rect2 = game_viewport.target_rect.get_global_rect() if game_viewport and game_viewport.target_rect else null
+		target_view_rect = target_view_rect if target_view_rect else get_viewport_rect()
 		
+		
+		var scale_x = target_view_rect.size.x / get_rect().size.x
+		var scale_y = target_view_rect.size.y / get_rect().size.y
+#
 		var min_scale = min(scale_x, scale_y)
+		camera.position = -target_view_rect.position / min_scale \
+			- (target_view_rect.size - get_rect().size * min_scale) / min_scale / 2 \
+			+ (get_rect().position)
 		camera.zoom = Vector2(min_scale, min_scale)
+
 		
-		$border.visible = get_viewport_rect().size.aspect() > (get_rect().size + Vector2(32, 0)).aspect()
+#		$border.visible = target_view_rect.size.aspect() > (get_rect().size + Vector2(32, 0)).aspect()
 
 	if Engine.is_editor_hint() and $play_area__trigger/play_area__collider.shape.size != self.size:
 		$play_area__trigger/play_area__collider.shape = $play_area__trigger/play_area__collider.shape.duplicate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0avtug1we22e"]
+[gd_scene load_steps=20 format=3 uid="uid://d0avtug1we22e"]
 
 [ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_et1sp"]
 [ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_v8vth"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/scale_texture_button.gd" id="12_8q4ua"]
 [ext_resource type="Texture2D" uid="uid://cwp3cnmha1gen" path="res://assets/ui/type=buttons__go@4x.png" id="13_ah134"]
 [ext_resource type="Texture2D" uid="uid://scuornplo16v" path="res://assets/ui/type=buttons__restart@4x.png" id="14_an8bu"]
+[ext_resource type="Script" path="res://scripts/game_viewport.gd" id="14_jl23s"]
 
 [sub_resource type="Resource" id="Resource_1q0hn"]
 script = ExtResource("5_s3vk1")
@@ -27,6 +28,26 @@ left = 0.0
 top = 24.0
 right = 0.0
 bottom = 34.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hbjh"]
+
+[sub_resource type="GDScript" id="GDScript_kwnkc"]
+script/source = "extends SubViewportContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	await get_tree().create_timer(1).timeout
+	print(size) 
+	print($SubViewport.size)
+	print(get_window().size)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="GDScript" id="GDScript_ulfc3"]
 script/source = "@tool
@@ -78,7 +99,7 @@ func _get_safe_area() -> SafeArea:
 script = ExtResource("1_et1sp")
 custom_window_scale = 1.5
 level_group = ExtResource("2_v8vth")
-level_spawn_parent = NodePath("ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport/game_viewport")
+level_spawn_parent = NodePath("game_viewport")
 restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio/restart_button")
 go_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/go_button")
 continue_button = NodePath("ui_layer/container/safe_area/content/continue_button")
@@ -115,13 +136,22 @@ minimum = SubResource("Resource_gvsuo")
 
 [node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
 layout_mode = 2
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_bottom = 96
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 72
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 128
+
+[node name="keep_in_rect_target" type="Panel" parent="ui_layer/container/safe_area/padding" groups=["camera_tools"]]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2hbjh")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="ui_layer/container/safe_area/padding"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 stretch = true
+script = SubResource("GDScript_kwnkc")
 
 [node name="SubViewport" type="SubViewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer"]
 disable_3d = true
@@ -131,14 +161,12 @@ canvas_item_default_texture_filter = 2
 audio_listener_enable_2d = true
 physics_object_picking = true
 physics_object_picking_sort = true
-size = Vector2i(375, 594)
-render_target_update_mode = 4
+size = Vector2i(343, 554)
+render_target_update_mode = 0
 
 [node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" node_paths=PackedStringArray("offset_node") instance=ExtResource("3_mlub3")]
 offset_node = NodePath("../..")
-tile_offset = Vector2(0, -88)
-
-[node name="game_viewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("6_4vm6l")]
+tile_offset = Vector2(-16, -96)
 
 [node name="content" type="Control" parent="ui_layer/container/safe_area"]
 layout_mode = 2
@@ -216,7 +244,6 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
-offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
@@ -296,3 +323,7 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
+
+[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("6_4vm6l")]
+script = ExtResource("14_jl23s")
+target_rect = NodePath("../ui_layer/container/safe_area/padding/keep_in_rect_target")

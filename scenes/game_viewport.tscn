@@ -3,4 +3,5 @@
 [node name="game_viewport" type="Node"]
 
 [node name="main_camera" type="Camera2D" parent="."]
-position = Vector2(187, 406)
+position = Vector2(0, -400)
+anchor_mode = 0
