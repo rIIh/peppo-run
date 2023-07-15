@@ -110,7 +110,7 @@ func _try_end_drawing(event: InputEvent):
 			_clear_points()
 		else:
 			_target_toilet = toilet_target
-			_offset = _points[0] - position
+			_offset = _points[0] - global_position
 
 
 func _input(event):

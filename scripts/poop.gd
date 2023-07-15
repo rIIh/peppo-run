@@ -65,15 +65,15 @@ func _process(delta):
 		if (_index >= _points.size()): return
 
 		var target = _points[_index]
-		var position = self.position
+		var position = self.global_position
 		while target.distance_to(position) < 4:
 			_index += 1
 			if (_index >= _points.size()): return
 
 			target = _points[_index]
 
-		var velocity = (target - self.position).normalized() * self.speed
-		self.translate(velocity * delta)
+		var velocity = (target - position).normalized() * self.speed
+		self.global_translate(velocity * delta)
 
 func check_has_path() -> bool:
 	return trajectory_planner.check_has_trajectory()
@@ -84,6 +84,7 @@ func start_movement():
 	if check_has_path():
 		_index = 0
 		_points = trajectory_planner.get_points()
+		print(_points[0])
 		_state = State.walking
 
 var _sit_tween: Tween

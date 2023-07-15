@@ -43,7 +43,7 @@ func fight(other_fighter: Fighter):
 	if is_fighting or other_fighter == self:
 		return
 
-	_fight_start_position = parent.position
+	_fight_start_position = parent.global_position
 	if other_fighter.is_fighting and other_fighter._fighting_with == self:
 		_fighting_with = other_fighter
 
@@ -74,7 +74,7 @@ func _move_to(position: Vector2):
 		_move_tween.kill()
 
 	_move_tween = create_tween()
-	_move_tween.tween_method(func(v): parent.translate(v - parent.position), parent.position, position, .125).set_ease(Tween.EASE_IN)
+	_move_tween.tween_method(func(v): parent.global_translate(v - parent.global_position), parent.global_position, position, .125).set_ease(Tween.EASE_IN)
 	_move_tween.tween_callback(
 		func(): 
 			entered_to_fight.emit()

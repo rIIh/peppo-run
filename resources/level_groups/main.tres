@@ -15,4 +15,4 @@
 [resource]
 script = ExtResource("1_ccdgc")
 _name = "default"
-_levels = Array[PackedScene]([ExtResource("5_lwi7n"), ExtResource("1_as0gb"), ExtResource("2_ptadm"), ExtResource("3_8agwk"), ExtResource("4_jiysb"), ExtResource("5_1wiuc"), ExtResource("6_l3an1"), ExtResource("4_udylb"), ExtResource("9_7smku"), ExtResource("10_b86eg")])
+_levels = Array[PackedScene]([ExtResource("1_as0gb"), ExtResource("2_ptadm"), ExtResource("3_8agwk"), ExtResource("4_jiysb"), ExtResource("5_1wiuc"), ExtResource("6_l3an1"), ExtResource("4_udylb"), ExtResource("5_lwi7n"), ExtResource("9_7smku"), ExtResource("10_b86eg")])

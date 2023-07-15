@@ -14,39 +14,39 @@ script = ExtResource("1_3cycm")
 [node name="play_area" parent="." instance=ExtResource("2_rdein")]
 offset_bottom = 570.0
 
-[node name="poop3" parent="." instance=ExtResource("3_31vyk")]
+[node name="poop3" parent="play_area" instance=ExtResource("3_31vyk")]
 position = Vector2(284, 425)
 speed = 300.0
 
-[node name="poop2" parent="." instance=ExtResource("3_31vyk")]
+[node name="poop2" parent="play_area" instance=ExtResource("3_31vyk")]
 position = Vector2(57, 117)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_uubdj")
 
-[node name="toilet" parent="." instance=ExtResource("5_ifm71")]
+[node name="toilet" parent="play_area" instance=ExtResource("5_ifm71")]
 position = Vector2(45, 275)
 
-[node name="toilet2" parent="." instance=ExtResource("5_ifm71")]
+[node name="toilet2" parent="play_area" instance=ExtResource("5_ifm71")]
 position = Vector2(134, 278)
 tag = "purple"
 poop_style = ExtResource("4_uubdj")
 
-[node name="horizontal_wall2" parent="." instance=ExtResource("7_tyu5h")]
+[node name="horizontal_wall2" parent="play_area" instance=ExtResource("7_tyu5h")]
 position = Vector2(-6, 174)
 
-[node name="verticall_wall" parent="." instance=ExtResource("6_htj0a")]
+[node name="verticall_wall" parent="play_area" instance=ExtResource("6_htj0a")]
 position = Vector2(185, 176)
 height = 182
 
-[node name="verticall_wall2" parent="." instance=ExtResource("6_htj0a")]
+[node name="verticall_wall2" parent="play_area" instance=ExtResource("6_htj0a")]
 position = Vector2(185, 493)
 height = 30
 
-[node name="horizontal_wall" parent="." instance=ExtResource("7_tyu5h")]
+[node name="horizontal_wall" parent="play_area" instance=ExtResource("7_tyu5h")]
 position = Vector2(-11, 516)
 width = 397
 
-[node name="horizontal_wall3" parent="." instance=ExtResource("7_tyu5h")]
+[node name="horizontal_wall3" parent="play_area" instance=ExtResource("7_tyu5h")]
 position = Vector2(314, 174)
 width = 77

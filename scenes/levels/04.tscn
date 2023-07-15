@@ -22,28 +22,28 @@ offset_top = 129.0
 offset_right = 374.0
 offset_bottom = 699.0
 
-[node name="poop" parent="." instance=ExtResource("3_tfwo6")]
-position = Vector2(86, 610)
+[node name="poop" parent="play_area" instance=ExtResource("3_tfwo6")]
+position = Vector2(87, 481)
 speed = 300.0
 
-[node name="poop2" parent="." instance=ExtResource("3_tfwo6")]
-position = Vector2(289, 603)
+[node name="poop2" parent="play_area" instance=ExtResource("3_tfwo6")]
+position = Vector2(290, 474)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_kck34")
 
-[node name="toilet" parent="." instance=ExtResource("5_rfbra")]
-position = Vector2(79, 242)
+[node name="toilet" parent="play_area" instance=ExtResource("5_rfbra")]
+position = Vector2(80, 113)
 
-[node name="toilet2" parent="." instance=ExtResource("5_rfbra")]
-position = Vector2(312, 239)
+[node name="toilet2" parent="play_area" instance=ExtResource("5_rfbra")]
+position = Vector2(313, 110)
 tag = "purple"
 poop_style = ExtResource("4_kck34")
 
-[node name="horizontal_wall" type="StaticBody2D" parent="."]
-position = Vector2(19, 412)
+[node name="horizontal_wall" type="StaticBody2D" parent="play_area"]
+position = Vector2(20, 283)
 
-[node name="wall_sprite" type="NinePatchRect" parent="horizontal_wall"]
+[node name="wall_sprite" type="NinePatchRect" parent="play_area/horizontal_wall"]
 offset_left = -101.0
 offset_top = -2.0
 offset_right = 719.0
@@ -56,14 +56,14 @@ patch_margin_top = 20
 patch_margin_right = 9
 patch_margin_bottom = 9
 
-[node name="collider" type="CollisionShape2D" parent="horizontal_wall"]
+[node name="collider" type="CollisionShape2D" parent="play_area/horizontal_wall"]
 position = Vector2(1.5, 3)
 shape = SubResource("RectangleShape2D_a3un7")
 
-[node name="horizontal_wall2" type="StaticBody2D" parent="."]
-position = Vector2(357, 414)
+[node name="horizontal_wall2" type="StaticBody2D" parent="play_area"]
+position = Vector2(358, 285)
 
-[node name="wall_sprite" type="NinePatchRect" parent="horizontal_wall2"]
+[node name="wall_sprite" type="NinePatchRect" parent="play_area/horizontal_wall2"]
 offset_left = -101.0
 offset_top = -2.0
 offset_right = 719.0
@@ -76,6 +76,6 @@ patch_margin_top = 20
 patch_margin_right = 9
 patch_margin_bottom = 9
 
-[node name="collider" type="CollisionShape2D" parent="horizontal_wall2"]
+[node name="collider" type="CollisionShape2D" parent="play_area/horizontal_wall2"]
 position = Vector2(1.5, 3)
 shape = SubResource("RectangleShape2D_5tc15")

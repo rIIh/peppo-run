@@ -23,60 +23,60 @@ script = ExtResource("1_pqoug")
 [node name="play_area" parent="." instance=ExtResource("8_w3mtn")]
 offset_bottom = 570.0
 
-[node name="poop" parent="." instance=ExtResource("3_c57vj")]
+[node name="poop" parent="play_area" instance=ExtResource("3_c57vj")]
 position = Vector2(197, 553)
 speed = 300.0
 
-[node name="poop2" parent="." instance=ExtResource("3_c57vj")]
+[node name="poop2" parent="play_area" instance=ExtResource("3_c57vj")]
 position = Vector2(305, 552)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_plfvk")
 
-[node name="toilet" parent="." instance=ExtResource("5_5028v")]
+[node name="toilet" parent="play_area" instance=ExtResource("5_5028v")]
 position = Vector2(321, 184)
 
-[node name="toilet2" parent="." instance=ExtResource("5_5028v")]
+[node name="toilet2" parent="play_area" instance=ExtResource("5_5028v")]
 position = Vector2(322, 87)
 tag = "purple"
 poop_style = ExtResource("4_plfvk")
 
-[node name="worker" type="CharacterBody2D" parent="."]
+[node name="worker" type="CharacterBody2D" parent="play_area"]
 position = Vector2(205, 353)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("7_3ke00")
 
-[node name="Fighter" type="Node" parent="worker" node_paths=PackedStringArray("body", "sprite_to_hide")]
+[node name="Fighter" type="Node" parent="play_area/worker" node_paths=PackedStringArray("body", "sprite_to_hide")]
 script = ExtResource("7_4jbdn")
 body = NodePath("../collide_trigger")
 sprite_to_hide = NodePath("../sprite")
 
-[node name="capsule_collider" type="CollisionShape2D" parent="worker"]
+[node name="capsule_collider" type="CollisionShape2D" parent="play_area/worker"]
 position = Vector2(0, -39)
 shape = SubResource("CapsuleShape2D_8rdp0")
 
-[node name="collide_trigger" type="Area2D" parent="worker"]
+[node name="collide_trigger" type="Area2D" parent="play_area/worker"]
 position = Vector2(0, -41)
 
-[node name="capsule_collider" type="CollisionShape2D" parent="worker/collide_trigger"]
+[node name="capsule_collider" type="CollisionShape2D" parent="play_area/worker/collide_trigger"]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_8rdp0")
 
-[node name="eye_detector" type="Area2D" parent="worker"]
+[node name="eye_detector" type="Area2D" parent="play_area/worker"]
 position = Vector2(0, -41)
 collision_layer = 32
 collision_mask = 4
 
-[node name="circle_collider" type="CollisionShape2D" parent="worker/eye_detector"]
+[node name="circle_collider" type="CollisionShape2D" parent="play_area/worker/eye_detector"]
 shape = SubResource("CircleShape2D_kcy8g")
 
-[node name="sprite" type="Sprite2D" parent="worker"]
+[node name="sprite" type="Sprite2D" parent="play_area/worker"]
 texture_filter = 6
 position = Vector2(0, -41)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_i0dmu")
 
-[node name="verticall_wall" parent="." instance=ExtResource("8_o3xvs")]
+[node name="verticall_wall" parent="play_area" instance=ExtResource("8_o3xvs")]
 position = Vector2(106, 205)
 height = 232
