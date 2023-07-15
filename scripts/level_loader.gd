@@ -29,7 +29,9 @@ func _ready():
 	restart()
 	restart_button.pressed.connect(restart)
 	continue_button.pressed.connect(go_to_next_level)
-
+	print(DisplayServer.screen_get_dpi(), ', ', DisplayServer.screen_get_scale(), ', ', DisplayServer.screen_get_max_scale())
+	get_tree().root.content_scale_factor = DisplayServer.screen_get_scale()
+	
 
 func restart():
 	assert(level_group, "No Level Group provided. Check parameters.")

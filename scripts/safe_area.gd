@@ -49,7 +49,7 @@ func calculate():
 		return
 		
 	# TODO: use get_tree().scale ?
-	var scale = ProjectSettings.get_setting("display/window/stretch/scale")
+	var scale = get_tree().root.content_scale_factor
 	var editor_resolution = Vector2i(ProjectSettings.get_setting(
 		"display/window/size/viewport_width"),
 		ProjectSettings.get_setting("display/window/size/viewport_height"
