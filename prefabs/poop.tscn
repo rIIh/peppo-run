@@ -129,6 +129,7 @@ line_renderer = NodePath("../trajectory_renderer")
 start_drawing_trigger = NodePath("../..")
 
 [node name="trajectory_renderer" type="Line2D" parent="static"]
+z_index = -1
 texture_filter = 6
 width = 6.0
 default_color = Color(0.90625, 0.6875, 0.488281, 1)
