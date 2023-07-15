@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://0sox37j7wmf3"]
+[gd_scene load_steps=20 format=3 uid="uid://dqxxxksbcxmc"]
 
 [sub_resource type="GDScript" id="GDScript_ruklh"]
 script/source = "@tool
@@ -31,7 +31,7 @@ func _ready():
 func _process(delta):
 	$line_2d.width = width
 	$line_2d.material.set_shader_parameter(\"width\", width)
-	$line_2d.material.set_shader_parameter(\"dash\", dash)
+	$line_2d.material.set_shader_parameter(\"dash\", dash * get_tree().root.content_scale_factor)
 	$line_2d.default_color = color
 
 

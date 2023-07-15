@@ -97,7 +97,6 @@ func _get_safe_area() -> SafeArea:
 
 [node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "restart_button", "go_button", "continue_button")]
 script = ExtResource("1_et1sp")
-custom_window_scale = 1.5
 level_group = ExtResource("2_v8vth")
 level_spawn_parent = NodePath("game_viewport")
 restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio/restart_button")
@@ -244,6 +243,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")

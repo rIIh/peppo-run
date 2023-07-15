@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cis5ydtor1qqc"]
 
 [ext_resource type="Script" path="res://scripts/utility/keep_rect_in_camera.gd" id="1_gxtnv"]
-[ext_resource type="PackedScene" uid="uid://0sox37j7wmf3" path="res://prefabs/dashed_border.tscn" id="2_qn0sv"]
+[ext_resource type="PackedScene" uid="uid://dqxxxksbcxmc" path="res://prefabs/dashed_border.tscn" id="2_qn0sv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmeu1"]
 resource_local_to_scene = true
