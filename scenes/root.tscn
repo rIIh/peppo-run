@@ -161,7 +161,7 @@ canvas_item_default_texture_filter = 2
 audio_listener_enable_2d = true
 physics_object_picking = true
 physics_object_picking_sort = true
-size = Vector2i(2, 2)
+size = Vector2i(343, 554)
 render_target_update_mode = 0
 
 [node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" node_paths=PackedStringArray("offset_node") instance=ExtResource("3_mlub3")]

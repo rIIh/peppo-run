@@ -1,20 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpb6kbhl5v4rn"]
+[gd_scene load_steps=7 format=3 uid="uid://dpb6kbhl5v4rn"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_oxube"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="3_nk432"]
 [ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_tfwo6"]
 [ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_kck34"]
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_rfbra"]
 [ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="6_k5g8d"]
-[ext_resource type="Texture2D" uid="uid://dtm6tbnxgkylh" path="res://assets/objects/horizontal_wall@4x.png" id="6_rwbdf"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3un7"]
-size = Vector2(205, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tc15"]
-size = Vector2(205, 10)
 
 [node name="level" type="Node"]
 script = ExtResource("1_oxube")
+metadata/_edit_horizontal_guides_ = [423.0]
+metadata/_edit_vertical_guides_ = [187.0]
 
 [node name="play_area" parent="." instance=ExtResource("6_k5g8d")]
 offset_left = -1.0
@@ -22,15 +18,15 @@ offset_top = 129.0
 offset_right = 374.0
 offset_bottom = 699.0
 
-[node name="poop" parent="play_area" instance=ExtResource("3_tfwo6")]
-position = Vector2(87, 481)
-speed = 300.0
+[node name="horizontal_wall" parent="play_area" instance=ExtResource("3_nk432")]
+position = Vector2(124, 284)
+x_alignment = -1.0
+width = 32000
 
-[node name="poop2" parent="play_area" instance=ExtResource("3_tfwo6")]
-position = Vector2(290, 474)
-tag = "purple"
-speed = 300.0
-style = ExtResource("4_kck34")
+[node name="horizontal_wall2" parent="play_area" instance=ExtResource("3_nk432")]
+position = Vector2(252, 284)
+x_alignment = 1.0
+width = 32000
 
 [node name="toilet" parent="play_area" instance=ExtResource("5_rfbra")]
 position = Vector2(80, 113)
@@ -40,42 +36,12 @@ position = Vector2(313, 110)
 tag = "purple"
 poop_style = ExtResource("4_kck34")
 
-[node name="horizontal_wall" type="StaticBody2D" parent="play_area"]
-position = Vector2(20, 283)
+[node name="poop" parent="play_area" instance=ExtResource("3_tfwo6")]
+position = Vector2(188, 346)
+speed = 300.0
 
-[node name="wall_sprite" type="NinePatchRect" parent="play_area/horizontal_wall"]
-offset_left = -101.0
-offset_top = -2.0
-offset_right = 719.0
-offset_bottom = 38.0
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("6_rwbdf")
-region_rect = Rect2(0, 0, 48, 40)
-patch_margin_left = 10
-patch_margin_top = 20
-patch_margin_right = 9
-patch_margin_bottom = 9
-
-[node name="collider" type="CollisionShape2D" parent="play_area/horizontal_wall"]
-position = Vector2(1.5, 3)
-shape = SubResource("RectangleShape2D_a3un7")
-
-[node name="horizontal_wall2" type="StaticBody2D" parent="play_area"]
-position = Vector2(358, 285)
-
-[node name="wall_sprite" type="NinePatchRect" parent="play_area/horizontal_wall2"]
-offset_left = -101.0
-offset_top = -2.0
-offset_right = 719.0
-offset_bottom = 38.0
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("6_rwbdf")
-region_rect = Rect2(0, 0, 48, 40)
-patch_margin_left = 10
-patch_margin_top = 20
-patch_margin_right = 9
-patch_margin_bottom = 9
-
-[node name="collider" type="CollisionShape2D" parent="play_area/horizontal_wall2"]
-position = Vector2(1.5, 3)
-shape = SubResource("RectangleShape2D_5tc15")
+[node name="poop2" parent="play_area" instance=ExtResource("3_tfwo6")]
+position = Vector2(290, 474)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_kck34")

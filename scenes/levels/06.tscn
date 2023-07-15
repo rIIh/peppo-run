@@ -10,19 +10,10 @@
 
 [node name="level" type="Node"]
 script = ExtResource("1_vvko7")
+metadata/_edit_horizontal_guides_ = [373.0]
 
 [node name="play_area" parent="." instance=ExtResource("2_ba3hx")]
 offset_bottom = 570.0
-
-[node name="poop" parent="play_area" instance=ExtResource("3_1w6c5")]
-position = Vector2(51, 408)
-speed = 300.0
-
-[node name="poop2" parent="play_area" instance=ExtResource("3_1w6c5")]
-position = Vector2(244, 411)
-tag = "purple"
-speed = 300.0
-style = ExtResource("4_puuib")
 
 [node name="toilet" parent="play_area" instance=ExtResource("5_utrkf")]
 position = Vector2(326, 130)
@@ -33,13 +24,23 @@ tag = "purple"
 poop_style = ExtResource("4_puuib")
 
 [node name="horizontal_wall" parent="play_area" instance=ExtResource("6_f8u8q")]
-position = Vector2(-7, 15)
-width = 390
+position = Vector2(188, 15)
+width = 32000
 
 [node name="horizontal_wall2" parent="play_area" instance=ExtResource("6_f8u8q")]
-position = Vector2(-7, 549)
-width = 390
+position = Vector2(188, 550)
+width = 32000
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("7_matl4")]
-position = Vector2(185, 17)
-height = 400
+position = Vector2(188, 15)
+height = 380
+
+[node name="poop" parent="play_area" instance=ExtResource("3_1w6c5")]
+position = Vector2(51, 374)
+speed = 300.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_1w6c5")]
+position = Vector2(244, 374)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_puuib")

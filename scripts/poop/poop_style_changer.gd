@@ -95,7 +95,6 @@ func _handle_state_change(state: Poop.State):
 		var animation = animation_player.get_animation(Poop.State.find_key(_state))
 		var frame_count = animation.track_get_key_count(0) if animation else 1
 		if _state == Poop.State.walking and frame_count != style.walking_frame_count:
-			print(style.walking_frame_count)
 			for i in range(style.walking_frame_count, frame_count):
 				animation.track_remove_key(0, i + 1)
 	

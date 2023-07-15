@@ -10,12 +10,13 @@
 
 [node name="level" type="Node"]
 script = ExtResource("1_3cycm")
+metadata/_edit_horizontal_guides_ = [176.0]
 
 [node name="play_area" parent="." instance=ExtResource("2_rdein")]
 offset_bottom = 570.0
 
 [node name="poop3" parent="play_area" instance=ExtResource("3_31vyk")]
-position = Vector2(284, 425)
+position = Vector2(288, 464)
 speed = 300.0
 
 [node name="poop2" parent="play_area" instance=ExtResource("3_31vyk")]
@@ -33,20 +34,23 @@ tag = "purple"
 poop_style = ExtResource("4_uubdj")
 
 [node name="horizontal_wall2" parent="play_area" instance=ExtResource("7_tyu5h")]
-position = Vector2(-6, 174)
+position = Vector2(230, 176)
+x_alignment = -1.0
+width = 16000
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("6_htj0a")]
 position = Vector2(185, 176)
-height = 182
+height = 190
 
 [node name="verticall_wall2" parent="play_area" instance=ExtResource("6_htj0a")]
-position = Vector2(185, 493)
+position = Vector2(188, 496)
 height = 30
 
 [node name="horizontal_wall" parent="play_area" instance=ExtResource("7_tyu5h")]
-position = Vector2(-11, 516)
-width = 397
+position = Vector2(188, 516)
+width = 32000
 
 [node name="horizontal_wall3" parent="play_area" instance=ExtResource("7_tyu5h")]
-position = Vector2(314, 174)
-width = 77
+position = Vector2(339, 176)
+x_alignment = 1.0
+width = 16000

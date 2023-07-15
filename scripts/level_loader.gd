@@ -33,7 +33,6 @@ func _ready():
 	restart_button.pressed.connect(restart)
 	continue_button.pressed.connect(go_to_next_level)
 	
-	print(DisplayServer.screen_get_dpi(), ', ', DisplayServer.screen_get_scale(), ', ', DisplayServer.screen_get_max_scale())
 	get_tree().root.content_scale_factor = DisplayServer.screen_get_scale() if not custom_window_scale else custom_window_scale
 	
 	var size_delta = get_window().size * (get_tree().root.content_scale_factor - 1)

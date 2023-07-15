@@ -84,7 +84,6 @@ func start_movement():
 	if check_has_path():
 		_index = 0
 		_points = trajectory_planner.get_points()
-		print(_points[0])
 		_state = State.walking
 
 var _sit_tween: Tween

@@ -32,11 +32,6 @@ var bottom: float :
 		bottom = value
 
 
-func _set(property, value):
-	print(get_property_list())
-	return false
-
-
 func _init(left := 0, top := 0, right := 0, bottom := 0):
 	self.left = left
 	self.top = top

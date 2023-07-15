@@ -79,7 +79,6 @@ func _try_start_drawing(viewport: Node, event: InputEvent, shape_idx: int):
 
 
 func _handle_mouse_exited_play_area():
-	print(_drawing)
 	if _drawing:
 		_drawing = false
 		_clear_points()
