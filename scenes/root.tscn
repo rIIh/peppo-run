@@ -76,6 +76,7 @@ func _get_safe_area() -> SafeArea:
 
 [node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "restart_button", "go_button", "continue_button")]
 script = ExtResource("1_et1sp")
+custom_window_scale = 2.0
 level_group = ExtResource("2_v8vth")
 level_spawn_parent = NodePath("ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport/game_viewport")
 restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio/restart_button")

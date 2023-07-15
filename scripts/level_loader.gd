@@ -1,6 +1,9 @@
 extends Node
 
 @export
+var custom_window_scale: float = 0
+
+@export
 var level_group: LevelGroup
 
 var _index := 0
@@ -29,8 +32,10 @@ func _ready():
 	restart()
 	restart_button.pressed.connect(restart)
 	continue_button.pressed.connect(go_to_next_level)
+	
 	print(DisplayServer.screen_get_dpi(), ', ', DisplayServer.screen_get_scale(), ', ', DisplayServer.screen_get_max_scale())
-	get_tree().root.content_scale_factor = DisplayServer.screen_get_scale()
+	get_tree().root.content_scale_factor = DisplayServer.screen_get_scale() if not custom_window_scale else custom_window_scale
+	get_window().size *= get_tree().root.content_scale_factor
 	
 
 func restart():
