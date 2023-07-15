@@ -14,14 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://cwp3cnmha1gen" path="res://assets/ui/type=buttons__go@4x.png" id="13_ah134"]
 [ext_resource type="Texture2D" uid="uid://scuornplo16v" path="res://assets/ui/type=buttons__restart@4x.png" id="14_an8bu"]
 
-[sub_resource type="Resource" id="Resource_sm66w"]
+[sub_resource type="Resource" id="Resource_1q0hn"]
 script = ExtResource("5_s3vk1")
 left = 0.0
-top = 47.0
+top = 0.0
 right = 0.0
-bottom = 34.0
+bottom = 0.0
 
-[sub_resource type="Resource" id="Resource_l8t0s"]
+[sub_resource type="Resource" id="Resource_gvsuo"]
 script = ExtResource("5_s3vk1")
 left = 0.0
 top = 24.0
@@ -47,9 +47,9 @@ func _ready():
 	_safe_area = _get_safe_area()
 	await _safe_area.ready
 	
-	_height = _safe_area.view_padding.bottom if _safe_area else 0
+	_height = _safe_area.padding.bottom if _safe_area else 0
 	print(\"bottom fill size: %s\" % _height)
-	print(\"safe area padding: %s\" % _safe_area.view_padding)
+	print(\"safe area padding: %s\" % _safe_area.padding)
 
 
 func _process(delta):
@@ -58,7 +58,7 @@ func _process(delta):
 			_safe_area = _get_safe_area()
 
 		if _safe_area:
-			_height = _safe_area.view_padding.bottom
+			_height = _safe_area.padding.bottom
 
 
 func _exit_tree():
@@ -105,15 +105,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 47
+theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 34
 script = ExtResource("4_x7p4y")
-debug_insets = SubResource("Resource_sm66w")
-minimum = SubResource("Resource_l8t0s")
-view_rect = Rect2i(0, 0, 375, 812)
-_safe_area = null
-view_padding = SubResource("Resource_sm66w")
+debug_insets = SubResource("Resource_1q0hn")
+minimum = SubResource("Resource_gvsuo")
 
 [node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
 layout_mode = 2
@@ -133,12 +130,12 @@ canvas_item_default_texture_filter = 2
 audio_listener_enable_2d = true
 physics_object_picking = true
 physics_object_picking_sort = true
-size = Vector2i(375, 571)
+size = Vector2i(375, 594)
 render_target_update_mode = 4
 
 [node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" node_paths=PackedStringArray("offset_node") instance=ExtResource("3_mlub3")]
 offset_node = NodePath("../..")
-tile_offset = Vector2(0, -111)
+tile_offset = Vector2(0, -88)
 
 [node name="game_viewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" instance=ExtResource("6_4vm6l")]
 
