@@ -1,0 +1,263 @@
+[gd_scene load_steps=20 format=3 uid="uid://0sox37j7wmf3"]
+
+[sub_resource type="GDScript" id="GDScript_ruklh"]
+script/source = "@tool
+class_name DashedBorder extends Control
+
+@export
+var radius: float = 16
+
+@export
+var width: float = 3
+
+@export
+var dash: float = 20
+
+@export
+var resolution: int = 20
+
+@export
+var color: Color = Color.WHITE
+
+var _path: RoundedPath
+
+
+func _ready():
+	$line_2d.width = width
+	resized.connect(_build_path)
+	_build_path()
+
+
+func _process(delta):
+	$line_2d.width = width
+	$line_2d.material.set_shader_parameter(\"width\", width)
+	$line_2d.material.set_shader_parameter(\"dash\", dash)
+	$line_2d.default_color = color
+
+
+func _build_path():
+	_path = RoundedPath.rectangle(get_rect().get_center(), size, radius)
+	$line_2d.points = _path.build(resolution)
+
+
+func _get_tool_buttons():
+	return [
+		{
+			call=_build_path,
+			text=\"Rebuild\",
+		}
+	]
+
+
+
+
+"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_woxyd"]
+parameter_name = "width"
+default_value_enabled = true
+default_value = 4.0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_5wq6b"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_aqsp6"]
+operator = 3
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_cte7b"]
+parameter_name = "dash"
+default_value_enabled = true
+default_value = 20.0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_bdf73"]
+default_input_values = [0, 0.0, 1, 124.882]
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_hq73n"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_x7mbv"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_73syo"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ts26s"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_lhu5l"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_8jomo"]
+default_input_values = [0, 0.0, 1, 4.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_q1cxb"]
+function = 17
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_nuf6w"]
+default_input_values = [0, 0.0, 1, 0.5, 2, 1e-05]
+function = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0cpyc"]
+input_name = "texture_pixel_size"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_vl8vq"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_67uq0"]
+constant = 2.0
+
+[sub_resource type="VisualShader" id="VisualShader_kkx8t"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float width = 4;
+uniform float dash = 20;
+
+
+
+void fragment() {
+// Input:3
+	vec4 n_out3p0 = COLOR;
+
+
+// VectorDecompose:15
+	float n_out15p0 = n_out3p0.x;
+	float n_out15p1 = n_out3p0.y;
+	float n_out15p2 = n_out3p0.z;
+	float n_out15p3 = n_out3p0.w;
+
+
+// Input:7
+	vec2 n_out7p0 = TEXTURE_PIXEL_SIZE;
+
+
+// Input:2
+	vec2 n_out2p0 = UV;
+
+
+// VectorDecompose:17
+	float n_out17p0 = n_out2p0.x;
+	float n_out17p1 = n_out2p0.y;
+
+
+// FloatOp:14
+	float n_in14p1 = 124.88200;
+	float n_out14p0 = n_out17p0 + n_in14p1;
+
+
+// FloatOp:8
+	float n_out8p0 = n_out7p0.x * n_out14p0;
+
+
+// FloatParameter:10
+	float n_out10p0 = width;
+
+
+// FloatConstant:9
+	float n_out9p0 = 2.000000;
+
+
+// FloatOp:11
+	float n_out11p0 = n_out10p0 * n_out9p0;
+
+
+// FloatParameter:13
+	float n_out13p0 = dash;
+
+
+// FloatOp:12
+	float n_out12p0 = n_out11p0 / n_out13p0;
+
+
+// FloatOp:4
+	float n_out4p0 = n_out8p0 * n_out12p0;
+
+
+// FloatFunc:5
+	float n_out5p0 = fract(n_out4p0);
+
+
+// Compare:6
+	float n_in6p1 = 0.50000;
+	bool n_out6p0 = n_out5p0 > n_in6p1;
+
+
+// FloatOp:16
+	float n_out16p0 = n_out15p3 * (n_out6p0 ? 1.0 : 0.0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out3p0.xyz);
+	COLOR.a = n_out16p0;
+
+
+}
+"
+graph_offset = Vector2(-1110.4, 33.3613)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(720, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_ts26s")
+nodes/fragment/2/position = Vector2(-1420, 360)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_lhu5l")
+nodes/fragment/3/position = Vector2(-80, 140)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatOp_8jomo")
+nodes/fragment/4/position = Vector2(-280, 280)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatFunc_q1cxb")
+nodes/fragment/5/position = Vector2(-120, 300)
+nodes/fragment/6/node = SubResource("VisualShaderNodeCompare_nuf6w")
+nodes/fragment/6/position = Vector2(80, 300)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_0cpyc")
+nodes/fragment/7/position = Vector2(-1060, 260)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_vl8vq")
+nodes/fragment/8/position = Vector2(-680, 280)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatConstant_67uq0")
+nodes/fragment/9/position = Vector2(-920, 180)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_woxyd")
+nodes/fragment/10/position = Vector2(-1180, -120)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_5wq6b")
+nodes/fragment/11/position = Vector2(-680, 120)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_aqsp6")
+nodes/fragment/12/position = Vector2(-460, 220)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_cte7b")
+nodes/fragment/13/position = Vector2(-1180, -320)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_bdf73")
+nodes/fragment/14/position = Vector2(-900, 340)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorDecompose_hq73n")
+nodes/fragment/15/position = Vector2(260, 200)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatOp_x7mbv")
+nodes/fragment/16/position = Vector2(480, 320)
+nodes/fragment/17/node = SubResource("VisualShaderNodeVectorDecompose_73syo")
+nodes/fragment/17/position = Vector2(-1100, 400)
+nodes/fragment/connections = PackedInt32Array(4, 0, 5, 0, 3, 0, 0, 0, 5, 0, 6, 0, 10, 0, 11, 0, 9, 0, 11, 1, 7, 0, 8, 0, 8, 0, 4, 0, 11, 0, 12, 0, 13, 0, 12, 1, 12, 0, 4, 1, 14, 0, 8, 1, 3, 0, 15, 0, 15, 3, 16, 0, 6, 0, 16, 1, 16, 0, 0, 1, 2, 0, 17, 0, 17, 0, 14, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvdwm"]
+resource_local_to_scene = true
+shader = SubResource("VisualShader_kkx8t")
+shader_parameter/width = 4.0
+shader_parameter/dash = 20.0
+
+[node name="dashed_border" type="Control"]
+z_index = -2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = SubResource("GDScript_ruklh")
+radius = 32.0
+width = 4.0
+resolution = 16
+
+[node name="line_2d" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_rvdwm")
+points = PackedVector2Array(32, 0, 343, 0, 346.272, 0.165214, 349.449, 0.650132, 352.516, 1.43867, 355.456, 2.51474, 358.253, 3.86226, 360.891, 5.46514, 363.355, 7.30729, 365.627, 9.37264, 367.693, 11.6451, 369.535, 14.1086, 371.138, 16.747, 372.485, 19.5442, 373.561, 22.4842, 374.35, 25.5509, 374.835, 28.7282, 375, 32, 375, 32, 375, 780, 374.835, 783.272, 374.35, 786.449, 373.561, 789.516, 372.485, 792.456, 371.138, 795.253, 369.535, 797.891, 367.693, 800.355, 365.627, 802.627, 363.355, 804.693, 360.891, 806.535, 358.253, 808.138, 355.456, 809.485, 352.516, 810.561, 349.449, 811.35, 346.272, 811.835, 343, 812, 343, 812, 32, 812, 28.7282, 811.835, 25.5509, 811.35, 22.4842, 810.561, 19.5442, 809.485, 16.747, 808.138, 14.1086, 806.535, 11.6451, 804.693, 9.37264, 802.627, 7.30729, 800.355, 5.46514, 797.891, 3.86226, 795.253, 2.51474, 792.456, 1.43867, 789.516, 0.650132, 786.449, 0.165214, 783.272, 0, 780, 0, 780, 0, 32, 0.165214, 28.7282, 0.650132, 25.5509, 1.43867, 22.4842, 2.51474, 19.5442, 3.86226, 16.747, 5.46514, 14.1086, 7.30729, 11.6451, 9.37264, 9.37264, 11.6451, 7.30729, 14.1086, 5.46514, 16.747, 3.86226, 19.5442, 2.51474, 22.4842, 1.43867, 25.5509, 0.650132, 28.7282, 0.165214, 32, 0)
+width = 4.0
+texture_mode = 1
+antialiased = true

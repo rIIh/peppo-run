@@ -1,6 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://cis5ydtor1qqc"]
 
 [ext_resource type="Script" path="res://scripts/utility/keep_rect_in_camera.gd" id="1_gxtnv"]
+[ext_resource type="PackedScene" uid="uid://0sox37j7wmf3" path="res://prefabs/dashed_border.tscn" id="2_qn0sv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmeu1"]
+resource_local_to_scene = true
+size = Vector2(375, 568)
 
 [sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_sls2m"]
 operator = 6
@@ -62,22 +67,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7722"]
-bg_color = Color(0.666667, 0.666667, 0.666667, 1)
-border_width_top = 24
-border_color = Color(0.411765, 0.411765, 0.411765, 1)
-border_blend = true
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmeu1"]
-resource_local_to_scene = true
-size = Vector2(375, 568)
-
 [node name="play_area" type="Control"]
-clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 375.0
@@ -85,7 +75,16 @@ offset_bottom = 568.0
 mouse_filter = 2
 script = ExtResource("1_gxtnv")
 
-[node name="border" type="Panel" parent="."]
+[node name="play_area__trigger" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 0
+
+[node name="play_area__collider" type="CollisionShape2D" parent="play_area__trigger"]
+position = Vector2(187.5, 284)
+shape = SubResource("RectangleShape2D_bmeu1")
+
+[node name="border-overlay" type="Panel" parent="."]
+visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_yu5h1")
 layout_mode = 1
@@ -97,23 +96,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8jk52")
 
-[node name="border2" type="Panel" parent="."]
-visible = false
-z_index = -2
-material = SubResource("ShaderMaterial_yu5h1")
+[node name="dashed_border" parent="." instance=ExtResource("2_qn0sv")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_r7722")
-
-[node name="play_area__trigger" type="Area2D" parent="."]
-collision_layer = 17
-collision_mask = 0
-
-[node name="play_area__collider" type="CollisionShape2D" parent="play_area__trigger"]
-position = Vector2(187.5, 284)
-shape = SubResource("RectangleShape2D_bmeu1")
+color = Color(1, 1, 1, 0.368627)
