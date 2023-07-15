@@ -8,6 +8,8 @@
 
 config_version=5
 
+show_default_buttons=false
+
 [application]
 
 config/name="go-peeppo"
@@ -21,6 +23,10 @@ window/size/viewport_width=375
 window/size/viewport_height=812
 window/stretch/scale=3.0
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/tool_button/plugin.cfg")
 
 [layer_names]
 
