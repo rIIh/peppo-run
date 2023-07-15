@@ -35,7 +35,10 @@ func _ready():
 	
 	print(DisplayServer.screen_get_dpi(), ', ', DisplayServer.screen_get_scale(), ', ', DisplayServer.screen_get_max_scale())
 	get_tree().root.content_scale_factor = DisplayServer.screen_get_scale() if not custom_window_scale else custom_window_scale
+	
+	var size_delta = get_window().size * (get_tree().root.content_scale_factor - 1)
 	get_window().size *= get_tree().root.content_scale_factor
+	get_window().position = get_window().position - Vector2i(size_delta / 2)
 	
 
 func restart():
