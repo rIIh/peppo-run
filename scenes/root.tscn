@@ -127,7 +127,7 @@ theme_override_constants/margin_top = 72
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 128
 
-[node name="game_area" type="Panel" parent="ui_layer/container/safe_area/game_area_padding" groups=["camera_tools"]]
+[node name="game_area" type="Panel" parent="ui_layer/container/safe_area/game_area_padding"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2hbjh")
