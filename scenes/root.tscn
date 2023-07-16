@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0avtug1we22e"]
+[gd_scene load_steps=19 format=3 uid="uid://d0avtug1we22e"]
 
 [ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_et1sp"]
 [ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_v8vth"]
@@ -30,24 +30,6 @@ right = 0.0
 bottom = 34.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hbjh"]
-
-[sub_resource type="GDScript" id="GDScript_kwnkc"]
-script/source = "extends SubViewportContainer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	await get_tree().create_timer(1).timeout
-	print(size) 
-	print($SubViewport.size)
-	print(get_window().size)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="GDScript" id="GDScript_ulfc3"]
 script/source = "@tool
@@ -99,14 +81,19 @@ func _get_safe_area() -> SafeArea:
 script = ExtResource("1_et1sp")
 level_group = ExtResource("2_v8vth")
 level_spawn_parent = NodePath("game_viewport")
-restart_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio/restart_button")
-go_button = NodePath("ui_layer/container/safe_area/content/bottom_node/row/go_button")
-continue_button = NodePath("ui_layer/container/safe_area/content/continue_button")
+restart_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio/restart_button")
+go_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/go_button")
+continue_button = NodePath("ui_layer/container/safe_area/ui/continue_button")
 
 [node name="background_layer" parent="." instance=ExtResource("3_mlub3")]
 tile_offset = Vector2(0, 0)
 
+[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("6_4vm6l")]
+script = ExtResource("14_jl23s")
+target_rect = NodePath("../ui_layer/container/safe_area/game_area_padding/game_area")
+
 [node name="ui_layer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="container" type="Control" parent="ui_layer"]
 layout_mode = 3
@@ -133,45 +120,23 @@ script = ExtResource("4_x7p4y")
 debug_insets = SubResource("Resource_1q0hn")
 minimum = SubResource("Resource_gvsuo")
 
-[node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
+[node name="game_area_padding" type="MarginContainer" parent="ui_layer/container/safe_area"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 72
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 128
 
-[node name="keep_in_rect_target" type="Panel" parent="ui_layer/container/safe_area/padding" groups=["camera_tools"]]
+[node name="game_area" type="Panel" parent="ui_layer/container/safe_area/game_area_padding" groups=["camera_tools"]]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2hbjh")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ui_layer/container/safe_area/padding"]
-visible = false
-texture_filter = 1
-layout_mode = 2
-stretch = true
-script = SubResource("GDScript_kwnkc")
-
-[node name="SubViewport" type="SubViewport" parent="ui_layer/container/safe_area/padding/SubViewportContainer"]
-disable_3d = true
-transparent_bg = true
-handle_input_locally = false
-canvas_item_default_texture_filter = 2
-audio_listener_enable_2d = true
-physics_object_picking = true
-physics_object_picking_sort = true
-size = Vector2i(343, 554)
-render_target_update_mode = 0
-
-[node name="background_layer" parent="ui_layer/container/safe_area/padding/SubViewportContainer/SubViewport" node_paths=PackedStringArray("offset_node") instance=ExtResource("3_mlub3")]
-offset_node = NodePath("../..")
-tile_offset = Vector2(-16, -96)
-
-[node name="content" type="Control" parent="ui_layer/container/safe_area"]
+[node name="ui" type="Control" parent="ui_layer/container/safe_area"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+[node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/ui"]
 custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
 anchors_preset = 7
@@ -192,7 +157,7 @@ flip_h = true
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
 
-[node name="Button2" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+[node name="Button2" type="TextureButton" parent="ui_layer/container/safe_area/ui"]
 custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
 anchors_preset = 5
@@ -208,7 +173,7 @@ stretch_mode = 0
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
 
-[node name="Button" type="TextureButton" parent="ui_layer/container/safe_area/content"]
+[node name="Button" type="TextureButton" parent="ui_layer/container/safe_area/ui"]
 custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
 anchors_preset = 5
@@ -224,7 +189,7 @@ stretch_mode = 0
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
 
-[node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/content"]
+[node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/ui"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -234,7 +199,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="bottom_padding_fill" type="ColorRect" parent="ui_layer/container/safe_area/content/bottom_node"]
+[node name="bottom_padding_fill" type="ColorRect" parent="ui_layer/container/safe_area/ui/bottom_node"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -248,7 +213,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
 
-[node name="bottom_nav_bar_background" type="TextureRect" parent="ui_layer/container/safe_area/content/bottom_node"]
+[node name="bottom_nav_bar_background" type="TextureRect" parent="ui_layer/container/safe_area/ui/bottom_node"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -265,7 +230,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_pdgi6")
 stretch_mode = 1
 
-[node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/content/bottom_node"]
+[node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/ui/bottom_node"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -281,15 +246,15 @@ mouse_filter = 2
 theme_override_constants/separation = 35
 alignment = 1
 
-[node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="padding" type="MarginContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
 layout_mode = 2
 theme_override_constants/margin_bottom = -17
 
-[node name="aspect_ratio" type="AspectRatioContainer" parent="ui_layer/container/safe_area/content/bottom_node/row/padding"]
+[node name="aspect_ratio" type="AspectRatioContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding"]
 layout_mode = 2
 alignment_vertical = 2
 
-[node name="hint_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row/padding/aspect_ratio"]
+[node name="hint_button" type="TextureButton" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding/aspect_ratio"]
 custom_minimum_size = Vector2(82, 86)
 layout_mode = 2
 texture_normal = ExtResource("11_em6a1")
@@ -298,7 +263,7 @@ stretch_mode = 0
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
 
-[node name="go_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="go_button" type="TextureButton" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
 custom_minimum_size = Vector2(94, 98)
 layout_mode = 2
 texture_normal = ExtResource("13_ah134")
@@ -307,15 +272,15 @@ stretch_mode = 0
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
 
-[node name="padding2" type="MarginContainer" parent="ui_layer/container/safe_area/content/bottom_node/row"]
+[node name="padding2" type="MarginContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
 layout_mode = 2
 theme_override_constants/margin_bottom = -17
 
-[node name="aspect_ratio" type="AspectRatioContainer" parent="ui_layer/container/safe_area/content/bottom_node/row/padding2"]
+[node name="aspect_ratio" type="AspectRatioContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding2"]
 layout_mode = 2
 alignment_vertical = 2
 
-[node name="restart_button" type="TextureButton" parent="ui_layer/container/safe_area/content/bottom_node/row/padding2/aspect_ratio"]
+[node name="restart_button" type="TextureButton" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio"]
 custom_minimum_size = Vector2(82, 86)
 layout_mode = 2
 texture_normal = ExtResource("14_an8bu")
@@ -323,7 +288,3 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("12_8q4ua")
 texture_scale = Vector2(0.25, 0.25)
-
-[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("6_4vm6l")]
-script = ExtResource("14_jl23s")
-target_rect = NodePath("../ui_layer/container/safe_area/padding/keep_in_rect_target")

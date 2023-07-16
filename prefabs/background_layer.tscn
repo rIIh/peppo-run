@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://w0uduq3j28cv"]
+[gd_scene load_steps=16 format=3 uid="uid://w0uduq3j28cv"]
 
 [ext_resource type="Script" path="res://scripts/background_layer.gd" id="1_aswgh"]
 [ext_resource type="Texture2D" uid="uid://dwxdjvuq5fsij" path="res://assets/checker-pattern.png" id="1_dwntd"]
@@ -48,11 +48,6 @@ default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_umvy3"]
-default_input_values = [0, Vector2(0, 0)]
-op_type = 0
-function = 18
-
 [sub_resource type="VisualShader" id="VisualShader_ggcq7"]
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -87,13 +82,9 @@ void fragment() {
 	vec2 n_out7p0 = n_out4p0 + n_out8p0;
 
 
-// VectorFunc:9
-	vec2 n_out9p0 = fract(n_out7p0);
-
-
 	vec4 n_out2p0;
 // Texture2D:2
-	n_out2p0 = texture(TEXTURE, n_out9p0);
+	n_out2p0 = texture(TEXTURE, n_out7p0);
 
 
 // Vector4Parameter:12
@@ -118,7 +109,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-204.499, 14.2935)
+graph_offset = Vector2(-1070, -89)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(820, 220)
@@ -136,8 +127,6 @@ nodes/fragment/7/node = SubResource("VisualShaderNodeVectorOp_o8gx1")
 nodes/fragment/7/position = Vector2(-420, -20)
 nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_smf4v")
 nodes/fragment/8/position = Vector2(-600, 140)
-nodes/fragment/9/node = SubResource("VisualShaderNodeVectorFunc_umvy3")
-nodes/fragment/9/position = Vector2(-240, 40)
 nodes/fragment/10/node = SubResource("VisualShaderNodeVectorFunc_4m2lt")
 nodes/fragment/10/position = Vector2(-800, 140)
 nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_n03uf")
@@ -146,18 +135,18 @@ nodes/fragment/12/node = SubResource("VisualShaderNodeVec4Parameter_37egk")
 nodes/fragment/12/position = Vector2(20, 400)
 nodes/fragment/13/node = SubResource("VisualShaderNodeVectorDecompose_kfkal")
 nodes/fragment/13/position = Vector2(540, 320)
-nodes/fragment/connections = PackedInt32Array(6, 0, 2, 2, 4, 0, 7, 0, 3, 0, 8, 1, 8, 0, 7, 1, 7, 0, 9, 0, 9, 0, 2, 0, 5, 0, 10, 0, 10, 0, 8, 0, 2, 0, 11, 0, 12, 0, 11, 1, 11, 0, 13, 0, 13, 3, 0, 1, 11, 0, 0, 0)
+nodes/fragment/connections = PackedInt32Array(6, 0, 2, 2, 4, 0, 7, 0, 3, 0, 8, 1, 8, 0, 7, 1, 5, 0, 10, 0, 10, 0, 8, 0, 2, 0, 11, 0, 12, 0, 11, 1, 11, 0, 13, 0, 13, 3, 0, 1, 11, 0, 0, 0, 7, 0, 2, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x0k7j"]
 resource_local_to_scene = true
 shader = SubResource("VisualShader_ggcq7")
-shader_parameter/tile_offset = Vector2(0, 18.81)
+shader_parameter/tile_offset = Vector2(0.79, 18.81)
 shader_parameter/custom_color = Vector4(1, 1, 1, 1)
 
 [node name="background_layer" type="CanvasLayer"]
 layer = -1
 script = ExtResource("1_aswgh")
-tile_offset = Vector2(0, 18.81)
+tile_offset = Vector2(0.79, 18.81)
 
 [node name="background" type="Control" parent="."]
 layout_mode = 3
@@ -179,6 +168,7 @@ color = Color(0.72549, 0.823529, 1, 1)
 
 [node name="checker_pattern" type="TextureRect" parent="background"]
 self_modulate = Color(0.776471, 0.854902, 1, 1)
+texture_filter = 1
 material = SubResource("ShaderMaterial_x0k7j")
 layout_mode = 1
 anchors_preset = 15
