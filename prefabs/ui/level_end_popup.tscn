@@ -1,0 +1,294 @@
+[gd_scene load_steps=14 format=3 uid="uid://bkkux7nltqtuw"]
+
+[ext_resource type="Texture2D" uid="uid://brhiyoo826fd" path="res://assets/ui/popup_background@4x.png" id="1_3gbgj"]
+[ext_resource type="Script" path="res://scripts/ui/level_end_popup.tres.gd" id="1_ey0bl"]
+[ext_resource type="Shader" path="res://materials/shaders/uv_scale.gdshader" id="2_bv2kl"]
+[ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="2_i6ibe"]
+[ext_resource type="Texture2D" uid="uid://dg1tc24c328hf" path="res://assets/ui/type=buttons__home@4x.png" id="3_xoiai"]
+[ext_resource type="Script" path="res://scripts/scale_texture_button.gd" id="4_vs3ju"]
+[ext_resource type="Texture2D" uid="uid://cwp3cnmha1gen" path="res://assets/ui/type=buttons__go@4x.png" id="5_54mfl"]
+[ext_resource type="Texture2D" uid="uid://scuornplo16v" path="res://assets/ui/type=buttons__restart@4x.png" id="6_jrg70"]
+
+[sub_resource type="Animation" id="Animation_lpx31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control2/Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4hk72"]
+resource_name = "level_end_popup_animation"
+length = 0.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 0, 1, -0.1, 0.6, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:self_modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.075, 0, 1, -0.075, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0.325, 0.425),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect/Control/Node2D:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-300, -0.25, 0, 0.1, 183.441, 64, -0.140601, -8.13478, 0.009399, -51.0065, 0, -0.0408514, 0.321304, 0.25, 0),
+"times": PackedFloat32Array(0.325, 0.575, 0.725)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect/Control/Node2D:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.3, 0, 0, 0.0333333, 0, 0.3, -0.05, -0.000923693, 0.109149, -0.837916, 0, -0.190851, 0.00318256, 0, 0),
+"times": PackedFloat32Array(0.325, 0.525, 0.725)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control2/Control:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(350, 0, 0, 0.15, -91.8244, 0, -0.15, 37.0971, 0, 0),
+"times": PackedFloat32Array(0.6, 0.85)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control2/Control:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = false
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44frj"]
+_data = {
+"RESET": SubResource("Animation_lpx31"),
+"level_end_popup_animation": SubResource("Animation_4hk72")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xqaf"]
+shader = ExtResource("2_bv2kl")
+shader_parameter/uv_scale = Vector2(1, 1)
+
+[sub_resource type="GDScript" id="GDScript_6wnog"]
+script/source = "extends TextureRect
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	material.set_shader_parameter(\"uv_scale\", Vector2(get_rect().size.x / texture.get_width() * 4, 1.0))
+	pass
+"
+
+[node name="level_end_popup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ey0bl")
+metadata/_edit_horizontal_guides_ = [406.0]
+metadata/_edit_vertical_guides_ = [188.0]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_44frj")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0392157, 0.117647, 0.678431)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_4xqaf")
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 75)
+texture = ExtResource("1_3gbgj")
+expand_mode = 2
+script = SubResource("GDScript_6wnog")
+
+[node name="Control" type="Control" parent="TextureRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="TextureRect/Control"]
+
+[node name="main_text" type="Label" parent="TextureRect/Control/Node2D"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0015
+offset_top = -36.0
+offset_right = 82.0015
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.34902, 0.572549, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.415686, 0.607843, 0.964706, 0.301961)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_i6ibe")
+theme_override_font_sizes/font_size = 64
+text = "Yeah!"
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="HBoxContainer" parent="Control2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -164.0
+offset_right = 164.0
+offset_bottom = 98.0005
+grow_horizontal = 2
+pivot_offset = Vector2(164, 0)
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control2/Control"]
+layout_mode = 2
+
+[node name="buttons__home" type="TextureButton" parent="Control2/Control/AspectRatioContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(82, 86)
+layout_mode = 2
+texture_normal = ExtResource("3_xoiai")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_vs3ju")
+texture_scale = Vector2(0.25, 0.25)
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Control2/Control"]
+layout_mode = 2
+
+[node name="buttons__go" type="TextureButton" parent="Control2/Control/AspectRatioContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(94, 98)
+layout_mode = 2
+texture_normal = ExtResource("5_54mfl")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_vs3ju")
+texture_scale = Vector2(0.25, 0.25)
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Control2/Control"]
+layout_mode = 2
+
+[node name="buttons__retry" type="TextureButton" parent="Control2/Control/AspectRatioContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(82, 86)
+layout_mode = 2
+texture_normal = ExtResource("6_jrg70")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_vs3ju")
+texture_scale = Vector2(0.25, 0.25)

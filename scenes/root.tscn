@@ -77,13 +77,13 @@ func _get_safe_area() -> SafeArea:
 	return parent
 "
 
-[node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "restart_button", "go_button", "continue_button")]
+[node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "ui_parent", "restart_button", "go_button")]
 script = ExtResource("1_et1sp")
 level_group = ExtResource("2_v8vth")
 level_spawn_parent = NodePath("game_viewport")
+ui_parent = NodePath("ui_layer/container")
 restart_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio/restart_button")
 go_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/go_button")
-continue_button = NodePath("ui_layer/container/safe_area/ui/continue_button")
 
 [node name="background_layer" parent="." instance=ExtResource("3_mlub3")]
 tile_offset = Vector2(0, 0)
@@ -136,27 +136,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_2hbjh")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="continue_button" type="TextureButton" parent="ui_layer/container/safe_area/ui"]
-custom_minimum_size = Vector2(52, 56)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 106.5
-offset_top = -171.0
-offset_right = 168.5
-offset_bottom = -105.0
-grow_horizontal = 2
-grow_vertical = 0
-texture_normal = ExtResource("7_es235")
-ignore_texture_size = true
-stretch_mode = 0
-flip_h = true
-script = ExtResource("12_8q4ua")
-texture_scale = Vector2(0.25, 0.25)
-
 [node name="Button2" type="TextureButton" parent="ui_layer/container/safe_area/ui"]
 custom_minimum_size = Vector2(52, 56)
 layout_mode = 1
@@ -208,6 +187,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
