@@ -92,16 +92,22 @@ func _handle_body_entered(body: Node2D):
 	poop.collide(body)
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uyyo"]
-size = Vector2(82, 63)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3goe"]
-radius = 41.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb8as"]
+resource_local_to_scene = true
+radius = 40.0
 height = 100.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vtkv"]
+size = Vector2(62, 20)
+
 [node name="poop_character" type="CharacterBody2D"]
-collision_layer = 7
-input_pickable = true
+collision_layer = 4
+collision_mask = 8
+motion_mode = 1
+wall_min_slide_angle = 0.516617
+floor_max_angle = 1.70519
+platform_floor_layers = 0
+platform_wall_layers = 8
 script = ExtResource("1_wa74g")
 
 [node name="Fighter" type="Node" parent="." node_paths=PackedStringArray("body")]
@@ -126,7 +132,7 @@ animation_player = NodePath("../animation_player")
 [node name="trajectory_planner" type="Node2D" parent="static" node_paths=PackedStringArray("line_renderer", "start_drawing_trigger")]
 script = ExtResource("4_qmamc")
 line_renderer = NodePath("../trajectory_renderer")
-start_drawing_trigger = NodePath("../..")
+start_drawing_trigger = NodePath("../../trigger")
 
 [node name="trajectory_renderer" type="Line2D" parent="static"]
 z_index = -1
@@ -137,17 +143,16 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="trigger" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = SubResource("GDScript_ehi5v")
 
 [node name="poop_collider" type="CollisionShape2D" parent="trigger"]
-position = Vector2(0, -32.5)
-shape = SubResource("RectangleShape2D_2uyyo")
+position = Vector2(0, -41)
+shape = SubResource("CapsuleShape2D_tb8as")
 
 [node name="poop_collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -41)
-shape = SubResource("CapsuleShape2D_l3goe")
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_0vtkv")
 
 [node name="poop_sprite" type="Sprite2D" parent="."]
 z_index = 1

@@ -1,0 +1,33 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://usk64orglxh4"]
+
+[sub_resource type="Curve" id="Curve_4if6f"]
+_data = [Vector2(0.00682594, 0.0421052), 0.0, 15.8066, 0, 0, Vector2(0.0819113, 1), -2.76015e-07, -2.76015e-07, 0, 0, Vector2(0.737201, 1), 0.0, 0.0, 0, 0, Vector2(0.993174, 0.0210526), 0.0761533, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_q4ojv"]
+curve = SubResource("Curve_4if6f")
+
+[resource]
+lifetime_randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 16.0
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 128.0
+initial_velocity_max = 256.0
+angular_velocity_min = -195.56
+angular_velocity_max = 127.64
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+damping_min = 69.753
+damping_max = 69.753
+angle_max = 360.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_q4ojv")
+turbulence_noise_strength = 8.59
+turbulence_initial_displacement_min = 87.5
+turbulence_initial_displacement_max = 100.0
+anim_offset_max = 1.0

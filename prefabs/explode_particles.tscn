@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bklte3q736ssl"]
+
+[ext_resource type="Material" uid="uid://usk64orglxh4" path="res://materials/explode_second.tres" id="1_4555x"]
+[ext_resource type="Texture2D" uid="uid://c4ntnkhv6bx2y" path="res://assets/particles/smoke.tres" id="2_mwvur"]
+[ext_resource type="Material" uid="uid://by3isdq8e8wwa" path="res://materials/explode_main.tres" id="3_be6he"]
+
+[sub_resource type="GDScript" id="GDScript_5kfkx"]
+script/source = "extends Node2D
+
+var _bursted := false
+
+func burst():
+	if _bursted: 
+		return
+
+	$explode_large_slow.emitting = true
+	$explode_small_fast.emitting = true
+	_bursted = true
+	
+	
+func _physics_process(delta):
+	if _bursted and not $explode_small_fast.emitting: 
+		queue_free()
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o1w2a"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1o4eh"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="explode_root" type="Node2D"]
+z_index = 2
+script = SubResource("GDScript_5kfkx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -207.0
+offset_top = -218.0
+offset_right = 197.0
+offset_bottom = 159.0
+
+[node name="explode_small_fast" type="GPUParticles2D" parent="."]
+texture_filter = 5
+material = SubResource("CanvasItemMaterial_o1w2a")
+emitting = false
+process_material = ExtResource("1_4555x")
+texture = ExtResource("2_mwvur")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+
+[node name="explode_large_slow" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_1o4eh")
+emitting = false
+process_material = ExtResource("3_be6he")
+texture = ExtResource("2_mwvur")
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60

@@ -29,6 +29,8 @@ var speed: float = 100
 @export
 var style: PoopStyle = preload("res://resources/poops/orange.tres")
 
+var explode = preload("res://prefabs/explode_particles.tscn")
+
 var _index = 0
 var _points: Array[Vector2]
 
@@ -60,20 +62,31 @@ func _ready():
 		)
 
 
-func _process(delta):
+func _physics_process(delta):
 	if _points and state == State.walking:
-		if (_index >= _points.size()): return
+		if (_index < _points.size()):
+			var target = _points[_index]
+			var position = self.global_position
+			while target.distance_to(position) < 4:
+				_index += 1
+				if (_index >= _points.size()): return
 
-		var target = _points[_index]
-		var position = self.global_position
-		while target.distance_to(position) < 4:
-			_index += 1
-			if (_index >= _points.size()): return
+				target = _points[_index]
 
-			target = _points[_index]
-
-		var velocity = (target - position).normalized() * self.speed
-		self.global_translate(velocity * delta)
+			var velocity = (target - position).normalized() * self.speed
+			self.velocity = velocity
+		
+		self.move_and_slide()
+		
+		if get_slide_collision_count():
+			_state = State.exploded
+			game_mode.report_exploded()
+			$poop_sprite.visible = false
+			
+			var explosion = explode.instantiate()
+			explosion.global_position = self.global_position + Vector2.UP * 40
+			get_tree().root.add_child(explosion)
+			explosion.burst()
 
 func check_has_path() -> bool:
 	return trajectory_planner.check_has_trajectory()

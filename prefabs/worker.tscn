@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk8y5dr01ah2l"]
+
+[ext_resource type="Script" path="res://scripts/worker.gd" id="1_0lypl"]
+[ext_resource type="Script" path="res://scripts/fighter.gd" id="2_7tgi1"]
+[ext_resource type="Texture2D" uid="uid://dlhpv4u5v1l1o" path="res://assets/workers/worker__waiting@4x.png" id="3_8l6ar"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8rdp0"]
+resource_local_to_scene = true
+radius = 36.5
+height = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcy8g"]
+resource_local_to_scene = true
+radius = 115.039
+
+[node name="worker" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 12
+motion_mode = 1
+platform_wall_layers = 8
+script = ExtResource("1_0lypl")
+
+[node name="Fighter" type="Node" parent="." node_paths=PackedStringArray("body", "sprite_to_hide")]
+script = ExtResource("2_7tgi1")
+body = NodePath("../collide_trigger")
+sprite_to_hide = NodePath("../sprite")
+
+[node name="capsule_collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -39)
+shape = SubResource("CapsuleShape2D_8rdp0")
+
+[node name="collide_trigger" type="Area2D" parent="."]
+position = Vector2(0, -41)
+collision_layer = 64
+collision_mask = 4
+
+[node name="capsule_collider" type="CollisionShape2D" parent="collide_trigger"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_8rdp0")
+
+[node name="eye_detector" type="Area2D" parent="."]
+position = Vector2(0, -41)
+collision_layer = 32
+collision_mask = 4
+
+[node name="circle_collider" type="CollisionShape2D" parent="eye_detector"]
+shape = SubResource("CircleShape2D_kcy8g")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 6
+position = Vector2(0, -41)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_8l6ar")

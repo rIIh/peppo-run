@@ -1,21 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://fdygvwcgo7af"]
+[gd_scene load_steps=8 format=3 uid="uid://fdygvwcgo7af"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_pqoug"]
 [ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_c57vj"]
 [ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_plfvk"]
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_5028v"]
-[ext_resource type="Script" path="res://scripts/worker.gd" id="7_3ke00"]
-[ext_resource type="Script" path="res://scripts/fighter.gd" id="7_4jbdn"]
-[ext_resource type="Texture2D" uid="uid://dlhpv4u5v1l1o" path="res://assets/workers/worker__waiting@4x.png" id="7_i0dmu"]
+[ext_resource type="PackedScene" uid="uid://bk8y5dr01ah2l" path="res://prefabs/worker.tscn" id="6_uru58"]
 [ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="8_o3xvs"]
 [ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="8_w3mtn"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8rdp0"]
-radius = 36.5
-height = 96.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kcy8g"]
-radius = 115.039
 
 [node name="level" type="Node"]
 script = ExtResource("1_pqoug")
@@ -41,41 +32,10 @@ position = Vector2(322, 87)
 tag = "purple"
 poop_style = ExtResource("4_plfvk")
 
-[node name="worker" type="CharacterBody2D" parent="play_area"]
-position = Vector2(205, 353)
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("7_3ke00")
-
-[node name="Fighter" type="Node" parent="play_area/worker" node_paths=PackedStringArray("body", "sprite_to_hide")]
-script = ExtResource("7_4jbdn")
-body = NodePath("../collide_trigger")
-sprite_to_hide = NodePath("../sprite")
-
-[node name="capsule_collider" type="CollisionShape2D" parent="play_area/worker"]
-position = Vector2(0, -39)
-shape = SubResource("CapsuleShape2D_8rdp0")
-
-[node name="collide_trigger" type="Area2D" parent="play_area/worker"]
-position = Vector2(0, -41)
-
-[node name="capsule_collider" type="CollisionShape2D" parent="play_area/worker/collide_trigger"]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_8rdp0")
-
-[node name="eye_detector" type="Area2D" parent="play_area/worker"]
-position = Vector2(0, -41)
-collision_layer = 32
-collision_mask = 4
-
-[node name="circle_collider" type="CollisionShape2D" parent="play_area/worker/eye_detector"]
-shape = SubResource("CircleShape2D_kcy8g")
-
-[node name="sprite" type="Sprite2D" parent="play_area/worker"]
-texture_filter = 6
-position = Vector2(0, -41)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_i0dmu")
+[node name="worker" parent="play_area" instance=ExtResource("6_uru58")]
+position = Vector2(198, 367)
+scale = Vector2(1.25, 1.25)
+eye_distance = 106.42
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("8_o3xvs")]
 position = Vector2(106, 205)

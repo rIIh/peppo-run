@@ -48,7 +48,6 @@ func _ready():
 	_init_children(get_children())
 	
 
-
 func _init_children(nodes: Array[Node]):
 	for child in nodes:
 		if child is PlayArea:
@@ -58,6 +57,7 @@ func _init_children(nodes: Array[Node]):
 			child.game_mode = self
 		if child is Toilet:
 			toilets.append(child)
+
 
 func assign_poop_to_toilet(poop: Poop, toilet: Toilet) -> bool:
 	if _state != State.drawing: return false
@@ -89,6 +89,10 @@ func report_fighting():
 	failed = true
 	_update_state()
 
+
+func report_exploded():
+	failed = true
+	_update_state()
 
 
 func _handle_go_pressed():
