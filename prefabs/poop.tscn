@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/poop/poop_style_changer.gd" id="2_s4xoi"]
 [ext_resource type="Resource" uid="uid://bxmo20wqjared" path="res://resources/poops/orange.tres" id="3_qtnn3"]
 [ext_resource type="Script" path="res://scripts/draw_path.gd" id="4_qmamc"]
-[ext_resource type="Texture2D" uid="uid://4gvhr7gqttit" path="res://assets/poops/orange/poop__waiting@4x.png" id="5_a6j8o"]
+[ext_resource type="Texture2D" uid="uid://c66dajjflgua5" path="res://assets/poops/characters__poop__orange@4x.png" id="6_o2m44"]
 
 [sub_resource type="Animation" id="Animation_v5wp1"]
 length = 0.001
@@ -24,6 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6t855"]
 resource_name = "sitting"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_mfmbh"]
@@ -54,19 +55,19 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_e3lp6"]
 resource_name = "walking"
-length = 0.5
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("poop_sprite:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 1]
+"values": [3, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_juy2g"]
@@ -159,4 +160,5 @@ z_index = 1
 texture_filter = 6
 position = Vector2(0, -42)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("5_a6j8o")
+texture = ExtResource("6_o2m44")
+hframes = 5
