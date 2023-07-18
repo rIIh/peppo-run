@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://btebir7ijeef6"]
+
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="1_hou5m"]
+[ext_resource type="Texture2D" uid="uid://jhoo1452rpiw" path="res://assets/ui/circle_buttons/buttons__back@4x.png" id="2_d16uo"]
+[ext_resource type="Script" path="res://scripts/ui/back_button.gd" id="3_w1d50"]
+
+[node name="back_button" type="MarginContainer"]
+offset_right = 52.0
+offset_bottom = 52.0
+pivot_offset = Vector2(26, 26)
+script = ExtResource("3_w1d50")
+
+[node name="circle_button" parent="." instance=ExtResource("1_hou5m")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture_normal = ExtResource("2_d16uo")
+main_texture = ExtResource("2_d16uo")

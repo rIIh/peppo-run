@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxh2vbj2yj32m"]
+
+[ext_resource type="PackedScene" uid="uid://c63ta2djiclrb" path="res://scenes/router.tscn" id="1_crt4r"]
+[ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/levels_scene.tscn" id="2_8yrfw"]
+
+[node name="root" type="Node"]
+
+[node name="router" parent="." instance=ExtResource("1_crt4r")]
+initial_scene = ExtResource("2_8yrfw")

@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0dk7edx0lsbi"]
+
+[ext_resource type="Script" path="res://scripts/ui/levels_selector.gd" id="1_vofw7"]
+[ext_resource type="PackedScene" uid="uid://d0vl7bilauqs6" path="res://prefabs/ui/level_button.tscn" id="2_hwe8m"]
+[ext_resource type="Texture2D" uid="uid://da5l82l0ktiui" path="res://assets/ui/temporary/page_indicator_placeholder.png" id="3_1fnle"]
+
+[node name="level_selector" type="Control" node_paths=PackedStringArray("previous_page_button", "next_page_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vofw7")
+previous_page_button = NodePath("prev_page")
+next_page_button = NodePath("next_page")
+
+[node name="padding" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 144
+
+[node name="control" type="Control" parent="padding"]
+layout_mode = 2
+
+[node name="h_flow" type="HFlowContainer" parent="padding/control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -187.5
+offset_right = 187.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+alignment = 1
+
+[node name="level" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+layout_mode = 2
+
+[node name="level2" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+layout_mode = 2
+
+[node name="level3" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+layout_mode = 2
+
+[node name="level4" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+layout_mode = 2
+
+[node name="level5" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+layout_mode = 2
+
+[node name="level6" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+layout_mode = 2
+
+[node name="page_indicator" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -24.0
+offset_right = 73.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_1fnle")
+stretch_mode = 2
+
+[node name="prev_page" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.5
+offset_top = -35.0
+offset_right = -85.5
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "<-"
+
+[node name="next_page" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 86.5
+offset_top = -35.0
+offset_right = 109.5
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "->"

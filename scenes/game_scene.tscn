@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="7_dmktw"]
 [ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="8_muc62"]
 [ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="9_yn1oy"]
-[ext_resource type="Texture2D" uid="uid://jhoo1452rpiw" path="res://assets/ui/circle_buttons/buttons__back@4x.png" id="10_4kqxq"]
+[ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="10_0y0x7"]
 [ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="11_3vrr4"]
 [ext_resource type="Texture2D" uid="uid://bo5dagvotd67x" path="res://assets/ui/circle_buttons/buttons__hint@4x.png" id="12_sr8mc"]
 [ext_resource type="Texture2D" uid="uid://ywjgjmf05r10" path="res://assets/ui/circle_buttons/buttons__restart@4x.png" id="13_nnutr"]
@@ -83,6 +83,7 @@ level_spawn_parent = NodePath("game_viewport")
 ui_parent = NodePath("ui_layer/container")
 restart_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio/restart_button")
 go_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer/circle_button")
+metadata/_edit_horizontal_guides_ = [32.0]
 
 [node name="background_layer" parent="." instance=ExtResource("3_l23ho")]
 tile_offset = Vector2(0, 0)
@@ -149,8 +150,7 @@ grow_horizontal = 2
 texture_normal = ExtResource("9_yn1oy")
 main_texture = ExtResource("9_yn1oy")
 
-[node name="back_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("8_muc62")]
-custom_minimum_size = Vector2(52, 52)
+[node name="back_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("10_0y0x7")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -160,8 +160,6 @@ offset_top = 8.0
 offset_right = -119.5
 offset_bottom = 60.0
 grow_horizontal = 2
-texture_normal = ExtResource("10_4kqxq")
-main_texture = ExtResource("10_4kqxq")
 
 [node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/ui"]
 layout_mode = 1

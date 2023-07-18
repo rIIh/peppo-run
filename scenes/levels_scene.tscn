@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3rylxs71laes"]
+
+[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="1_axwfx"]
+[ext_resource type="Script" path="res://scripts/safe_area.gd" id="2_76x4d"]
+[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="3_8qacw"]
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="4_tjbk6"]
+[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="5_1cdqv"]
+[ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="6_s6pai"]
+[ext_resource type="PackedScene" uid="uid://c0dk7edx0lsbi" path="res://prefabs/ui/level_selector.tscn" id="7_rh4mo"]
+
+[sub_resource type="Resource" id="Resource_h6ynb"]
+script = ExtResource("3_8qacw")
+left = 0.0
+top = 0.0
+right = 0.0
+bottom = 0.0
+
+[sub_resource type="Resource" id="Resource_yjme5"]
+script = ExtResource("3_8qacw")
+left = 0.0
+top = 24.0
+right = 0.0
+bottom = 34.0
+
+[node name="levels_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_horizontal_guides_ = [32.0]
+metadata/_edit_vertical_guides_ = [16.0]
+
+[node name="background_layer" parent="." instance=ExtResource("1_axwfx")]
+
+[node name="container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="safe_area" type="MarginContainer" parent="container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 34
+script = ExtResource("2_76x4d")
+debug_insets = SubResource("Resource_h6ynb")
+minimum = SubResource("Resource_yjme5")
+
+[node name="ui" type="Control" parent="container/safe_area"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="settings_button" parent="container/safe_area/ui" instance=ExtResource("4_tjbk6")]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 119.5
+offset_top = 8.0
+offset_right = 171.5
+offset_bottom = 60.0
+grow_horizontal = 2
+texture_normal = ExtResource("5_1cdqv")
+main_texture = ExtResource("5_1cdqv")
+
+[node name="back_button" parent="container/safe_area/ui" instance=ExtResource("6_s6pai")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.5
+offset_top = 8.0
+offset_right = -119.5
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="level_selector" parent="container/safe_area/ui" instance=ExtResource("7_rh4mo")]
+layout_mode = 1

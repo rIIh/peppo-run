@@ -1,19 +1,20 @@
-extends Node
+class_name GameScene extends Node
 
 @export
 var custom_window_scale: float = 0
 
+var initial_index: int
+
 @export
 var level_group: LevelGroup
 
-var _index := 0
+@onready
+var _index := initial_index
 var index: int :
 	get: return _index
 
 @export
 var level_spawn_parent: Node
-
-
 
 @export
 var ui_parent: Node

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c63ta2djiclrb"]
+
+[ext_resource type="Script" path="res://scripts/router.gd" id="1_t2aw1"]
+
+[node name="router" type="Node"]
+script = ExtResource("1_t2aw1")
