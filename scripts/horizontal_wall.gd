@@ -29,4 +29,4 @@ func _update_nodes():
 		$wall_sprite.size.x = width * 4
 		$wall_sprite.position = Vector2(-width / 2 + (width / 2 * x_alignment), 0)
 		$collider.shape.size.x = width
-		$collider.position = Vector2(width * x_alignment, 10) / 2
+		$collider.position = Vector2(width * x_alignment, $wall_sprite.size.y / 4) / 2

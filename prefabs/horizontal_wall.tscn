@@ -1,31 +1,30 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddprdycqwc6cd"]
 
 [ext_resource type="Script" path="res://scripts/horizontal_wall.gd" id="1_071nf"]
-[ext_resource type="Texture2D" uid="uid://dtm6tbnxgkylh" path="res://assets/objects/horizontal_wall@4x.png" id="2_8vip8"]
+[ext_resource type="Texture2D" uid="uid://dwc6rr750mngi" path="res://assets/objects/world__horizontal_wall@4x.png" id="2_0fint"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbg1t"]
 resource_local_to_scene = true
-size = Vector2(31, 10)
+size = Vector2(32, 21)
 
 [node name="horizontal_wall" type="StaticBody2D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_071nf")
-width = 31
 
 [node name="wall_sprite" type="NinePatchRect" parent="."]
-offset_left = -15.0
-offset_right = 109.0
-offset_bottom = 40.0
+offset_left = -16.0
+offset_right = 112.0
+offset_bottom = 84.0
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_8vip8")
-region_rect = Rect2(0, 0, 48, 40)
-patch_margin_left = 10
-patch_margin_top = 20
-patch_margin_right = 9
-patch_margin_bottom = 9
+texture = ExtResource("2_0fint")
+region_rect = Rect2(0, 0, 580, 84)
+patch_margin_left = 48
+patch_margin_top = 40
+patch_margin_right = 43
+patch_margin_bottom = 44
 metadata/_edit_use_anchors_ = true
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_jbg1t")

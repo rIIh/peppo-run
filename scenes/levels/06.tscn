@@ -23,6 +23,10 @@ position = Vector2(120, 131)
 tag = "purple"
 poop_style = ExtResource("4_puuib")
 
+[node name="verticall_wall" parent="play_area" instance=ExtResource("7_matl4")]
+position = Vector2(188, 15)
+height = 380
+
 [node name="horizontal_wall" parent="play_area" instance=ExtResource("6_f8u8q")]
 position = Vector2(188, 15)
 width = 32000
@@ -30,10 +34,6 @@ width = 32000
 [node name="horizontal_wall2" parent="play_area" instance=ExtResource("6_f8u8q")]
 position = Vector2(188, 550)
 width = 32000
-
-[node name="verticall_wall" parent="play_area" instance=ExtResource("7_matl4")]
-position = Vector2(188, 15)
-height = 380
 
 [node name="poop" parent="play_area" instance=ExtResource("3_1w6c5")]
 position = Vector2(51, 374)

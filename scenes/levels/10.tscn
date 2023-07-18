@@ -34,13 +34,13 @@ tag = "purple"
 speed = 300.0
 style = ExtResource("4_kck34")
 
-[node name="horizontal_wall3" parent="play_area" instance=ExtResource("8_csbgo")]
-position = Vector2(187, 16)
-width = 180
-
 [node name="verticall_wall" parent="play_area" instance=ExtResource("9_0dflo")]
 position = Vector2(187, 16)
 height = 160
+
+[node name="horizontal_wall3" parent="play_area" instance=ExtResource("8_csbgo")]
+position = Vector2(187, 16)
+width = 180
 
 [node name="horizontal_wall4" parent="play_area" instance=ExtResource("8_csbgo")]
 position = Vector2(187, 166)
