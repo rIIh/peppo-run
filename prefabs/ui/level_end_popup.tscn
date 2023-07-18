@@ -1,13 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkkux7nltqtuw"]
+[gd_scene load_steps=13 format=3 uid="uid://bkkux7nltqtuw"]
 
 [ext_resource type="Texture2D" uid="uid://brhiyoo826fd" path="res://assets/ui/popup_background@4x.png" id="1_3gbgj"]
 [ext_resource type="Script" path="res://scripts/ui/level_end_popup.tres.gd" id="1_ey0bl"]
 [ext_resource type="Shader" path="res://materials/shaders/uv_scale.gdshader" id="2_bv2kl"]
 [ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="2_i6ibe"]
-[ext_resource type="Texture2D" uid="uid://dg1tc24c328hf" path="res://assets/ui/type=buttons__home@4x.png" id="3_xoiai"]
-[ext_resource type="Script" path="res://scripts/scale_texture_button.gd" id="4_vs3ju"]
-[ext_resource type="Texture2D" uid="uid://cwp3cnmha1gen" path="res://assets/ui/type=buttons__go@4x.png" id="5_54mfl"]
-[ext_resource type="Texture2D" uid="uid://scuornplo16v" path="res://assets/ui/type=buttons__restart@4x.png" id="6_jrg70"]
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="5_aesc1"]
+[ext_resource type="Texture2D" uid="uid://y2wuh18ryep5" path="res://assets/ui/circle_buttons/buttons__home@4x.png" id="6_ae7gg"]
+[ext_resource type="Texture2D" uid="uid://ywjgjmf05r10" path="res://assets/ui/circle_buttons/buttons__restart@4x.png" id="7_mv8cl"]
 
 [sub_resource type="Animation" id="Animation_lpx31"]
 length = 0.001
@@ -153,6 +152,7 @@ func _process(delta):
 "
 
 [node name="level_end_popup" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -257,38 +257,26 @@ alignment = 1
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control2/Control"]
 layout_mode = 2
 
-[node name="buttons__home" type="TextureButton" parent="Control2/Control/AspectRatioContainer"]
+[node name="buttons__home" parent="Control2/Control/AspectRatioContainer" instance=ExtResource("5_aesc1")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(82, 86)
+custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
-texture_normal = ExtResource("3_xoiai")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("4_vs3ju")
-texture_scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("6_ae7gg")
+main_texture = ExtResource("6_ae7gg")
 
 [node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Control2/Control"]
 layout_mode = 2
 
-[node name="buttons__go" type="TextureButton" parent="Control2/Control/AspectRatioContainer3"]
+[node name="buttons__go" parent="Control2/Control/AspectRatioContainer3" instance=ExtResource("5_aesc1")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(94, 98)
 layout_mode = 2
-texture_normal = ExtResource("5_54mfl")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("4_vs3ju")
-texture_scale = Vector2(0.25, 0.25)
 
 [node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Control2/Control"]
 layout_mode = 2
 
-[node name="buttons__retry" type="TextureButton" parent="Control2/Control/AspectRatioContainer2"]
+[node name="buttons__retry" parent="Control2/Control/AspectRatioContainer2" instance=ExtResource("5_aesc1")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(82, 86)
+custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
-texture_normal = ExtResource("6_jrg70")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("4_vs3ju")
-texture_scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("7_mv8cl")
+main_texture = ExtResource("7_mv8cl")
