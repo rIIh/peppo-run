@@ -1,28 +1,28 @@
 [gd_scene load_steps=18 format=3 uid="uid://d0avtug1we22e"]
 
-[ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_et1sp"]
-[ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_v8vth"]
-[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="3_mlub3"]
-[ext_resource type="Script" path="res://scripts/safe_area.gd" id="4_x7p4y"]
-[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="5_s3vk1"]
-[ext_resource type="PackedScene" uid="uid://cf6ytkqnlpimf" path="res://scenes/game_viewport.tscn" id="6_4vm6l"]
-[ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="7_pdgi6"]
-[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="9_ub0hr"]
-[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="13_ivtqj"]
-[ext_resource type="Texture2D" uid="uid://bo5dagvotd67x" path="res://assets/ui/circle_buttons/buttons__hint@4x.png" id="13_tjshe"]
-[ext_resource type="Script" path="res://scripts/game_viewport.gd" id="14_jl23s"]
-[ext_resource type="Texture2D" uid="uid://ywjgjmf05r10" path="res://assets/ui/circle_buttons/buttons__restart@4x.png" id="14_v5w4r"]
-[ext_resource type="Texture2D" uid="uid://jhoo1452rpiw" path="res://assets/ui/circle_buttons/buttons__back@4x.png" id="15_jcajr"]
+[ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_8vjuo"]
+[ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_pdjg8"]
+[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="3_l23ho"]
+[ext_resource type="PackedScene" uid="uid://b7ffretwt4i41" path="res://scenes/game_viewport.tscn" id="4_ux06a"]
+[ext_resource type="Script" path="res://scripts/game_viewport.gd" id="5_vyxro"]
+[ext_resource type="Script" path="res://scripts/safe_area.gd" id="6_iq6rk"]
+[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="7_dmktw"]
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="8_muc62"]
+[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="9_yn1oy"]
+[ext_resource type="Texture2D" uid="uid://jhoo1452rpiw" path="res://assets/ui/circle_buttons/buttons__back@4x.png" id="10_4kqxq"]
+[ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="11_3vrr4"]
+[ext_resource type="Texture2D" uid="uid://bo5dagvotd67x" path="res://assets/ui/circle_buttons/buttons__hint@4x.png" id="12_sr8mc"]
+[ext_resource type="Texture2D" uid="uid://ywjgjmf05r10" path="res://assets/ui/circle_buttons/buttons__restart@4x.png" id="13_nnutr"]
 
 [sub_resource type="Resource" id="Resource_1q0hn"]
-script = ExtResource("5_s3vk1")
+script = ExtResource("7_dmktw")
 left = 0.0
 top = 0.0
 right = 0.0
 bottom = 0.0
 
 [sub_resource type="Resource" id="Resource_gvsuo"]
-script = ExtResource("5_s3vk1")
+script = ExtResource("7_dmktw")
 left = 0.0
 top = 24.0
 right = 0.0
@@ -77,18 +77,18 @@ func _get_safe_area() -> SafeArea:
 "
 
 [node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "ui_parent", "restart_button", "go_button")]
-script = ExtResource("1_et1sp")
-level_group = ExtResource("2_v8vth")
+script = ExtResource("1_8vjuo")
+level_group = ExtResource("2_pdjg8")
 level_spawn_parent = NodePath("game_viewport")
 ui_parent = NodePath("ui_layer/container")
 restart_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio/restart_button")
 go_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer/circle_button")
 
-[node name="background_layer" parent="." instance=ExtResource("3_mlub3")]
+[node name="background_layer" parent="." instance=ExtResource("3_l23ho")]
 tile_offset = Vector2(0, 0)
 
-[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("6_4vm6l")]
-script = ExtResource("14_jl23s")
+[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("4_ux06a")]
+script = ExtResource("5_vyxro")
 target_rect = NodePath("../ui_layer/container/safe_area/game_area_padding/game_area")
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
@@ -115,7 +115,7 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 34
-script = ExtResource("4_x7p4y")
+script = ExtResource("6_iq6rk")
 debug_insets = SubResource("Resource_1q0hn")
 minimum = SubResource("Resource_gvsuo")
 
@@ -135,7 +135,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_2hbjh")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="settings_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("13_ivtqj")]
+[node name="settings_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("8_muc62")]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 1
 anchors_preset = 5
@@ -146,10 +146,10 @@ offset_top = 8.0
 offset_right = 171.5
 offset_bottom = 60.0
 grow_horizontal = 2
-texture_normal = ExtResource("9_ub0hr")
-main_texture = ExtResource("9_ub0hr")
+texture_normal = ExtResource("9_yn1oy")
+main_texture = ExtResource("9_yn1oy")
 
-[node name="back_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("13_ivtqj")]
+[node name="back_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("8_muc62")]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 1
 anchors_preset = 5
@@ -160,8 +160,8 @@ offset_top = 8.0
 offset_right = -119.5
 offset_bottom = 60.0
 grow_horizontal = 2
-texture_normal = ExtResource("15_jcajr")
-main_texture = ExtResource("15_jcajr")
+texture_normal = ExtResource("10_4kqxq")
+main_texture = ExtResource("10_4kqxq")
 
 [node name="bottom_node" type="Control" parent="ui_layer/container/safe_area/ui"]
 layout_mode = 1
@@ -200,7 +200,7 @@ offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_pdgi6")
+texture = ExtResource("11_3vrr4")
 stretch_mode = 1
 
 [node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/ui/bottom_node"]
@@ -227,16 +227,16 @@ theme_override_constants/margin_bottom = -17
 layout_mode = 2
 alignment_vertical = 2
 
-[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding/aspect_ratio" instance=ExtResource("13_ivtqj")]
+[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding/aspect_ratio" instance=ExtResource("8_muc62")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
-texture_normal = ExtResource("13_tjshe")
-main_texture = ExtResource("13_tjshe")
+texture_normal = ExtResource("12_sr8mc")
+main_texture = ExtResource("12_sr8mc")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
 layout_mode = 2
 
-[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer" instance=ExtResource("13_ivtqj")]
+[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer" instance=ExtResource("8_muc62")]
 layout_mode = 2
 
 [node name="padding2" type="MarginContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
@@ -247,8 +247,8 @@ theme_override_constants/margin_bottom = -17
 layout_mode = 2
 alignment_vertical = 2
 
-[node name="restart_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio" instance=ExtResource("13_ivtqj")]
+[node name="restart_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio" instance=ExtResource("8_muc62")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
-texture_normal = ExtResource("14_v5w4r")
-main_texture = ExtResource("14_v5w4r")
+texture_normal = ExtResource("13_nnutr")
+main_texture = ExtResource("13_nnutr")
