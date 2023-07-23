@@ -40,7 +40,8 @@ tag = "purple"
 poop_style = ExtResource("4_r4awv")
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("6_lhovu")]
-position = Vector2(188, 203)
+position = Vector2(188, 558)
+y_alignment = 1.0
 height = 350
 
 [node name="horizontal_wall" parent="play_area" instance=ExtResource("7_nk276")]

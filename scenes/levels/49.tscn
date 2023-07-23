@@ -35,10 +35,12 @@ poop_style = ExtResource("4_uubdj")
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("6_htj0a")]
 position = Vector2(185, 176)
+y_alignment = -1.0
 height = 190
 
 [node name="verticall_wall2" parent="play_area" instance=ExtResource("6_htj0a")]
-position = Vector2(188, 496)
+position = Vector2(188, 530)
+y_alignment = 1.0
 height = 30
 
 [node name="horizontal_wall2" parent="play_area" instance=ExtResource("7_tyu5h")]

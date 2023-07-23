@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddm0ijq11y1ks"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_u5hub"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_inca6"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_37app"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_dsmls"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_viwq1"]
+[ext_resource type="PackedScene" uid="uid://bk8y5dr01ah2l" path="res://prefabs/worker.tscn" id="6_h2sh7"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="7_6c4eb"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="8_m5gcv"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_u5hub")
+
+[node name="play_area" parent="." instance=ExtResource("2_inca6")]
+offset_bottom = 570.0
+
+[node name="poop" parent="play_area" instance=ExtResource("3_37app")]
+position = Vector2(83, 525)
+speed = 300.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_37app")]
+position = Vector2(313, 524)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_dsmls")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_viwq1")]
+position = Vector2(240, 149)
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_viwq1")]
+position = Vector2(328, 150)
+tag = "purple"
+poop_style = ExtResource("4_dsmls")
+
+[node name="worker" parent="play_area" instance=ExtResource("6_h2sh7")]
+position = Vector2(75, 142)
+scale = Vector2(1.25, 1.25)
+eye_distance = 200.0
+
+[node name="horizontal_wall" parent="play_area" instance=ExtResource("8_m5gcv")]
+position = Vector2(146, 388)
+x_alignment = 1.0
+width = 120
+
+[node name="verticall_wall" parent="play_area" instance=ExtResource("7_6c4eb")]
+position = Vector2(155, 5)
+y_alignment = -1.0
+height = 265

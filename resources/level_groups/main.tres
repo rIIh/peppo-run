@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelGroup" load_steps=23 format=3 uid="uid://c8f2uf06awei6"]
+[gd_resource type="Resource" script_class="LevelGroup" load_steps=27 format=3 uid="uid://c8f2uf06awei6"]
 
 [ext_resource type="PackedScene" uid="uid://cppgvldgjasuv" path="res://scenes/levels/01.tscn" id="1_ljqyp"]
 [ext_resource type="Script" path="res://scripts/resources/level_resource.gd" id="1_r304q"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://iethv5fppqwf" path="res://scenes/levels/06.tscn" id="6_ow5kn"]
 [ext_resource type="PackedScene" uid="uid://b773xw7wh6kn4" path="res://scenes/levels/10.tscn" id="7_urvca"]
 [ext_resource type="PackedScene" uid="uid://fdygvwcgo7af" path="res://scenes/levels/11.tscn" id="8_r0jnb"]
+[ext_resource type="PackedScene" uid="uid://4v08r4tm65el" path="res://scenes/levels/07.tscn" id="8_wk6tg"]
+[ext_resource type="PackedScene" uid="uid://ddm0ijq11y1ks" path="res://scenes/levels/08.tscn" id="9_56xyg"]
 [ext_resource type="PackedScene" uid="uid://dwsr07xmf10qp" path="res://scenes/levels/28.tscn" id="9_4277t"]
 [ext_resource type="PackedScene" uid="uid://sypn8jjgm8yb" path="res://scenes/levels/49.tscn" id="10_8odwv"]
 [ext_resource type="Script" path="res://scripts/resources/level_group.gd" id="11_g323a"]
@@ -43,6 +45,16 @@ script = ExtResource("1_r304q")
 title = "LVL 06"
 scene = ExtResource("6_ow5kn")
 
+[sub_resource type="Resource" id="Resource_mv077"]
+script = ExtResource("1_r304q")
+title = "LVL 07"
+scene = ExtResource("8_wk6tg")
+
+[sub_resource type="Resource" id="Resource_svwp5"]
+script = ExtResource("1_r304q")
+title = "LVL 08"
+scene = ExtResource("9_56xyg")
+
 [sub_resource type="Resource" id="Resource_02xwy"]
 script = ExtResource("1_r304q")
 title = "LVL 10"
@@ -66,4 +78,4 @@ scene = ExtResource("10_8odwv")
 [resource]
 script = ExtResource("11_g323a")
 _name = "default"
-_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_jx1kd"), SubResource("Resource_srddd"), SubResource("Resource_p1lra"), SubResource("Resource_10vqh"), SubResource("Resource_p7b6t"), SubResource("Resource_stfwi"), SubResource("Resource_02xwy"), SubResource("Resource_jr6lr"), SubResource("Resource_e3asv"), SubResource("Resource_smytc")])
+_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_jx1kd"), SubResource("Resource_srddd"), SubResource("Resource_p1lra"), SubResource("Resource_10vqh"), SubResource("Resource_p7b6t"), SubResource("Resource_stfwi"), SubResource("Resource_mv077"), SubResource("Resource_svwp5"), SubResource("Resource_02xwy"), SubResource("Resource_jr6lr"), SubResource("Resource_e3asv"), SubResource("Resource_smytc")])

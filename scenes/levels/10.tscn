@@ -36,6 +36,7 @@ style = ExtResource("4_kck34")
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("9_0dflo")]
 position = Vector2(187, 16)
+y_alignment = -1.0
 height = 160
 
 [node name="horizontal_wall3" parent="play_area" instance=ExtResource("8_csbgo")]

@@ -40,6 +40,7 @@ func _check_obstacles(a: Vector2, b: Vector2) -> bool:
 
 	return not result.is_empty()
 
+
 func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return
