@@ -1,18 +1,69 @@
-[gd_resource type="Resource" script_class="LevelGroup" load_steps=12 format=3 uid="uid://c8f2uf06awei6"]
+[gd_resource type="Resource" script_class="LevelGroup" load_steps=23 format=3 uid="uid://c8f2uf06awei6"]
 
-[ext_resource type="PackedScene" uid="uid://cppgvldgjasuv" path="res://scenes/levels/01.tscn" id="1_as0gb"]
-[ext_resource type="Script" path="res://scripts/level_group.gd" id="1_ccdgc"]
+[ext_resource type="PackedScene" uid="uid://cppgvldgjasuv" path="res://scenes/levels/01.tscn" id="1_ljqyp"]
+[ext_resource type="Script" path="res://scripts/resources/level_resource.gd" id="1_r304q"]
 [ext_resource type="PackedScene" uid="uid://brvds4qm8qmmj" path="res://scenes/levels/02.tscn" id="2_ptadm"]
 [ext_resource type="PackedScene" uid="uid://cts380lmkc2ie" path="res://scenes/levels/03.tscn" id="3_8agwk"]
 [ext_resource type="PackedScene" uid="uid://dpb6kbhl5v4rn" path="res://scenes/levels/04.tscn" id="4_jiysb"]
-[ext_resource type="PackedScene" uid="uid://b773xw7wh6kn4" path="res://scenes/levels/10.tscn" id="4_udylb"]
 [ext_resource type="PackedScene" uid="uid://vxm1ktoiw6e1" path="res://scenes/levels/05.tscn" id="5_1wiuc"]
-[ext_resource type="PackedScene" uid="uid://fdygvwcgo7af" path="res://scenes/levels/11.tscn" id="5_lwi7n"]
-[ext_resource type="PackedScene" uid="uid://iethv5fppqwf" path="res://scenes/levels/06.tscn" id="6_l3an1"]
-[ext_resource type="PackedScene" uid="uid://dwsr07xmf10qp" path="res://scenes/levels/28.tscn" id="9_7smku"]
-[ext_resource type="PackedScene" uid="uid://sypn8jjgm8yb" path="res://scenes/levels/49.tscn" id="10_b86eg"]
+[ext_resource type="PackedScene" uid="uid://iethv5fppqwf" path="res://scenes/levels/06.tscn" id="6_ow5kn"]
+[ext_resource type="PackedScene" uid="uid://b773xw7wh6kn4" path="res://scenes/levels/10.tscn" id="7_urvca"]
+[ext_resource type="PackedScene" uid="uid://fdygvwcgo7af" path="res://scenes/levels/11.tscn" id="8_r0jnb"]
+[ext_resource type="PackedScene" uid="uid://dwsr07xmf10qp" path="res://scenes/levels/28.tscn" id="9_4277t"]
+[ext_resource type="PackedScene" uid="uid://sypn8jjgm8yb" path="res://scenes/levels/49.tscn" id="10_8odwv"]
+[ext_resource type="Script" path="res://scripts/resources/level_group.gd" id="11_g323a"]
+
+[sub_resource type="Resource" id="Resource_jx1kd"]
+script = ExtResource("1_r304q")
+title = "LVL 01"
+scene = ExtResource("1_ljqyp")
+
+[sub_resource type="Resource" id="Resource_srddd"]
+script = ExtResource("1_r304q")
+title = "LVL 02"
+scene = ExtResource("2_ptadm")
+
+[sub_resource type="Resource" id="Resource_p1lra"]
+script = ExtResource("1_r304q")
+title = "LVL 03"
+scene = ExtResource("3_8agwk")
+
+[sub_resource type="Resource" id="Resource_10vqh"]
+script = ExtResource("1_r304q")
+title = "LVL 04"
+scene = ExtResource("4_jiysb")
+
+[sub_resource type="Resource" id="Resource_p7b6t"]
+script = ExtResource("1_r304q")
+title = "LVL 05"
+scene = ExtResource("5_1wiuc")
+
+[sub_resource type="Resource" id="Resource_stfwi"]
+script = ExtResource("1_r304q")
+title = "LVL 06"
+scene = ExtResource("6_ow5kn")
+
+[sub_resource type="Resource" id="Resource_02xwy"]
+script = ExtResource("1_r304q")
+title = "LVL 10"
+scene = ExtResource("7_urvca")
+
+[sub_resource type="Resource" id="Resource_jr6lr"]
+script = ExtResource("1_r304q")
+title = "LVL 11"
+scene = ExtResource("8_r0jnb")
+
+[sub_resource type="Resource" id="Resource_e3asv"]
+script = ExtResource("1_r304q")
+title = "LVL 28"
+scene = ExtResource("9_4277t")
+
+[sub_resource type="Resource" id="Resource_smytc"]
+script = ExtResource("1_r304q")
+title = "LVL 49"
+scene = ExtResource("10_8odwv")
 
 [resource]
-script = ExtResource("1_ccdgc")
+script = ExtResource("11_g323a")
 _name = "default"
-_levels = Array[PackedScene]([ExtResource("1_as0gb"), ExtResource("2_ptadm"), ExtResource("3_8agwk"), ExtResource("4_jiysb"), ExtResource("5_1wiuc"), ExtResource("6_l3an1"), ExtResource("4_udylb"), ExtResource("5_lwi7n"), ExtResource("9_7smku"), ExtResource("10_b86eg")])
+_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_jx1kd"), SubResource("Resource_srddd"), SubResource("Resource_p1lra"), SubResource("Resource_10vqh"), SubResource("Resource_p7b6t"), SubResource("Resource_stfwi"), SubResource("Resource_02xwy"), SubResource("Resource_jr6lr"), SubResource("Resource_e3asv"), SubResource("Resource_smytc")])

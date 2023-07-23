@@ -8,12 +8,12 @@ var name: String :
 	get: return _name
 
 @export
-var _levels: Array[PackedScene] = []
-var levels: Array[PackedScene] :
+var _levels: Array[LevelDetails] = []
+var levels: Array[LevelDetails] :
 	get: return Array(_levels)
 
 
-func get_level_scene(index: int) -> PackedScene:
+func get_level_details(index: int) -> LevelDetails:
 	return _levels[index]
 
 

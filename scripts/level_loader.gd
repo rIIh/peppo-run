@@ -27,8 +27,8 @@ var go_button: BaseButton
 
 var _success_popup := preload("res://prefabs/ui/level_end_popup.tscn")
 
-var current_level: PackedScene :
-	get: return level_group.get_level_scene(index)
+var current_level: LevelDetails :
+	get: return level_group.get_level_details(index)
 
 var _instantiated_scene_node: GameMode
 
@@ -54,7 +54,7 @@ func restart():
 	if _instantiated_scene_node:
 		_instantiated_scene_node.queue_free()
 
-	_instantiated_scene_node = current_level.instantiate()
+	_instantiated_scene_node = current_level.scene.instantiate()
 	_instantiated_scene_node.state_changed.connect(_handle_state_change)
 	_instantiated_scene_node.go_button = go_button
 
@@ -64,6 +64,7 @@ func restart():
 		add_child(_instantiated_scene_node)
 		
 	restarted.emit()
+	%level_header__level_number.text = current_level.title
 
 
 func go_to_next_level():

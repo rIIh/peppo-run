@@ -64,10 +64,7 @@ func _update_page_view():
 		if index >= level_group.levels.size():
 			break
 
-		var regex := RegEx.new()
-		regex.compile("(\\d+).+$")
-		var matches := regex.search(level_group.get_level_scene(index).resource_path)
-		var name = matches.get_string(1)
+		var name = level_group.get_level_details(index).title
 
 		var node: LevelButton = level_button.instantiate()
 		node.pressed.connect(func(): _handle_pressed(index))

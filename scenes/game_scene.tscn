@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d0avtug1we22e"]
+[gd_scene load_steps=20 format=3 uid="uid://d0avtug1we22e"]
 
 [ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_8vjuo"]
 [ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_pdjg8"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b7ffretwt4i41" path="res://scenes/game_viewport.tscn" id="4_ux06a"]
 [ext_resource type="Script" path="res://scripts/game_viewport.gd" id="5_vyxro"]
 [ext_resource type="Script" path="res://scripts/safe_area.gd" id="6_iq6rk"]
+[ext_resource type="Texture2D" uid="uid://bf3aeivawgg0e" path="res://assets/ui/level_header@4x.png" id="6_s6naw"]
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="7_dmktw"]
 [ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="8_muc62"]
+[ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="9_or54j"]
 [ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="9_yn1oy"]
 [ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="10_0y0x7"]
 [ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="11_3vrr4"]
@@ -83,7 +85,7 @@ level_spawn_parent = NodePath("game_viewport")
 ui_parent = NodePath("ui_layer/container")
 restart_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio/restart_button")
 go_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer/circle_button")
-metadata/_edit_horizontal_guides_ = [32.0]
+metadata/_edit_horizontal_guides_ = [32.0, 24.0]
 
 [node name="background_layer" parent="." instance=ExtResource("3_l23ho")]
 tile_offset = Vector2(0, 0)
@@ -136,6 +138,38 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_2hbjh")
 layout_mode = 2
 mouse_filter = 2
 
+[node name="level_header" type="TextureRect" parent="ui_layer/container/safe_area/ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.5
+offset_top = -47.0
+offset_right = 297.5
+offset_bottom = 501.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_s6naw")
+
+[node name="level_header__level_number" type="Label" parent="ui_layer/container/safe_area/ui/level_header"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.5
+offset_top = 224.0
+offset_right = 56.5
+offset_bottom = 392.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.415686, 0.607843, 0.964706, 1)
+theme_override_fonts/font = ExtResource("9_or54j")
+theme_override_font_sizes/font_size = 100
+text = "LVL 
+01"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="settings_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("8_muc62")]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 1
@@ -180,6 +214,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
