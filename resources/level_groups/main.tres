@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelGroup" load_steps=27 format=3 uid="uid://c8f2uf06awei6"]
+[gd_resource type="Resource" script_class="LevelGroup" load_steps=29 format=3 uid="uid://c8f2uf06awei6"]
 
 [ext_resource type="PackedScene" uid="uid://cppgvldgjasuv" path="res://scenes/levels/01.tscn" id="1_ljqyp"]
 [ext_resource type="Script" path="res://scripts/resources/level_resource.gd" id="1_r304q"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dwsr07xmf10qp" path="res://scenes/levels/28.tscn" id="9_4277t"]
 [ext_resource type="PackedScene" uid="uid://sypn8jjgm8yb" path="res://scenes/levels/49.tscn" id="10_8odwv"]
 [ext_resource type="Script" path="res://scripts/resources/level_group.gd" id="11_g323a"]
+[ext_resource type="PackedScene" uid="uid://c7s1wrigwpy30" path="res://scenes/levels/09.tscn" id="11_m4xcj"]
 
 [sub_resource type="Resource" id="Resource_jx1kd"]
 script = ExtResource("1_r304q")
@@ -55,6 +56,11 @@ script = ExtResource("1_r304q")
 title = "LVL 08"
 scene = ExtResource("9_56xyg")
 
+[sub_resource type="Resource" id="Resource_mwvd2"]
+script = ExtResource("1_r304q")
+title = "LVL 09"
+scene = ExtResource("11_m4xcj")
+
 [sub_resource type="Resource" id="Resource_02xwy"]
 script = ExtResource("1_r304q")
 title = "LVL 10"
@@ -78,4 +84,4 @@ scene = ExtResource("10_8odwv")
 [resource]
 script = ExtResource("11_g323a")
 _name = "default"
-_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_jx1kd"), SubResource("Resource_srddd"), SubResource("Resource_p1lra"), SubResource("Resource_10vqh"), SubResource("Resource_p7b6t"), SubResource("Resource_stfwi"), SubResource("Resource_mv077"), SubResource("Resource_svwp5"), SubResource("Resource_02xwy"), SubResource("Resource_jr6lr"), SubResource("Resource_e3asv"), SubResource("Resource_smytc")])
+_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_jx1kd"), SubResource("Resource_srddd"), SubResource("Resource_p1lra"), SubResource("Resource_10vqh"), SubResource("Resource_p7b6t"), SubResource("Resource_stfwi"), SubResource("Resource_mv077"), SubResource("Resource_svwp5"), SubResource("Resource_mwvd2"), SubResource("Resource_02xwy"), SubResource("Resource_jr6lr"), SubResource("Resource_e3asv"), SubResource("Resource_smytc")])

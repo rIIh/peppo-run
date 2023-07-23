@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8h47w23jkon1"]
+
+[ext_resource type="Texture2D" uid="uid://dqkfp7vu4koiy" path="res://assets/objects/road@4x.png" id="1_pli1k"]
+[ext_resource type="Script" path="res://scripts/objects/road.gd" id="2_o6y80"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_o6y80")
+length = 32.0
+
+[node name="road" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -56.0
+offset_top = -16.0
+offset_right = 396.0
+offset_bottom = 112.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_pli1k")
+expand_mode = 1
+stretch_mode = 1
