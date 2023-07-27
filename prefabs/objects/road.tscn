@@ -1,216 +1,47 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8h47w23jkon1"]
+[gd_scene load_steps=9 format=3 uid="uid://c8h47w23jkon1"]
 
 [ext_resource type="Texture2D" uid="uid://dqkfp7vu4koiy" path="res://assets/objects/road@4x.png" id="1_pli1k"]
+[ext_resource type="PackedScene" uid="uid://dt1ep530cgxx" path="res://prefabs/objects/cars/small_car.tscn" id="2_ncj3i"]
 [ext_resource type="Script" path="res://scripts/objects/road.gd" id="2_o6y80"]
 [ext_resource type="Shader" path="res://materials/shaders/fade_at_threshold.gdshader" id="2_tfdjq"]
-[ext_resource type="Texture2D" uid="uid://d3dnn3e1yf1cx" path="res://assets/objects/world__car@4x.png" id="3_dpab4"]
-[ext_resource type="Texture2D" uid="uid://hsbh28e11kh6" path="res://assets/objects/world__big_car@4x.png" id="4_jwqsy"]
+[ext_resource type="PackedScene" uid="uid://b8hktxdps801r" path="res://prefabs/objects/cars/large_car.tscn" id="3_dtcks"]
+[ext_resource type="Script" path="res://scripts/utility/set_global_transform_shader_parameter.gd" id="4_ml6i4"]
+[ext_resource type="Script" path="res://scripts/utility/fade_origin.gd" id="4_nicmy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qi18a"]
 resource_local_to_scene = true
 shader = ExtResource("2_tfdjq")
-shader_parameter/texture_size = Vector2(100, 100)
-shader_parameter/real_position = Vector2(0, 0)
-shader_parameter/threshold = Vector2(600, 600)
-shader_parameter/fade_distance = 150.0
-shader_parameter/scale = 4.0
+shader_parameter/global_transform = null
+shader_parameter/fade_origin = Vector2(0, 0)
+shader_parameter/fade_threshold = Vector2(713.02, 1000)
+shader_parameter/fade_strength = 550.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvoo1"]
-resource_local_to_scene = true
-shader = ExtResource("2_tfdjq")
-shader_parameter/texture_size = Vector2(100, 100)
-shader_parameter/real_position = Vector2(-600, 0)
-shader_parameter/threshold = Vector2(600, 600)
-shader_parameter/fade_distance = 150.0
-shader_parameter/scale = 4.0
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qbbl5"]
-expanded_output_ports = [0]
-source = 5
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_yng74"]
-input_name = "texture"
-
-[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_w8omu"]
-constant = 105.0
-
-[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_gv8v2"]
-constant = 100.0
-
-[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ls1bf"]
-constant = 15.0
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_l2p1j"]
-operator = 1
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lqraj"]
-output_port_for_preview = 0
-operator = 3
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_0gvb8"]
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fughk"]
-expanded_output_ports = [0]
-input_name = "vertex"
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_k7br8"]
-operator = 2
-
-[sub_resource type="VisualShader" id="VisualShader_c7t6f"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-
-
-
-void fragment() {
-	vec4 n_out10p0;
-// Texture2D:10
-	n_out10p0 = texture(TEXTURE, UV);
-	float n_out10p4 = n_out10p0.a;
-
-
-// Input:8
-	vec2 n_out8p0 = VERTEX;
-	float n_out8p1 = n_out8p0.r;
-
-
-// FloatConstant:3
-	float n_out3p0 = 100.000000;
-
-
-// FloatConstant:2
-	float n_out2p0 = 105.000000;
-
-
-// FloatOp:5
-	float n_out5p0 = n_out3p0 - n_out2p0;
-
-
-// FloatOp:7
-	float n_out7p0 = n_out8p1 + n_out5p0;
-
-
-// FloatConstant:4
-	float n_out4p0 = 15.000000;
-
-
-// FloatOp:6
-	float n_out6p0 = n_out7p0 / n_out4p0;
-
-
-// FloatOp:9
-	float n_out9p0 = n_out10p4 * n_out6p0;
-
-
-// Output:0
-	COLOR.a = n_out9p0;
-
-
-}
-"
-mode = 1
-flags/light_only = false
-nodes/fragment/0/position = Vector2(780, 220)
-nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_w8omu")
-nodes/fragment/2/position = Vector2(-400, 340)
-nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_gv8v2")
-nodes/fragment/3/position = Vector2(-400, 240)
-nodes/fragment/4/node = SubResource("VisualShaderNodeFloatConstant_ls1bf")
-nodes/fragment/4/position = Vector2(-400, 520)
-nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_l2p1j")
-nodes/fragment/5/position = Vector2(-140, 220)
-nodes/fragment/6/node = SubResource("VisualShaderNodeFloatOp_lqraj")
-nodes/fragment/6/position = Vector2(300, 220)
-nodes/fragment/7/node = SubResource("VisualShaderNodeFloatOp_0gvb8")
-nodes/fragment/7/position = Vector2(80, 200)
-nodes/fragment/8/node = SubResource("VisualShaderNodeInput_fughk")
-nodes/fragment/8/position = Vector2(-320, 60)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatOp_k7br8")
-nodes/fragment/9/position = Vector2(580, 80)
-nodes/fragment/10/node = SubResource("VisualShaderNodeTexture_qbbl5")
-nodes/fragment/10/position = Vector2(200, -160)
-nodes/fragment/11/node = SubResource("VisualShaderNodeInput_yng74")
-nodes/fragment/11/position = Vector2(-180, -80)
-nodes/fragment/connections = PackedInt32Array(3, 0, 5, 0, 2, 0, 5, 1, 7, 0, 6, 0, 4, 0, 6, 1, 6, 0, 9, 1, 10, 4, 9, 0, 9, 0, 0, 1, 11, 0, 10, 2, 5, 0, 7, 1, 8, 1, 7, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmlo7"]
-shader = SubResource("VisualShader_c7t6f")
-
-[sub_resource type="GDScript" id="GDScript_ytb2h"]
-script/source = "extends StaticBody2D
-
-func _physics_process(delta):
-	translate(Vector2.RIGHT * delta * 150)
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqebx"]
-resource_local_to_scene = true
-shader = ExtResource("2_tfdjq")
-shader_parameter/texture_size = Vector2(100, 100)
-shader_parameter/real_position = Vector2(-600, 0)
-shader_parameter/threshold = Vector2(600, 600)
-shader_parameter/fade_distance = 150.0
-shader_parameter/scale = 4.0
-
-[sub_resource type="GDScript" id="GDScript_35pwc"]
-script/source = "@tool
-extends Sprite2D
-
-func _process(delta):
-	var m = material as ShaderMaterial
-	m.set_shader_parameter(\"real_position\", get_parent().position)
-	m.set_shader_parameter(\"texture_size\", texture.get_size())
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u3if"]
-size = Vector2(116, 58)
-
-[node name="Node2D" type="Node2D"]
+[node name="road_root" type="Node2D"]
 script = ExtResource("2_o6y80")
-length = 1386.54
+cars = Array[PackedScene]([ExtResource("2_ncj3i"), ExtResource("3_dtcks")])
+spacing = 250.0
+length = 1426.04
+fade_value = 550.0
+simulation_length = 238.06
 metadata/_edit_vertical_guides_ = [-300.0, -600.0]
-metadata/_edit_horizontal_guides_ = [-600.0]
+metadata/_edit_horizontal_guides_ = [-600.0, 721.0]
+
+[node name="fade_origin" type="Node" parent="."]
+script = ExtResource("4_nicmy")
 
 [node name="road" type="TextureRect" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_qi18a")
-offset_left = -693.27
-offset_top = 56.0
-offset_right = -241.27
-offset_bottom = 5602.16
-rotation = -1.57079
+offset_left = 713.02
+offset_top = -62.5
+offset_right = 1213.02
+offset_bottom = 5641.66
+rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_pli1k")
 expand_mode = 1
 stretch_mode = 1
+script = ExtResource("4_ml6i4")
 
-[node name="car_body2" type="StaticBody2D" parent="."]
-position = Vector2(-601, -129)
-collision_layer = 8
-collision_mask = 0
-
-[node name="sprite" type="Sprite2D" parent="car_body2"]
-material = SubResource("ShaderMaterial_jvoo1")
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_jwqsy")
-
-[node name="collider" type="CollisionPolygon2D" parent="car_body2"]
-polygon = PackedVector2Array(20, 29, 9, 35, -74, 35, -74, -35, 10, -35, 19, -29, 73, -29, 73, 29)
-
-[node name="car_body" type="StaticBody2D" parent="."]
-material = SubResource("ShaderMaterial_wmlo7")
-position = Vector2(-600, 0)
-collision_layer = 8
-collision_mask = 0
-script = SubResource("GDScript_ytb2h")
-
-[node name="sprite" type="Sprite2D" parent="car_body"]
-material = SubResource("ShaderMaterial_iqebx")
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_dpab4")
-script = SubResource("GDScript_35pwc")
-
-[node name="collider" type="CollisionShape2D" parent="car_body"]
-visible = false
-shape = SubResource("RectangleShape2D_8u3if")
+[node name="cars" type="Node2D" parent="."]
+unique_name_in_owner = true

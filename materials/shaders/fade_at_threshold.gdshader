@@ -1,18 +1,22 @@
 shader_type canvas_item;
 
-uniform vec2 texture_size = vec2(100);
-uniform vec2 real_position = vec2(0.0, 0.0);
-uniform vec2 threshold = vec2(600);
-uniform float fade_distance = 30.0;
-uniform float scale = 4.0;
+uniform mat4 global_transform;
+uniform vec2 fade_origin = vec2(0);
+uniform vec2 fade_threshold = vec2(250);
+uniform float fade_strength = 32.0;
+
+varying vec2 world_position;
+
+void vertex(){
+    world_position = (global_transform * vec4(VERTEX, 0.0, 1.0)).xy;
+}
 
 void fragment() {
-	vec2 size = 1.0 / TEXTURE_PIXEL_SIZE / scale;
-	vec2 position = (UV * 2.0 - vec2(1, 1)) / TEXTURE_PIXEL_SIZE / scale + real_position * 2.0;
+	vec2 position = world_position;
 	
-	vec2 a = vec2(1, 1) - clamp((abs(position) - threshold * 2.0 + fade_distance) / fade_distance, vec2(0, 0), vec2(1, 1));
+	vec2 a = clamp((abs(position) - fade_threshold + fade_strength) / fade_strength, vec2(0), vec2(1));
+	a = pow(-pow(a * 1.025, vec2(2)), vec2(2));
+	a = vec2(1) - a;
 	
-	COLOR.rgb = vec3(0);
-	COLOR.r = UV.g;
-	//COLOR.a = COLOR.a * a.x * a.y;
+	COLOR.a = COLOR.a * a.x * a.y;
 }
