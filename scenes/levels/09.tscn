@@ -14,8 +14,7 @@ script = ExtResource("1_rs1uk")
 offset_bottom = 570.0
 
 [node name="road" parent="play_area" instance=ExtResource("6_kx3dr")]
-position = Vector2(188, 297)
-rotation = 1.57079
+position = Vector2(191, 314)
 length = 256000.0
 
 [node name="poop" parent="play_area" instance=ExtResource("3_w8go6")]
