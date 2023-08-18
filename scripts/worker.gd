@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+
 
 @export var eye_distance: float = 115 :
 	set(value):
@@ -22,9 +22,6 @@ const JUMP_VELOCITY = -400.0
 			$eye_detector/circle_collider.shape = CircleShape2D.new()
 			eye_distance = eye_distance
 
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var _target: Poop
 var _track_bodies: Array[Poop] = []
