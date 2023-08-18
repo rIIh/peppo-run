@@ -12,10 +12,22 @@ const JUMP_VELOCITY = -400.0
 		var circle_shape = $eye_detector/circle_collider.shape
 		circle_shape.radius = value
 
+
+@export var eye_sight: Shape2D :
+	set(value):
+		eye_sight = value
+		if value:
+			$eye_detector/circle_collider.shape = value
+		else:
+			$eye_detector/circle_collider.shape = CircleShape2D.new()
+			eye_distance = eye_distance
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var _target: Poop
+var _track_bodies: Array[Poop] = []
 
 
 func _ready():
@@ -23,14 +35,17 @@ func _ready():
 		return
 
 	$eye_detector.body_entered.connect(_handle_eye_detector_body_entered)
+	$eye_detector.body_exited.connect(_handle_eye_detector_body_exited)
 
 
 func _handle_eye_detector_body_entered(body: Node2D):
 	if body is Poop and not _target:
-		if _check_obstacles(self.global_position, body.global_position):
-			return
+		_track_bodies.append(body)
 
-		_target = body
+
+func _handle_eye_detector_body_exited(body: Node2D):
+	if body is Poop and not _target:
+		_track_bodies.erase(body)
 
 
 func _check_obstacles(a: Vector2, b: Vector2) -> bool:
@@ -39,6 +54,20 @@ func _check_obstacles(a: Vector2, b: Vector2) -> bool:
 	var result := space_state.intersect_ray(query)
 
 	return not result.is_empty()
+	
+	
+func _check_tracked_bodies():
+	var closest: Poop
+	var closest_distance: float = 1e10
+	for body in _track_bodies:
+		if _check_obstacles(self.global_position, body.global_position):
+			continue
+
+		var distance = body.position.distance_to(self.global_position)
+		closest = body if distance < closest_distance else closest
+
+	_target = closest
+	_track_bodies.erase(_target)
 
 
 func _physics_process(delta):
@@ -47,6 +76,9 @@ func _physics_process(delta):
 
 	if _target and _target.state == Poop.State.sitting:
 		_target = null
+		
+	if not _target:
+		_check_tracked_bodies()
 
 	var direction = (_target.position - position).normalized() if _target else Vector2.ZERO
 	velocity = direction * SPEED
