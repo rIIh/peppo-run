@@ -64,10 +64,13 @@ func _update_page_view():
 		if index >= level_group.levels.size():
 			break
 
-		var name = level_group.get_level_details(index).title
+		var details = level_group.get_level_details(index)
+		var name = level_group.get_level_details(index).title if details else "WIP"
 
 		var node: LevelButton = level_button.instantiate()
-		node.pressed.connect(func(): _handle_pressed(index))
+		if details:
+			node.pressed.connect(func(): _handle_pressed(index))
+			
 		node.level_name = name
 		node.level_index = index
 		node.available = true

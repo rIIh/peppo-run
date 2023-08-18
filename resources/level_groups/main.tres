@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelGroup" load_steps=29 format=3 uid="uid://c8f2uf06awei6"]
+[gd_resource type="Resource" script_class="LevelGroup" load_steps=65 format=3 uid="uid://c8f2uf06awei6"]
 
 [ext_resource type="PackedScene" uid="uid://cppgvldgjasuv" path="res://scenes/levels/01.tscn" id="1_ljqyp"]
 [ext_resource type="Script" path="res://scripts/resources/level_resource.gd" id="1_r304q"]
@@ -15,73 +15,182 @@
 [ext_resource type="PackedScene" uid="uid://sypn8jjgm8yb" path="res://scenes/levels/49.tscn" id="10_8odwv"]
 [ext_resource type="Script" path="res://scripts/resources/level_group.gd" id="11_g323a"]
 [ext_resource type="PackedScene" uid="uid://c7s1wrigwpy30" path="res://scenes/levels/09.tscn" id="11_m4xcj"]
+[ext_resource type="PackedScene" uid="uid://bwcos0j337ddt" path="res://scenes/levels/12.tscn" id="13_pk6il"]
+[ext_resource type="PackedScene" uid="uid://dtccsqsbtxxij" path="res://scenes/levels/13.tscn" id="14_lrv66"]
+[ext_resource type="PackedScene" uid="uid://t8fkp2v83v35" path="res://scenes/levels/14.tscn" id="15_qbjxa"]
+[ext_resource type="PackedScene" uid="uid://dl8ugpa7f224u" path="res://scenes/levels/15.tscn" id="16_m3nk4"]
+[ext_resource type="PackedScene" uid="uid://cvahrfk43w3iy" path="res://scenes/levels/16.tscn" id="16_ywdrs"]
+[ext_resource type="PackedScene" uid="uid://4tkc1wmrnlaq" path="res://scenes/levels/17.tscn" id="17_8x8oy"]
+[ext_resource type="PackedScene" uid="uid://opjvobnf1htf" path="res://scenes/levels/18.tscn" id="18_eamjt"]
+[ext_resource type="PackedScene" uid="uid://dh5mfw2lwprel" path="res://scenes/levels/19.tscn" id="20_1erav"]
+[ext_resource type="PackedScene" uid="uid://drlc67s3u6yt" path="res://scenes/levels/20.tscn" id="21_uy7w3"]
+[ext_resource type="PackedScene" uid="uid://bf4i1w5jqmg5h" path="res://scenes/levels/21.tscn" id="22_or5e3"]
+[ext_resource type="PackedScene" uid="uid://b2b28wtlbwrqp" path="res://scenes/levels/22.tscn" id="23_ffykw"]
+[ext_resource type="PackedScene" uid="uid://yay7tjnqcv8v" path="res://scenes/levels/23.tscn" id="24_obhrt"]
+[ext_resource type="PackedScene" uid="uid://uegmrvt4lme7" path="res://scenes/levels/24.tscn" id="25_uqtk5"]
+[ext_resource type="PackedScene" uid="uid://bwdh7f1mbujqw" path="res://scenes/levels/25.tscn" id="26_vui3c"]
+[ext_resource type="PackedScene" uid="uid://bba3rctd4djp2" path="res://scenes/levels/26.tscn" id="27_nc71b"]
+[ext_resource type="PackedScene" uid="uid://frx6qmgvo62j" path="res://scenes/levels/27.tscn" id="28_n5tbr"]
+[ext_resource type="PackedScene" uid="uid://des2ut0ge2umf" path="res://scenes/levels/29.tscn" id="30_wl058"]
+[ext_resource type="PackedScene" uid="uid://c1k60ojyovogt" path="res://scenes/levels/30.tscn" id="31_u35hx"]
 
-[sub_resource type="Resource" id="Resource_jx1kd"]
+[sub_resource type="Resource" id="Resource_gs4vu"]
 script = ExtResource("1_r304q")
 title = "LVL 01"
 scene = ExtResource("1_ljqyp")
 
-[sub_resource type="Resource" id="Resource_srddd"]
+[sub_resource type="Resource" id="Resource_bveim"]
 script = ExtResource("1_r304q")
 title = "LVL 02"
 scene = ExtResource("2_ptadm")
 
-[sub_resource type="Resource" id="Resource_p1lra"]
+[sub_resource type="Resource" id="Resource_0s521"]
 script = ExtResource("1_r304q")
 title = "LVL 03"
 scene = ExtResource("3_8agwk")
 
-[sub_resource type="Resource" id="Resource_10vqh"]
+[sub_resource type="Resource" id="Resource_2m8m7"]
 script = ExtResource("1_r304q")
 title = "LVL 04"
 scene = ExtResource("4_jiysb")
 
-[sub_resource type="Resource" id="Resource_p7b6t"]
+[sub_resource type="Resource" id="Resource_w3htd"]
 script = ExtResource("1_r304q")
 title = "LVL 05"
 scene = ExtResource("5_1wiuc")
 
-[sub_resource type="Resource" id="Resource_stfwi"]
+[sub_resource type="Resource" id="Resource_2rgjd"]
 script = ExtResource("1_r304q")
 title = "LVL 06"
 scene = ExtResource("6_ow5kn")
 
-[sub_resource type="Resource" id="Resource_mv077"]
+[sub_resource type="Resource" id="Resource_lx02f"]
 script = ExtResource("1_r304q")
 title = "LVL 07"
 scene = ExtResource("8_wk6tg")
 
-[sub_resource type="Resource" id="Resource_svwp5"]
+[sub_resource type="Resource" id="Resource_w51t6"]
 script = ExtResource("1_r304q")
 title = "LVL 08"
 scene = ExtResource("9_56xyg")
 
-[sub_resource type="Resource" id="Resource_mwvd2"]
+[sub_resource type="Resource" id="Resource_bjsgw"]
 script = ExtResource("1_r304q")
 title = "LVL 09"
 scene = ExtResource("11_m4xcj")
 
-[sub_resource type="Resource" id="Resource_02xwy"]
+[sub_resource type="Resource" id="Resource_hhkjo"]
 script = ExtResource("1_r304q")
 title = "LVL 10"
 scene = ExtResource("7_urvca")
 
-[sub_resource type="Resource" id="Resource_jr6lr"]
+[sub_resource type="Resource" id="Resource_whhi8"]
 script = ExtResource("1_r304q")
 title = "LVL 11"
 scene = ExtResource("8_r0jnb")
 
-[sub_resource type="Resource" id="Resource_e3asv"]
+[sub_resource type="Resource" id="Resource_1vfqc"]
+script = ExtResource("1_r304q")
+title = "LVL 12"
+scene = ExtResource("13_pk6il")
+
+[sub_resource type="Resource" id="Resource_gwmtv"]
+script = ExtResource("1_r304q")
+title = "LVL 13"
+scene = ExtResource("14_lrv66")
+
+[sub_resource type="Resource" id="Resource_c0fgp"]
+script = ExtResource("1_r304q")
+title = "LVL 14"
+scene = ExtResource("15_qbjxa")
+
+[sub_resource type="Resource" id="Resource_8h5d7"]
+script = ExtResource("1_r304q")
+title = "LVL 15"
+scene = ExtResource("16_m3nk4")
+
+[sub_resource type="Resource" id="Resource_py1my"]
+script = ExtResource("1_r304q")
+title = "LVL 16"
+scene = ExtResource("16_ywdrs")
+
+[sub_resource type="Resource" id="Resource_jxqfw"]
+script = ExtResource("1_r304q")
+title = "LVL 17"
+scene = ExtResource("17_8x8oy")
+
+[sub_resource type="Resource" id="Resource_wjp3v"]
+script = ExtResource("1_r304q")
+title = "LVL 18"
+scene = ExtResource("18_eamjt")
+
+[sub_resource type="Resource" id="Resource_kiacb"]
+script = ExtResource("1_r304q")
+title = "LVL 19"
+scene = ExtResource("20_1erav")
+
+[sub_resource type="Resource" id="Resource_1wl6d"]
+script = ExtResource("1_r304q")
+title = "LVL 20"
+scene = ExtResource("21_uy7w3")
+
+[sub_resource type="Resource" id="Resource_n4wpj"]
+script = ExtResource("1_r304q")
+title = "LVL 21"
+scene = ExtResource("22_or5e3")
+
+[sub_resource type="Resource" id="Resource_p3e11"]
+script = ExtResource("1_r304q")
+title = "LVL 22"
+scene = ExtResource("23_ffykw")
+
+[sub_resource type="Resource" id="Resource_so48n"]
+script = ExtResource("1_r304q")
+title = "LVL 23"
+scene = ExtResource("24_obhrt")
+
+[sub_resource type="Resource" id="Resource_3h8ra"]
+script = ExtResource("1_r304q")
+title = "LVL 24"
+scene = ExtResource("25_uqtk5")
+
+[sub_resource type="Resource" id="Resource_dyqho"]
+script = ExtResource("1_r304q")
+title = "LVL 25"
+scene = ExtResource("26_vui3c")
+
+[sub_resource type="Resource" id="Resource_rk7u2"]
+script = ExtResource("1_r304q")
+title = "LVL 26"
+scene = ExtResource("27_nc71b")
+
+[sub_resource type="Resource" id="Resource_mew8q"]
+script = ExtResource("1_r304q")
+title = "LVL 27"
+scene = ExtResource("28_n5tbr")
+
+[sub_resource type="Resource" id="Resource_eeht0"]
 script = ExtResource("1_r304q")
 title = "LVL 28"
 scene = ExtResource("9_4277t")
 
-[sub_resource type="Resource" id="Resource_smytc"]
+[sub_resource type="Resource" id="Resource_a0giv"]
+script = ExtResource("1_r304q")
+title = "LVL 29"
+scene = ExtResource("30_wl058")
+
+[sub_resource type="Resource" id="Resource_d04ya"]
+script = ExtResource("1_r304q")
+title = "LVL 30"
+scene = ExtResource("31_u35hx")
+
+[sub_resource type="Resource" id="Resource_m5huc"]
 script = ExtResource("1_r304q")
 title = "LVL 49"
 scene = ExtResource("10_8odwv")
 
 [resource]
 script = ExtResource("11_g323a")
+_scenes_path = "res://scenes/levels"
 _name = "default"
-_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_jx1kd"), SubResource("Resource_srddd"), SubResource("Resource_p1lra"), SubResource("Resource_10vqh"), SubResource("Resource_p7b6t"), SubResource("Resource_stfwi"), SubResource("Resource_mv077"), SubResource("Resource_svwp5"), SubResource("Resource_mwvd2"), SubResource("Resource_02xwy"), SubResource("Resource_jr6lr"), SubResource("Resource_e3asv"), SubResource("Resource_smytc")])
+_levels = Array[ExtResource("1_r304q")]([SubResource("Resource_gs4vu"), SubResource("Resource_bveim"), SubResource("Resource_0s521"), SubResource("Resource_2m8m7"), SubResource("Resource_w3htd"), SubResource("Resource_2rgjd"), SubResource("Resource_lx02f"), SubResource("Resource_w51t6"), SubResource("Resource_bjsgw"), SubResource("Resource_hhkjo"), SubResource("Resource_whhi8"), SubResource("Resource_1vfqc"), SubResource("Resource_gwmtv"), SubResource("Resource_c0fgp"), SubResource("Resource_8h5d7"), SubResource("Resource_py1my"), SubResource("Resource_jxqfw"), SubResource("Resource_wjp3v"), SubResource("Resource_kiacb"), SubResource("Resource_1wl6d"), SubResource("Resource_n4wpj"), SubResource("Resource_p3e11"), SubResource("Resource_so48n"), SubResource("Resource_3h8ra"), SubResource("Resource_dyqho"), SubResource("Resource_rk7u2"), SubResource("Resource_mew8q"), SubResource("Resource_eeht0"), SubResource("Resource_a0giv"), SubResource("Resource_d04ya"), SubResource("Resource_m5huc")])

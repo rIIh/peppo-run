@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://opjvobnf1htf"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_4hq7k"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_fcskw"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_22hte"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_dinil"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_tnikg"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="6_652c3"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="7_rvkbk"]
+[ext_resource type="PackedScene" uid="uid://bk8y5dr01ah2l" path="res://prefabs/worker.tscn" id="8_ncrvo"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_v7fjg"]
+custom_solver_bias = 1.0
+points = PackedVector2Array(0, 50.54, 0, -48.25, -176.465, -104.155, -177.04, 117.765)
+
+[node name="level" type="Node"]
+script = ExtResource("1_4hq7k")
+
+[node name="play_area" parent="." instance=ExtResource("2_fcskw")]
+offset_bottom = 570.0
+
+[node name="poop" parent="play_area" instance=ExtResource("3_22hte")]
+position = Vector2(51, 540)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_22hte")]
+position = Vector2(322, 538)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_dinil")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_tnikg")]
+position = Vector2(50, 205)
+
+[node name="toilet3" parent="play_area" instance=ExtResource("5_tnikg")]
+position = Vector2(321, 162)
+tag = "purple"
+poop_style = ExtResource("4_dinil")
+
+[node name="verticall_wall" parent="." instance=ExtResource("6_652c3")]
+position = Vector2(247, 398)
+y_alignment = 1.0
+height = 128
+
+[node name="horizontal_wall" parent="." instance=ExtResource("7_rvkbk")]
+position = Vector2(258, 380)
+x_alignment = -1.0
+width = 128
+
+[node name="worker" parent="." instance=ExtResource("8_ncrvo")]
+position = Vector2(190, 361)
+eye_sight = SubResource("ConvexPolygonShape2D_v7fjg")

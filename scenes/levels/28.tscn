@@ -15,27 +15,27 @@ script = ExtResource("1_ggri5")
 offset_bottom = 570.0
 
 [node name="poop" parent="play_area" instance=ExtResource("3_d2ldc")]
-position = Vector2(272, 416)
+position = Vector2(290, 413)
 speed = 300.0
 
 [node name="poop3" parent="play_area" instance=ExtResource("3_d2ldc")]
-position = Vector2(272, 295)
+position = Vector2(290, 298)
 speed = 300.0
 
 [node name="poop2" parent="play_area" instance=ExtResource("3_d2ldc")]
-position = Vector2(95, 291)
+position = Vector2(78, 294)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_r4awv")
 
 [node name="toilet" parent="play_area" instance=ExtResource("5_uldux")]
-position = Vector2(100, 420)
+position = Vector2(83, 409)
 
 [node name="toilet3" parent="play_area" instance=ExtResource("5_uldux")]
-position = Vector2(100, 520)
+position = Vector2(83, 520)
 
 [node name="toilet2" parent="play_area" instance=ExtResource("5_uldux")]
-position = Vector2(272, 520)
+position = Vector2(290, 520)
 tag = "purple"
 poop_style = ExtResource("4_r4awv")
 

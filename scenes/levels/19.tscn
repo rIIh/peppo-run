@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh5mfw2lwprel"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_28u4q"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_ykojf"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_viped"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_fx6ek"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_gf4al"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_rsebo"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_28u4q")
+
+[node name="play_area" parent="." instance=ExtResource("2_ykojf")]
+offset_bottom = 570.0
+
+[node name="poop" parent="play_area" instance=ExtResource("3_viped")]
+position = Vector2(68, 373)
+speed = 300.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_viped")]
+position = Vector2(280, 375)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_fx6ek")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_gf4al")]
+position = Vector2(60, 527)
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_gf4al")]
+position = Vector2(332, 105)
+tag = "purple"
+poop_style = ExtResource("4_fx6ek")
+
+[node name="horizontal_wall2" parent="." instance=ExtResource("6_rsebo")]
+position = Vector2(195, 396)
+x_alignment = -1.0
+width = 32000
+
+[node name="horizontal_wall4" parent="." instance=ExtResource("6_rsebo")]
+position = Vector2(337, 396)
+x_alignment = 1.0
+width = 32000
+
+[node name="horizontal_wall3" parent="." instance=ExtResource("6_rsebo")]
+position = Vector2(19, 147)
+x_alignment = -1.0
+width = 32000
+
+[node name="horizontal_wall5" parent="." instance=ExtResource("6_rsebo")]
+position = Vector2(161, 147)
+x_alignment = 1.0
+width = 32000
+
+[node name="Label" type="Label" parent="."]
+offset_left = 466.0
+offset_top = 235.0
+offset_right = 527.0
+offset_bottom = 313.0
+text = "TODO:
+Двери
+Кнопки"

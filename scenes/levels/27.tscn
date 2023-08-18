@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://frx6qmgvo62j"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_tp1jd"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_v0py3"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_qa5uw"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_na80d"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_0fm8a"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="6_5tq3j"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="7_gead3"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_tp1jd")
+
+[node name="play_area" parent="." instance=ExtResource("2_v0py3")]
+offset_bottom = 570.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_qa5uw")]
+position = Vector2(332, 278)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_qa5uw")]
+position = Vector2(300, 108)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_na80d")
+
+[node name="poop4" parent="play_area" instance=ExtResource("3_qa5uw")]
+position = Vector2(223, 282)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_na80d")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_0fm8a")]
+position = Vector2(61, 101)
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_0fm8a")]
+position = Vector2(307, 512)
+tag = "purple"
+poop_style = ExtResource("4_na80d")
+
+[node name="toilet4" parent="play_area" instance=ExtResource("5_0fm8a")]
+position = Vector2(70, 515)
+tag = "purple"
+poop_style = ExtResource("4_na80d")
+
+[node name="verticall_wall" parent="." instance=ExtResource("6_5tq3j")]
+position = Vector2(142, 132)
+y_alignment = -1.0
+height = 180
+
+[node name="horizontal_wall" parent="." instance=ExtResource("7_gead3")]
+position = Vector2(132, 130)
+x_alignment = 1.0
+width = 32000

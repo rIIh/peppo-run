@@ -22,7 +22,6 @@ cars = Array[PackedScene]([ExtResource("2_ncj3i"), ExtResource("3_dtcks")])
 spacing = 250.0
 length = 1426.04
 fade_value = 550.0
-simulation_length = 238.06
 metadata/_edit_vertical_guides_ = [-300.0, -600.0]
 metadata/_edit_horizontal_guides_ = [-600.0, 721.0]
 

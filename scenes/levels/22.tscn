@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2b28wtlbwrqp"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_jdmnc"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_rwdr5"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_idfla"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_ky82h"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_crf0k"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="6_dijmc"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_jdmnc")
+
+[node name="play_area" parent="." instance=ExtResource("2_rwdr5")]
+offset_bottom = 570.0
+
+[node name="poop" parent="play_area" instance=ExtResource("3_idfla")]
+position = Vector2(75, 396)
+speed = 300.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_idfla")]
+position = Vector2(70, 102)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_idfla")]
+position = Vector2(67, 218)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_ky82h")
+
+[node name="poop4" parent="play_area" instance=ExtResource("3_idfla")]
+position = Vector2(78, 520)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_ky82h")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_crf0k")]
+position = Vector2(300, 517)
+
+[node name="toilet3" parent="play_area" instance=ExtResource("5_crf0k")]
+position = Vector2(306, 207)
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_crf0k")]
+position = Vector2(298, 413)
+tag = "purple"
+poop_style = ExtResource("4_ky82h")
+
+[node name="toilet4" parent="play_area" instance=ExtResource("5_crf0k")]
+position = Vector2(304, 108)
+tag = "purple"
+poop_style = ExtResource("4_ky82h")
+
+[node name="verticall_wall" parent="." instance=ExtResource("6_dijmc")]
+position = Vector2(192, 126)
+height = 128
+
+[node name="verticall_wall2" parent="." instance=ExtResource("6_dijmc")]
+position = Vector2(190, 431)
+height = 128

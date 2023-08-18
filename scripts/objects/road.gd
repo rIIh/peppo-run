@@ -51,16 +51,6 @@ var fade_value: float = 160:
 		_update_nodes()
 
 
-@export
-var simulation_length: float = 242 :
-	set(value):
-		if (simulation_length == value):
-			return
-
-		simulation_length = value
-		_update_nodes()
-
-
 func _ready():
 	_update_nodes()
 

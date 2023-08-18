@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwcos0j337ddt"]
+[gd_scene load_steps=7 format=3 uid="uid://bwcos0j337ddt"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_c42yp"]
 [ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_c0ri2"]
 [ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_rec8b"]
 [ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_thcah"]
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_2rijo"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_2shpg"]
 
 [node name="level" type="Node"]
 script = ExtResource("1_c42yp")
@@ -13,19 +14,43 @@ script = ExtResource("1_c42yp")
 offset_bottom = 570.0
 
 [node name="poop" parent="play_area" instance=ExtResource("3_rec8b")]
-position = Vector2(197, 553)
+position = Vector2(76, 107)
 speed = 300.0
 
 [node name="poop2" parent="play_area" instance=ExtResource("3_rec8b")]
-position = Vector2(305, 552)
+position = Vector2(86, 538)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_thcah")
 
 [node name="toilet" parent="play_area" instance=ExtResource("5_2rijo")]
-position = Vector2(321, 184)
+position = Vector2(84, 379)
 
 [node name="toilet2" parent="play_area" instance=ExtResource("5_2rijo")]
-position = Vector2(322, 87)
+position = Vector2(80, 241)
 tag = "purple"
 poop_style = ExtResource("4_thcah")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 501.0
+offset_top = 269.0
+offset_right = 562.0
+offset_bottom = 347.0
+text = "TODO:
+Двери
+Кнопки"
+
+[node name="horizontal_wall" parent="." instance=ExtResource("6_2shpg")]
+position = Vector2(211, 131)
+x_alignment = -1.0
+width = 32000
+
+[node name="horizontal_wall2" parent="." instance=ExtResource("6_2shpg")]
+position = Vector2(211, 262)
+x_alignment = -1.0
+width = 32000
+
+[node name="horizontal_wall3" parent="." instance=ExtResource("6_2shpg")]
+position = Vector2(211, 408)
+x_alignment = -1.0
+width = 32000
