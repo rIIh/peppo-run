@@ -1,7 +1,7 @@
 @tool
 extends StaticBody2D
 
-@export
+@export_range(-1, 1)
 var x_alignment: float = 0 :
 	set(value):
 		if (x_alignment == value): 

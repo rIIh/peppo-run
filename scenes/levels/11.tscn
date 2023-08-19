@@ -33,7 +33,7 @@ tag = "purple"
 poop_style = ExtResource("4_plfvk")
 
 [node name="worker" parent="play_area" instance=ExtResource("6_uru58")]
-position = Vector2(198, 367)
+position = Vector2(198, 364)
 scale = Vector2(1.25, 1.25)
 eye_distance = 106.42
 

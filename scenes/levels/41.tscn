@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1yksr1ayjrde"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_hvir1"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_ylf8s"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_v0mu8"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_7miwa"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_j5hy2"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_np4bb"]
+[ext_resource type="PackedScene" uid="uid://c8v8gavmpc1r8" path="res://prefabs/objects/box.tscn" id="7_we7kr"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_hvir1")
+
+[node name="play_area" parent="." instance=ExtResource("2_ylf8s")]
+offset_bottom = 570.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_v0mu8")]
+position = Vector2(145, 311)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_v0mu8")]
+position = Vector2(253, 309)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_7miwa")
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_j5hy2")]
+position = Vector2(337, 138)
+
+[node name="toilet5" parent="play_area" instance=ExtResource("5_j5hy2")]
+position = Vector2(38, 484)
+tag = "purple"
+poop_style = ExtResource("4_7miwa")
+
+[node name="horizontal_wall5" parent="." instance=ExtResource("6_np4bb")]
+position = Vector2(240, 350)
+x_alignment = -1.0
+width = 32000
+
+[node name="horizontal_wall6" parent="." instance=ExtResource("6_np4bb")]
+position = Vector2(122, 507)
+x_alignment = -1.0
+width = 32000
+
+[node name="horizontal_wall7" parent="." instance=ExtResource("6_np4bb")]
+position = Vector2(274, 161)
+x_alignment = 1.0
+width = 32000
+
+[node name="horizontal_wall8" parent="." instance=ExtResource("6_np4bb")]
+position = Vector2(273, 21)
+x_alignment = 1.0
+width = 32000
+
+[node name="box" parent="." instance=ExtResource("7_we7kr")]
+position = Vector2(259, 429)
+
+[node name="box2" parent="." instance=ExtResource("7_we7kr")]
+position = Vector2(135, 139)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -192.0
+offset_top = 246.0
+offset_right = -131.0
+offset_bottom = 324.0
+text = "TODO:
+Двери
+Кнопки"

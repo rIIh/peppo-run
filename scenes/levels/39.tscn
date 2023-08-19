@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dej7jpsmbxpco"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_o81jh"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_fkhgq"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_nxwg8"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_ilm6h"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_ek6d3"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_m2lmo"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="7_p6vxy"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_o81jh")
+
+[node name="play_area" parent="." instance=ExtResource("2_fkhgq")]
+offset_right = 424.0
+offset_bottom = 644.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_nxwg8")]
+position = Vector2(174, 488)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_nxwg8")]
+position = Vector2(348, 254)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_ilm6h")
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_ek6d3")]
+position = Vector2(63, 209)
+
+[node name="toilet4" parent="play_area" instance=ExtResource("5_ek6d3")]
+position = Vector2(65, 483)
+tag = "purple"
+poop_style = ExtResource("4_ilm6h")
+
+[node name="horizontal_wall8" parent="." instance=ExtResource("6_m2lmo")]
+position = Vector2(212, 94)
+width = 430
+
+[node name="horizontal_wall10" parent="." instance=ExtResource("6_m2lmo")]
+position = Vector2(-2, 232)
+x_alignment = 1.0
+width = 300
+
+[node name="horizontal_wall9" parent="." instance=ExtResource("6_m2lmo")]
+position = Vector2(212, 503)
+width = 430
+
+[node name="Label" type="Label" parent="."]
+offset_left = -192.0
+offset_top = 246.0
+offset_right = -131.0
+offset_bottom = 324.0
+text = "TODO:
+Двери
+Кнопки"
+
+[node name="verticall_wall" parent="." instance=ExtResource("7_p6vxy")]
+position = Vector2(6, 310)
+height = 430
+
+[node name="verticall_wall2" parent="." instance=ExtResource("7_p6vxy")]
+position = Vector2(415, 310)
+height = 430
+
+[node name="verticall_wall3" parent="." instance=ExtResource("7_p6vxy")]
+position = Vector2(286, 233)
+y_alignment = -1.0
+height = 150

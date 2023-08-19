@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://b67qjjvnh7g5f"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_ifub3"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_d3ylp"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_kgdt7"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_s320u"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_5uj8v"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_arojd"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="7_p4k4a"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_ifub3")
+
+[node name="play_area" parent="." instance=ExtResource("2_d3ylp")]
+offset_bottom = 570.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_kgdt7")]
+position = Vector2(62, 496)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_kgdt7")]
+position = Vector2(316, 496)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_s320u")
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_5uj8v")]
+position = Vector2(322, 121)
+
+[node name="toilet5" parent="play_area" instance=ExtResource("5_5uj8v")]
+position = Vector2(56, 130)
+tag = "purple"
+poop_style = ExtResource("4_s320u")
+
+[node name="horizontal_wall7" parent="." instance=ExtResource("6_arojd")]
+position = Vector2(188, 540)
+width = 64000
+
+[node name="horizontal_wall8" parent="." instance=ExtResource("6_arojd")]
+position = Vector2(187, 10)
+width = 64000
+
+[node name="verticall_wall3" parent="." instance=ExtResource("7_p4k4a")]
+position = Vector2(140, 555)
+y_alignment = 1.0
+height = 387
+
+[node name="verticall_wall4" parent="." instance=ExtResource("7_p4k4a")]
+position = Vector2(233, 555)
+y_alignment = 1.0
+height = 387

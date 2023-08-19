@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://blxj5e1vpdejn"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_ysc36"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_fbjgv"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_s51qn"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_dfjhv"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_1yewq"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_vgchg"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="7_c5nq0"]
+[ext_resource type="PackedScene" uid="uid://bk8y5dr01ah2l" path="res://prefabs/worker.tscn" id="8_xu51k"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_ysc36")
+
+[node name="play_area" parent="." instance=ExtResource("2_fbjgv")]
+offset_bottom = 570.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_s51qn")]
+position = Vector2(56, 252)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_s51qn")]
+position = Vector2(323, 356)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_dfjhv")
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_1yewq")]
+position = Vector2(327, 504)
+
+[node name="toilet5" parent="play_area" instance=ExtResource("5_1yewq")]
+position = Vector2(58, 510)
+tag = "purple"
+poop_style = ExtResource("4_dfjhv")
+
+[node name="horizontal_wall8" parent="." instance=ExtResource("6_vgchg")]
+position = Vector2(187, 10)
+width = 64000
+
+[node name="verticall_wall" parent="." instance=ExtResource("7_c5nq0")]
+position = Vector2(121, 558)
+y_alignment = 1.0
+height = 172
+
+[node name="verticall_wall2" parent="." instance=ExtResource("7_c5nq0")]
+position = Vector2(254, 558)
+y_alignment = 1.0
+height = 172
+
+[node name="verticall_wall3" parent="." instance=ExtResource("7_c5nq0")]
+position = Vector2(121, 152)
+y_alignment = -1.0
+height = 142
+
+[node name="verticall_wall4" parent="." instance=ExtResource("7_c5nq0")]
+position = Vector2(254, 152)
+y_alignment = -1.0
+height = 142
+
+[node name="worker" parent="." instance=ExtResource("8_xu51k")]
+position = Vector2(190, 532)
+eye_distance = 192.91

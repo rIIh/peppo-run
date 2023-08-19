@@ -34,6 +34,7 @@ speed = 300.0
 style = ExtResource("4_ipp0k")
 
 [node name="box" parent="play_area" instance=ExtResource("6_2biu6")]
+position = Vector2(188, 417)
 
 [node name="box3" parent="play_area" instance=ExtResource("6_2biu6")]
 position = Vector2(188, 214)

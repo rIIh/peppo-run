@@ -26,7 +26,7 @@ speed = 300.0
 style = ExtResource("4_dsmls")
 
 [node name="toilet" parent="play_area" instance=ExtResource("5_viwq1")]
-position = Vector2(240, 149)
+position = Vector2(209, 149)
 
 [node name="toilet2" parent="play_area" instance=ExtResource("5_viwq1")]
 position = Vector2(328, 150)
@@ -34,16 +34,16 @@ tag = "purple"
 poop_style = ExtResource("4_dsmls")
 
 [node name="worker" parent="play_area" instance=ExtResource("6_h2sh7")]
-position = Vector2(75, 142)
+position = Vector2(56, 144)
 scale = Vector2(1.25, 1.25)
 eye_distance = 200.0
 
 [node name="horizontal_wall" parent="play_area" instance=ExtResource("8_m5gcv")]
-position = Vector2(146, 388)
+position = Vector2(120, 388)
 x_alignment = 1.0
-width = 120
+width = 160
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("7_6c4eb")]
-position = Vector2(155, 5)
+position = Vector2(129, 5)
 y_alignment = -1.0
 height = 265

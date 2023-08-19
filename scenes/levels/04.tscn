@@ -37,11 +37,11 @@ tag = "purple"
 poop_style = ExtResource("4_kck34")
 
 [node name="poop" parent="play_area" instance=ExtResource("3_tfwo6")]
-position = Vector2(188, 346)
+position = Vector2(304, 476)
 speed = 300.0
 
 [node name="poop2" parent="play_area" instance=ExtResource("3_tfwo6")]
-position = Vector2(290, 474)
+position = Vector2(75, 475)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_kck34")

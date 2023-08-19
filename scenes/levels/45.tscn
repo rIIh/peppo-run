@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfuvguc80ot4f"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_e60ax"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_dr7om"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_keo4j"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_7e777"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_sryio"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_2j74v"]
+[ext_resource type="PackedScene" uid="uid://c8v8gavmpc1r8" path="res://prefabs/objects/box.tscn" id="7_kksg2"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_e60ax")
+
+[node name="play_area" parent="." instance=ExtResource("2_dr7om")]
+offset_bottom = 570.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_keo4j")]
+position = Vector2(74, 133)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_keo4j")]
+position = Vector2(71, 317)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_7e777")
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_sryio")]
+position = Vector2(303, 131)
+
+[node name="toilet5" parent="play_area" instance=ExtResource("5_sryio")]
+position = Vector2(306, 361)
+tag = "purple"
+poop_style = ExtResource("4_7e777")
+
+[node name="horizontal_wall7" parent="." instance=ExtResource("6_2j74v")]
+position = Vector2(188, 540)
+width = 64000
+
+[node name="horizontal_wall8" parent="." instance=ExtResource("6_2j74v")]
+position = Vector2(187, 10)
+width = 64000
+
+[node name="box" parent="." instance=ExtResource("7_kksg2")]
+position = Vector2(188, 482)
+
+[node name="box2" parent="." instance=ExtResource("7_kksg2")]
+position = Vector2(188, 377)
+
+[node name="box3" parent="." instance=ExtResource("7_kksg2")]
+position = Vector2(188, 271)
+
+[node name="box4" parent="." instance=ExtResource("7_kksg2")]
+position = Vector2(188, 95)

@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://i5wumqcyd67e"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_78sxk"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_467o2"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_08w43"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_cdfy0"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_kofit"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_b5x2g"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="7_ia1ds"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_78sxk")
+
+[node name="play_area" parent="." instance=ExtResource("2_467o2")]
+offset_right = 496.0
+offset_bottom = 644.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_08w43")]
+position = Vector2(342, 378)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_08w43")]
+position = Vector2(261, 511)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_cdfy0")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_kofit")]
+position = Vector2(234, 244)
+
+[node name="toilet4" parent="play_area" instance=ExtResource("5_kofit")]
+position = Vector2(116, 99)
+tag = "purple"
+poop_style = ExtResource("4_cdfy0")
+
+[node name="horizontal_wall2" parent="." instance=ExtResource("6_b5x2g")]
+position = Vector2(84, 118)
+x_alignment = 1.0
+width = 212
+
+[node name="horizontal_wall7" parent="." instance=ExtResource("6_b5x2g")]
+position = Vector2(410, 389)
+x_alignment = -1.0
+width = 207
+
+[node name="horizontal_wall6" parent="." instance=ExtResource("6_b5x2g")]
+position = Vector2(84, 261)
+x_alignment = 1.0
+width = 212
+
+[node name="horizontal_wall3" parent="." instance=ExtResource("6_b5x2g")]
+position = Vector2(84, -10)
+x_alignment = 1.0
+width = 318
+
+[node name="horizontal_wall8" parent="." instance=ExtResource("6_b5x2g")]
+position = Vector2(85, 522)
+x_alignment = 1.0
+width = 318
+
+[node name="Label" type="Label" parent="."]
+offset_left = -192.0
+offset_top = 246.0
+offset_right = -131.0
+offset_bottom = 324.0
+text = "TODO:
+Двери
+Кнопки"
+
+[node name="verticall_wall" parent="." instance=ExtResource("7_ia1ds")]
+position = Vector2(290, 121)
+y_alignment = -1.0
+height = 155
+
+[node name="verticall_wall3" parent="." instance=ExtResource("7_ia1ds")]
+position = Vector2(93, 389)
+y_alignment = -1.0
+height = 155
+
+[node name="verticall_wall2" parent="." instance=ExtResource("7_ia1ds")]
+position = Vector2(404, -8)
+y_alignment = -1.0
+height = 410

@@ -8,6 +8,7 @@ enum State {
 	sitting,
 	fighting,
 	exploded,
+	# TODO(@melvspace): add `crying` state when run failed
 }
 
 var game_mode: GameMode

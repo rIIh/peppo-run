@@ -2,7 +2,7 @@
 extends Node2D
 
 
-@export
+@export_range(-1, 1)
 var y_alignment: float = 0 :
 	set(value):
 		if (y_alignment == value): 

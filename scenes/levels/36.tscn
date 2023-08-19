@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg1rhevxsuanh"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_j4ljj"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_0q1ep"]
+[ext_resource type="PackedScene" uid="uid://c8h47w23jkon1" path="res://prefabs/objects/road.tscn" id="3_tis6l"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="4_u2vj1"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="5_4eagp"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="6_tcn0j"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="8_1j7bk"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_j4ljj")
+
+[node name="play_area" parent="." instance=ExtResource("2_0q1ep")]
+offset_bottom = 570.0
+
+[node name="road" parent="play_area" instance=ExtResource("3_tis6l")]
+position = Vector2(188, 311)
+rotation = 1.5708
+offset = 0
+spacing = 900.0
+length = 2700.0
+
+[node name="poop" parent="play_area" instance=ExtResource("4_u2vj1")]
+position = Vector2(58, 161)
+speed = 300.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("4_u2vj1")]
+position = Vector2(322, 494)
+tag = "purple"
+speed = 300.0
+style = ExtResource("5_4eagp")
+
+[node name="toilet" parent="play_area" instance=ExtResource("6_tcn0j")]
+position = Vector2(62, 485)
+
+[node name="toilet2" parent="play_area" instance=ExtResource("6_tcn0j")]
+position = Vector2(320, 153)
+tag = "purple"
+poop_style = ExtResource("5_4eagp")
+
+[node name="horizontal_wall" parent="." instance=ExtResource("8_1j7bk")]
+position = Vector2(272, 289)
+x_alignment = 1.0
+width = 32000
+
+[node name="horizontal_wall2" parent="." instance=ExtResource("8_1j7bk")]
+position = Vector2(104, 287)
+x_alignment = -1.0
+width = 32000
+
+[node name="Label" type="Label" parent="."]
+offset_left = 385.0
+offset_top = 415.0
+offset_right = 519.0
+offset_bottom = 467.0
+text = "HINT:
+PINK DO 4x Rings"

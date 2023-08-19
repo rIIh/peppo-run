@@ -6,6 +6,9 @@ const SPEED = 300.0
 
 var game_mode: GameMode
 
+@export
+var speed: float = 100
+
 @export var eye_distance: float = 115 :
 	set(value):
 		eye_distance = value
@@ -118,7 +121,7 @@ func _physics_process(delta):
 
 	var target_position = _last_position
 	var direction = (target_position - position).normalized() if _target else Vector2.ZERO
-	velocity = direction * SPEED
+	velocity = direction * SPEED * (speed / 100)
 	
 	if self.get_slide_collision_count():
 		var collision = self.get_slide_collision(0)

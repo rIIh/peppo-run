@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxseruob7002"]
+
+[ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_dihnb"]
+[ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_o4edm"]
+[ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_xm20x"]
+[ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_qp4kx"]
+[ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_n708p"]
+[ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="6_w6ns6"]
+[ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="7_2cudo"]
+
+[node name="level" type="Node"]
+script = ExtResource("1_dihnb")
+
+[node name="play_area" parent="." instance=ExtResource("2_o4edm")]
+offset_bottom = 570.0
+
+[node name="poop2" parent="play_area" instance=ExtResource("3_xm20x")]
+position = Vector2(43, 337)
+speed = 300.0
+
+[node name="poop3" parent="play_area" instance=ExtResource("3_xm20x")]
+position = Vector2(267, 506)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_qp4kx")
+
+[node name="poop4" parent="play_area" instance=ExtResource("3_xm20x")]
+position = Vector2(121, 147)
+tag = "purple"
+speed = 300.0
+style = ExtResource("4_qp4kx")
+
+[node name="toilet" parent="play_area" instance=ExtResource("5_n708p")]
+position = Vector2(332, 319)
+
+[node name="toilet2" parent="play_area" instance=ExtResource("5_n708p")]
+position = Vector2(122, 497)
+tag = "purple"
+poop_style = ExtResource("4_qp4kx")
+
+[node name="toilet4" parent="play_area" instance=ExtResource("5_n708p")]
+position = Vector2(257, 136)
+tag = "purple"
+poop_style = ExtResource("4_qp4kx")
+
+[node name="verticall_wall" parent="." instance=ExtResource("6_w6ns6")]
+position = Vector2(191, 22)
+y_alignment = -1.0
+height = 160
+
+[node name="verticall_wall2" parent="." instance=ExtResource("6_w6ns6")]
+position = Vector2(191, 544)
+y_alignment = 1.0
+height = 160
+
+[node name="horizontal_wall" parent="." instance=ExtResource("7_2cudo")]
+position = Vector2(191, 20)
+width = 64000
+
+[node name="horizontal_wall2" parent="." instance=ExtResource("7_2cudo")]
+position = Vector2(186, 529)
+width = 64000

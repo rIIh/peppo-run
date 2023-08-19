@@ -48,10 +48,10 @@ position = Vector2(187, 166)
 width = 180
 
 [node name="Label" type="Label" parent="."]
-offset_left = 160.0
-offset_top = 275.0
-offset_right = 221.0
-offset_bottom = 353.0
+offset_left = -105.0
+offset_top = 271.0
+offset_right = -44.0
+offset_bottom = 349.0
 text = "TODO:
 Двери
 Кнопки"

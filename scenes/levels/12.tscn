@@ -9,16 +9,17 @@
 
 [node name="level" type="Node"]
 script = ExtResource("1_c42yp")
+metadata/_edit_vertical_guides_ = [84.0, 211.0]
 
 [node name="play_area" parent="." instance=ExtResource("2_c0ri2")]
 offset_bottom = 570.0
 
 [node name="poop" parent="play_area" instance=ExtResource("3_rec8b")]
-position = Vector2(76, 107)
+position = Vector2(84, 107)
 speed = 300.0
 
 [node name="poop2" parent="play_area" instance=ExtResource("3_rec8b")]
-position = Vector2(86, 538)
+position = Vector2(84, 538)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_thcah")
@@ -27,7 +28,7 @@ style = ExtResource("4_thcah")
 position = Vector2(84, 379)
 
 [node name="toilet2" parent="play_area" instance=ExtResource("5_2rijo")]
-position = Vector2(80, 241)
+position = Vector2(84, 241)
 tag = "purple"
 poop_style = ExtResource("4_thcah")
 

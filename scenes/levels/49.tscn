@@ -56,3 +56,12 @@ width = 32000
 position = Vector2(339, 176)
 x_alignment = 1.0
 width = 16000
+
+[node name="Label" type="Label" parent="."]
+offset_left = -192.0
+offset_top = 246.0
+offset_right = -131.0
+offset_bottom = 324.0
+text = "TODO:
+Двери
+Кнопки"
