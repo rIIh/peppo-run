@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxh2vbj2yj32m"]
+[gd_scene load_steps=4 format=3 uid="uid://bxh2vbj2yj32m"]
 
 [ext_resource type="PackedScene" uid="uid://c63ta2djiclrb" path="res://scenes/router.tscn" id="1_crt4r"]
 [ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/levels_scene.tscn" id="2_8yrfw"]
 
+[sub_resource type="GDScript" id="GDScript_bxmhj"]
+script/source = "extends Node
+
+
+@export
+var custom_window_scale: float = 0
+
+
+func _ready():
+	get_tree().root.content_scale_factor = DisplayServer.screen_get_scale() if not custom_window_scale else custom_window_scale
+
+	var size_delta = get_window().size * (get_tree().root.content_scale_factor - 1)
+	get_window().size *= get_tree().root.content_scale_factor
+	get_window().position = get_window().position - Vector2i(size_delta / 2)
+"
+
 [node name="root" type="Node"]
+script = SubResource("GDScript_bxmhj")
 
 [node name="router" parent="." instance=ExtResource("1_crt4r")]
 initial_scene = ExtResource("2_8yrfw")
