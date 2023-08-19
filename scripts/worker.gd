@@ -1,9 +1,10 @@
 @tool
-extends CharacterBody2D
+class_name Worker extends CharacterBody2D
 
 
 const SPEED = 300.0
 
+var game_mode: GameMode
 
 @export var eye_distance: float = 115 :
 	set(value):
@@ -25,6 +26,7 @@ const SPEED = 300.0
 
 var _target: Poop
 var _track_bodies: Array[Poop] = []
+var _last_position: Vector2
 
 
 func _ready():
@@ -47,16 +49,40 @@ func _handle_eye_detector_body_exited(body: Node2D):
 
 func _check_obstacles(a: Vector2, b: Vector2) -> bool:
 	var space_state := get_world_2d().direct_space_state
-	var query := PhysicsRayQueryParameters2D.create(a, b, 1 << 3)
-	var result := space_state.intersect_ray(query)
-
-	return not result.is_empty()
+	var velocity_normal = velocity.rotated(PI / 2).normalized()
+	var offset_multiplier = 40
 	
+	var query_1 := PhysicsRayQueryParameters2D.create(a, b, 1 << 3)
+	var result_1 := space_state.intersect_ray(query_1)
+	var query_2 := PhysicsRayQueryParameters2D.create(a + velocity_normal * offset_multiplier, b, 1 << 3)
+	var result_2 := space_state.intersect_ray(query_2)
+	var query_3 := PhysicsRayQueryParameters2D.create(a - velocity_normal * offset_multiplier, b, 1 << 3)
+	var result_3 := space_state.intersect_ray(query_3)
+
+	return [result_1, result_2, result_3].reduce(func(a, r): return a || not r.is_empty(), false)
+	
+	
+func _check_in_sight() -> bool:
+	if not _target:
+		return true
+	
+	return _target in _track_bodies
+	
+	
+func _untrack_poops(list: Array[Poop]):
+	for poop in list:
+		_track_bodies.erase(poop)
 	
 func _check_tracked_bodies():
 	var closest: Poop
 	var closest_distance: float = 1e10
+	var poops_to_erase: Array[Poop] = []
+	
 	for body in _track_bodies:
+		if body.state != Poop.State.walking:
+			poops_to_erase.append(body)
+			continue
+			
 		if _check_obstacles(self.global_position, body.global_position):
 			continue
 
@@ -64,21 +90,52 @@ func _check_tracked_bodies():
 		closest = body if distance < closest_distance else closest
 
 	_target = closest
-	_track_bodies.erase(_target)
+	_last_position = _target.global_position if _target else Vector2.ZERO
+	
+	_untrack_poops(poops_to_erase)
 
 
 func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return
+		
+	if game_mode.state != GameMode.State.running:
+		velocity = Vector2.ZERO
+		return
+		
+	if _target and not _check_obstacles(self.global_position, _target.global_position):
+		if _check_in_sight():
+			_last_position = _target.global_position
+		else:
+			_target = null
 
 	if _target and _target.state == Poop.State.sitting:
+		_untrack_poops([_target])
 		_target = null
 		
 	if not _target:
 		_check_tracked_bodies()
 
-	var direction = (_target.position - position).normalized() if _target else Vector2.ZERO
+	var target_position = _last_position
+	var direction = (target_position - position).normalized() if _target else Vector2.ZERO
 	velocity = direction * SPEED
+	
+	if self.get_slide_collision_count():
+		var collision = self.get_slide_collision(0)
+		var angle = (-collision.get_normal()).angle_to(velocity) * 2 * PI
+		velocity -= velocity.rotated(PI / 8 * (1 if angle > 0 else -1)).normalized() * 100
 
 	move_and_slide()
+	queue_redraw()
 
+
+func _draw():
+	return
+	if _target:
+		var has_obstacles = _check_obstacles(self.global_position, _target.global_position)
+		draw_line(Vector2.ZERO, _target.global_position - self.global_position, Color.RED if has_obstacles else Color.GREEN, 4)
+		draw_line(Vector2.ZERO, _last_position - self.global_position, Color.YELLOW, 4)
+		
+	if self.get_slide_collision_count():
+		var collision = self.get_slide_collision(0)
+		draw_line(Vector2.ZERO + Vector2(-100, 0), collision.get_normal() + Vector2(-100, 0), Color.BLUE)		

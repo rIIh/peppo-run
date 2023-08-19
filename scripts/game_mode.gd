@@ -57,6 +57,8 @@ func _init_children(nodes: Array[Node]):
 			child.game_mode = self
 		if child is Toilet:
 			toilets.append(child)
+		if child is Worker:
+			child.game_mode = self
 
 
 func assign_poop_to_toilet(poop: Poop, toilet: Toilet) -> bool:

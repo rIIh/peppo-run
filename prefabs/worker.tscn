@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk8y5dr01ah2l"]
+[gd_scene load_steps=7 format=3 uid="uid://bk8y5dr01ah2l"]
 
 [ext_resource type="Script" path="res://scripts/worker.gd" id="1_0lypl"]
 [ext_resource type="Script" path="res://scripts/fighter.gd" id="2_7tgi1"]
@@ -8,6 +8,11 @@
 resource_local_to_scene = true
 radius = 36.5
 height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ex3qv"]
+resource_local_to_scene = true
+radius = 37.0
+height = 98.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kcy8g"]
 resource_local_to_scene = true
@@ -37,7 +42,7 @@ collision_mask = 4
 
 [node name="capsule_collider" type="CollisionShape2D" parent="collide_trigger"]
 position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_8rdp0")
+shape = SubResource("CapsuleShape2D_ex3qv")
 
 [node name="eye_detector" type="Area2D" parent="."]
 position = Vector2(0, -41)
