@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/toilet.gd" id="1_4juv6"]
 [ext_resource type="Texture2D" uid="uid://bbn4qidv3bv51" path="res://assets/toilet@4x.png" id="2_w6eg4"]
-[ext_resource type="Texture2D" uid="uid://c6k1igujvn22" path="res://assets/toilet_tag@4x.png" id="3_vv2t2"]
+[ext_resource type="Texture2D" uid="uid://cnk2s5li8vo6l" path="res://assets/toilet_indicator@4x.png" id="3_f37a3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cokc"]
 size = Vector2(58, 90)
@@ -27,6 +27,6 @@ shape = SubResource("RectangleShape2D_1cokc")
 [node name="toilet_tag" type="Sprite2D" parent="."]
 self_modulate = Color(0.90625, 0.6875, 0.488281, 1)
 texture_filter = 6
-position = Vector2(1, -51)
+position = Vector2(0, -51)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_vv2t2")
+texture = ExtResource("3_f37a3")
