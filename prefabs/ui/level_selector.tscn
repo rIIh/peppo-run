@@ -27,37 +27,40 @@ theme_override_constants/margin_top = 144
 [node name="control" type="Control" parent="padding"]
 layout_mode = 2
 
-[node name="h_flow" type="HFlowContainer" parent="padding/control"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="padding/control"]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -187.5
-offset_right = 187.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="padding/control/MarginContainer"]
+layout_mode = 2
+
+[node name="h_flow" type="HFlowContainer" parent="padding/control/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 24
 alignment = 1
 
-[node name="level" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+[node name="level" parent="padding/control/MarginContainer/h_flow" instance=ExtResource("2_hwe8m")]
 layout_mode = 2
 
-[node name="level2" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+[node name="level2" parent="padding/control/MarginContainer/h_flow" instance=ExtResource("2_hwe8m")]
 layout_mode = 2
 
-[node name="level3" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+[node name="level3" parent="padding/control/MarginContainer/h_flow" instance=ExtResource("2_hwe8m")]
 layout_mode = 2
 
-[node name="level4" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+[node name="level4" parent="padding/control/MarginContainer/h_flow" instance=ExtResource("2_hwe8m")]
 layout_mode = 2
 
-[node name="level5" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+[node name="level5" parent="padding/control/MarginContainer/h_flow" instance=ExtResource("2_hwe8m")]
 layout_mode = 2
 
-[node name="level6" parent="padding/control/h_flow" instance=ExtResource("2_hwe8m")]
+[node name="level6" parent="padding/control/MarginContainer/h_flow" instance=ExtResource("2_hwe8m")]
 layout_mode = 2
 
 [node name="page_indicator" type="TextureRect" parent="."]

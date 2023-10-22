@@ -1,7 +1,12 @@
+@tool
 class_name LevelButton extends MarginContainer
 
-
-var level_name: String
+@export
+var level_name: String :
+	set(value):
+		if level_name != value:
+			level_name = value
+			
 var level_index: int = 0
 var available: bool = true
 
@@ -13,7 +18,9 @@ signal pressed
 
 
 func _ready():
-	%text.text = level_name if level_name else str(level_index + 1)
+	_update_text()
 	%sprite.texture = opened_texture if available else closed_texture
 	%button.pressed.connect(func(): pressed.emit())
 
+func _update_text():
+	%text.text = level_name if level_name else str(level_index + 1)
