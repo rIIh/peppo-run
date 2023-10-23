@@ -1,0 +1,190 @@
+[gd_scene load_steps=15 format=3 uid="uid://d02hdc3ex8irj"]
+
+[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="1_27bfi"]
+[ext_resource type="Texture2D" uid="uid://cpd5tpntbu6a3" path="res://assets/ui/initial_page_face@4x.png" id="2_7uur8"]
+[ext_resource type="Script" path="res://scripts/safe_area.gd" id="2_yt3t8"]
+[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="3_6utaq"]
+[ext_resource type="Texture2D" uid="uid://c6f8eds6gidfv" path="res://assets/ui/paper@4x.png" id="3_63b1t"]
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="4_778wh"]
+[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="5_hhndx"]
+[ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="6_hebsk"]
+[ext_resource type="Texture2D" uid="uid://ck7k3rr312sd1" path="res://assets/ui/initial_page_top_logo@4x.png" id="7_f7nfo"]
+[ext_resource type="Texture2D" uid="uid://cb4yrrbpl7tk1" path="res://assets/ui/levels/level__opened@4x.png" id="8_8p73x"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u6gli"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+emission_shape = 3
+emission_box_extents = Vector3(187, 2.08165e-12, 2.08165e-12)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(2.08165e-12, 1, 2.08165e-12)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.25
+scale_max = 0.25
+
+[sub_resource type="GDScript" id="GDScript_dw6hm"]
+script/source = "extends CPUParticles2D
+
+var _width := 0.0
+var _base_count := 8
+
+func _process(delta):
+	_width = get_viewport_rect().size.x
+	var points: int = floor((_width - 24 * 2) / 150.0)
+	var distance = (_width - 24 * 2) / points
+	var array := []
+	for i in (points + 1):
+		array.append(i * distance + 24)
+		
+	emission_points = array.map(func(e): return Vector2(e, -100))
+	if amount != _base_count * (points - 1):
+		amount = _base_count * (points - 1)
+	
+"
+
+[sub_resource type="Resource" id="Resource_h6ynb"]
+script = ExtResource("3_6utaq")
+left = 0.0
+top = 0.0
+right = 0.0
+bottom = 0.0
+
+[sub_resource type="Resource" id="Resource_yjme5"]
+script = ExtResource("3_6utaq")
+left = 0.0
+top = 24.0
+right = 0.0
+bottom = 34.0
+
+[node name="levels_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_horizontal_guides_ = [36.0]
+metadata/_edit_vertical_guides_ = [16.0, 188.0]
+
+[node name="background_layer" parent="." instance=ExtResource("1_27bfi")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(188, -109)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_u6gli")
+texture = ExtResource("8_8p73x")
+lifetime = 8.0
+preprocess = 44.8
+explosiveness = 0.12
+randomness = 1.0
+visibility_rect = Rect2(-200, 2.08165e-12, 400, 1000)
+draw_order = 0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+lifetime = 12.0
+preprocess = 10.0
+texture = ExtResource("3_63b1t")
+emission_shape = 4
+emission_points = PackedVector2Array(24, -90, 351, -90, 187, -90)
+emission_colors = PackedColorArray()
+direction = Vector2(2.08165e-12, 1)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+script = SubResource("GDScript_dw6hm")
+
+[node name="container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="safe_area" type="MarginContainer" parent="container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 34
+script = ExtResource("2_yt3t8")
+debug_insets = SubResource("Resource_h6ynb")
+minimum = SubResource("Resource_yjme5")
+
+[node name="ui" type="Control" parent="container/safe_area"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="settings_button" parent="container/safe_area/ui" instance=ExtResource("4_778wh")]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 119.5
+offset_top = 8.0
+offset_right = 171.5
+offset_bottom = 60.0
+grow_horizontal = 2
+texture_normal = ExtResource("5_hhndx")
+main_texture = ExtResource("5_hhndx")
+
+[node name="back_button" parent="container/safe_area/ui" instance=ExtResource("6_hebsk")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.5
+offset_top = 8.0
+offset_right = -119.5
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="logo" type="TextureRect" parent="container/safe_area/ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = -35.0
+offset_right = 400.0
+offset_bottom = 1141.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(400, 2.08165e-12)
+texture = ExtResource("7_f7nfo")
+
+[node name="TextureRect" type="TextureRect" parent="container"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1290.0
+offset_top = -1732.0
+offset_right = 1290.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(1290, 1732)
+texture = ExtResource("2_7uur8")

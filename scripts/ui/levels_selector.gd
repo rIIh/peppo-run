@@ -81,7 +81,7 @@ func _update_page_view():
 func _handle_pressed(index: int):
 	var router: Router = NodeUtilities.get_parent_of_type(self, Router)
 	router.push(
-		preload("res://scenes/game_scene.tscn"),
+		preload("res://scenes/pages/game_page.tscn"),
 		func(game_scene: GameScene):
 			game_scene.initial_index = index
 	)

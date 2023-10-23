@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxh2vbj2yj32m"]
 
 [ext_resource type="PackedScene" uid="uid://c63ta2djiclrb" path="res://scenes/router.tscn" id="1_crt4r"]
-[ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/pages/levels_page.tscn" id="2_8yrfw"]
+[ext_resource type="PackedScene" uid="uid://d02hdc3ex8irj" path="res://scenes/pages/initial_page.tscn" id="2_4tiq0"]
 
 [sub_resource type="GDScript" id="GDScript_bxmhj"]
 script/source = "extends Node
@@ -23,4 +23,4 @@ func _ready():
 script = SubResource("GDScript_bxmhj")
 
 [node name="router" parent="." instance=ExtResource("1_crt4r")]
-initial_scene = ExtResource("2_8yrfw")
+initial_scene = ExtResource("2_4tiq0")
