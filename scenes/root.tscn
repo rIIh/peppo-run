@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxh2vbj2yj32m"]
 
 [ext_resource type="PackedScene" uid="uid://c63ta2djiclrb" path="res://scenes/router.tscn" id="1_crt4r"]
-[ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/levels_scene.tscn" id="2_8yrfw"]
+[ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/pages/levels_page.tscn" id="2_8yrfw"]
 
 [sub_resource type="GDScript" id="GDScript_bxmhj"]
 script/source = "extends Node

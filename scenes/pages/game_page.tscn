@@ -1,30 +1,30 @@
 [gd_scene load_steps=20 format=3 uid="uid://d0avtug1we22e"]
 
-[ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_8vjuo"]
-[ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_pdjg8"]
-[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="3_l23ho"]
-[ext_resource type="PackedScene" uid="uid://b7ffretwt4i41" path="res://scenes/game_viewport.tscn" id="4_ux06a"]
-[ext_resource type="Script" path="res://scripts/game_viewport.gd" id="5_vyxro"]
-[ext_resource type="Script" path="res://scripts/safe_area.gd" id="6_iq6rk"]
-[ext_resource type="Texture2D" uid="uid://bf3aeivawgg0e" path="res://assets/ui/level_header@4x.png" id="6_s6naw"]
-[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="7_dmktw"]
-[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="8_muc62"]
-[ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="9_or54j"]
-[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="9_yn1oy"]
-[ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="10_0y0x7"]
-[ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="11_3vrr4"]
-[ext_resource type="Texture2D" uid="uid://bo5dagvotd67x" path="res://assets/ui/circle_buttons/buttons__hint@4x.png" id="12_sr8mc"]
-[ext_resource type="Texture2D" uid="uid://ywjgjmf05r10" path="res://assets/ui/circle_buttons/buttons__restart@4x.png" id="13_nnutr"]
+[ext_resource type="Script" path="res://scripts/level_loader.gd" id="1_oov0o"]
+[ext_resource type="Resource" uid="uid://c8f2uf06awei6" path="res://resources/level_groups/main.tres" id="2_wboyh"]
+[ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="3_sg5iy"]
+[ext_resource type="PackedScene" uid="uid://b7ffretwt4i41" path="res://scenes/game_viewport.tscn" id="4_recs6"]
+[ext_resource type="Script" path="res://scripts/game_viewport.gd" id="5_ewutx"]
+[ext_resource type="Script" path="res://scripts/safe_area.gd" id="6_grj11"]
+[ext_resource type="Script" path="res://scripts/edge_insets.gd" id="7_72skj"]
+[ext_resource type="Texture2D" uid="uid://bf3aeivawgg0e" path="res://assets/ui/level_header@4x.png" id="8_6blb0"]
+[ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="9_kq6nk"]
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="10_dkikr"]
+[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="11_tiyv8"]
+[ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="12_1p1ln"]
+[ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="13_bw0j8"]
+[ext_resource type="Texture2D" uid="uid://bo5dagvotd67x" path="res://assets/ui/circle_buttons/buttons__hint@4x.png" id="14_ev3nl"]
+[ext_resource type="Texture2D" uid="uid://ywjgjmf05r10" path="res://assets/ui/circle_buttons/buttons__restart@4x.png" id="15_yagv0"]
 
 [sub_resource type="Resource" id="Resource_1q0hn"]
-script = ExtResource("7_dmktw")
+script = ExtResource("7_72skj")
 left = 0.0
 top = 0.0
 right = 0.0
 bottom = 0.0
 
 [sub_resource type="Resource" id="Resource_gvsuo"]
-script = ExtResource("7_dmktw")
+script = ExtResource("7_72skj")
 left = 0.0
 top = 24.0
 right = 0.0
@@ -79,19 +79,19 @@ func _get_safe_area() -> SafeArea:
 "
 
 [node name="root" type="Node" node_paths=PackedStringArray("level_spawn_parent", "ui_parent", "restart_button", "go_button")]
-script = ExtResource("1_8vjuo")
-level_group = ExtResource("2_pdjg8")
+script = ExtResource("1_oov0o")
+level_group = ExtResource("2_wboyh")
 level_spawn_parent = NodePath("game_viewport")
 ui_parent = NodePath("ui_layer/container")
 restart_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio/restart_button")
 go_button = NodePath("ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer/circle_button")
 metadata/_edit_horizontal_guides_ = [32.0, 24.0]
 
-[node name="background_layer" parent="." instance=ExtResource("3_l23ho")]
+[node name="background_layer" parent="." instance=ExtResource("3_sg5iy")]
 tile_offset = Vector2(0, 0)
 
-[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("4_ux06a")]
-script = ExtResource("5_vyxro")
+[node name="game_viewport" parent="." node_paths=PackedStringArray("target_rect") instance=ExtResource("4_recs6")]
+script = ExtResource("5_ewutx")
 target_rect = NodePath("../ui_layer/container/safe_area/game_area_padding/game_area")
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
@@ -118,7 +118,7 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 34
-script = ExtResource("6_iq6rk")
+script = ExtResource("6_grj11")
 debug_insets = SubResource("Resource_1q0hn")
 minimum = SubResource("Resource_gvsuo")
 
@@ -149,7 +149,7 @@ offset_right = 297.5
 offset_bottom = 501.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("6_s6naw")
+texture = ExtResource("8_6blb0")
 
 [node name="level_header__level_number" type="Label" parent="ui_layer/container/safe_area/ui/level_header"]
 unique_name_in_owner = true
@@ -163,14 +163,14 @@ offset_right = 56.5
 offset_bottom = 392.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.415686, 0.607843, 0.964706, 1)
-theme_override_fonts/font = ExtResource("9_or54j")
+theme_override_fonts/font = ExtResource("9_kq6nk")
 theme_override_font_sizes/font_size = 100
 text = "LVL 
 01"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="settings_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("8_muc62")]
+[node name="settings_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("10_dkikr")]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 1
 anchors_preset = 5
@@ -181,10 +181,10 @@ offset_top = 8.0
 offset_right = 171.5
 offset_bottom = 60.0
 grow_horizontal = 2
-texture_normal = ExtResource("9_yn1oy")
-main_texture = ExtResource("9_yn1oy")
+texture_normal = ExtResource("11_tiyv8")
+main_texture = ExtResource("11_tiyv8")
 
-[node name="back_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("10_0y0x7")]
+[node name="back_button" parent="ui_layer/container/safe_area/ui" instance=ExtResource("12_1p1ln")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -214,6 +214,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -187.5
 offset_right = 187.5
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 0
 script = SubResource("GDScript_ulfc3")
@@ -232,7 +233,7 @@ offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("11_3vrr4")
+texture = ExtResource("13_bw0j8")
 stretch_mode = 1
 
 [node name="row" type="HBoxContainer" parent="ui_layer/container/safe_area/ui/bottom_node"]
@@ -259,16 +260,16 @@ theme_override_constants/margin_bottom = -17
 layout_mode = 2
 alignment_vertical = 2
 
-[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding/aspect_ratio" instance=ExtResource("8_muc62")]
+[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding/aspect_ratio" instance=ExtResource("10_dkikr")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
-texture_normal = ExtResource("12_sr8mc")
-main_texture = ExtResource("12_sr8mc")
+texture_normal = ExtResource("14_ev3nl")
+main_texture = ExtResource("14_ev3nl")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
 layout_mode = 2
 
-[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer" instance=ExtResource("8_muc62")]
+[node name="circle_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/AspectRatioContainer" instance=ExtResource("10_dkikr")]
 layout_mode = 2
 
 [node name="padding2" type="MarginContainer" parent="ui_layer/container/safe_area/ui/bottom_node/row"]
@@ -279,8 +280,8 @@ theme_override_constants/margin_bottom = -17
 layout_mode = 2
 alignment_vertical = 2
 
-[node name="restart_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio" instance=ExtResource("8_muc62")]
+[node name="restart_button" parent="ui_layer/container/safe_area/ui/bottom_node/row/padding2/aspect_ratio" instance=ExtResource("10_dkikr")]
 custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
-texture_normal = ExtResource("13_nnutr")
-main_texture = ExtResource("13_nnutr")
+texture_normal = ExtResource("15_yagv0")
+main_texture = ExtResource("15_yagv0")
