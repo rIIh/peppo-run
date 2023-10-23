@@ -17,22 +17,19 @@ curve = SubResource("Curve_hpv4u")
 
 [resource]
 lifetime_randomness = 0.4
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 32.0
-particle_flag_disable_z = true
+angle_max = 360.0
 spread = 180.0
-flatness = 1.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_max = 32.0
 angular_velocity_min = -195.56
 angular_velocity_max = 127.64
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-angle_max = 360.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_curve = SubResource("CurveTexture_c5wml")
 color_ramp = SubResource("GradientTexture1D_2dbmx")
+anim_offset_max = 1.0
 turbulence_noise_strength = 8.59
 turbulence_initial_displacement_min = 87.5
 turbulence_initial_displacement_max = 100.0
-anim_offset_max = 1.0
