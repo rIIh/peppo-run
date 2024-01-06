@@ -5,11 +5,26 @@
 [ext_resource type="Script" path="res://scripts/ui/scale_texture_rect.gd" id="2_ek3x5"]
 [ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="3_ijovo"]
 
-[node name="level" type="MarginContainer"]
+[node name="level" type="Control"]
+custom_minimum_size = Vector2(133, 152)
+layout_mode = 3
+offset_right = 133.0
+offset_bottom = 152.0
+pivot_offset = Vector2(66, 76)
 script = ExtResource("1_2vla7")
 
-[node name="sprite" type="TextureRect" parent="."]
+[node name="Control" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(66, 76)
+
+[node name="sprite" type="TextureRect" parent="Control"]
 unique_name_in_owner = true
+texture_filter = 4
 custom_minimum_size = Vector2(133, 152)
 layout_mode = 2
 texture = ExtResource("1_qbd5j")
@@ -18,14 +33,14 @@ stretch_mode = 5
 script = ExtResource("2_ek3x5")
 texture_scale = Vector2(0.25, 0.25)
 
-[node name="padding" type="MarginContainer" parent="."]
+[node name="padding" type="MarginContainer" parent="Control"]
 layout_mode = 2
 theme_override_constants/margin_left = 36
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 46
 
-[node name="text" type="Label" parent="padding"]
+[node name="text" type="Label" parent="Control/padding"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.34902, 0.572549, 1, 1)
@@ -34,7 +49,7 @@ theme_override_font_sizes/font_size = 25
 text = "1"
 horizontal_alignment = 1
 
-[node name="button" type="Button" parent="."]
+[node name="button" type="Button" parent="Control"]
 unique_name_in_owner = true
 layout_mode = 2
 flat = true

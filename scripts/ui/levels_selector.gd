@@ -13,70 +13,66 @@ var next_page_button: BaseButton
 
 var level_button := preload("res://prefabs/ui/level_button.tscn")
 
-var page: int = 0
+@onready
+var _grid := %grid as GridView
 
 func _ready():
+	_grid.node_created.connect(_handle_grid_page_created)
+	_grid.page_changed.connect(_handle_page_changed)
 	_update_page_view()
 
+	await _grid.grid_updated
 	if previous_page_button:
 		previous_page_button.pressed.connect(previous_page)
 		previous_page_button.visible = false
 
 	if next_page_button:
 		next_page_button.pressed.connect(next_page)
-		next_page_button.visible = page < level_group.levels.size() / page_size
+		next_page_button.visible = _grid.page < _grid.count
 
 
 func previous_page():
-	if page == 0:
+	if _grid.page == 0:
 		return
 
-	page -= 1
+	_grid.page -= 1
 	_update_page_view()
-
-	if page == 0:
-		previous_page_button.visible = false
-
-	if page < level_group.levels.size() / page_size:
-		next_page_button.visible = true
-
 
 func next_page():
-	if page == level_group.levels.size() / page_size:
+	if _grid.page == _grid.count:
 		return
 
-	page += 1
+	_grid.page += 1
 	_update_page_view()
 
-	if page == level_group.levels.size() / page_size:
-		next_page_button.visible = false
+func _handle_page_changed(prev_page: int, next_page: int):
+	if previous_page_button:
+		previous_page_button.visible = next_page > 0
 
-	if page > 0:
-		previous_page_button.visible = true
-
+	if next_page_button:
+		next_page_button.visible = next_page < (_grid.count - 1)
 
 func _update_page_view():
-	for child in %h_flow.get_children():
-		child.queue_free()
+	_grid.count = ceili(level_group.size() / page_size) + 1
+	_grid.update()
 
-	var pages = level_group.levels.size() / page_size
-	for index in range(page * page_size, (page + 1) * page_size):
-		if index >= level_group.levels.size():
-			break
+func _handle_grid_page_created(index: int, node: LevelsGrid):
+	node.node_created.connect(_handle_level_node_created)
+	node.start_index = index * node.grid_count
+	node.update()
 
-		var details = level_group.get_level_details(index)
-		var name = level_group.get_level_details(index).title if details else "WIP"
+func _handle_level_node_created(index: int, node: LevelButton):
+	if index >= level_group.size():
+		node.queue_free()
+		return
+	
+	var details = level_group.get_level_details(index)
+	var name = level_group.get_level_details(index).title if details else "WIP"
 
-		var node: LevelButton = level_button.instantiate()
-		if details:
-			node.pressed.connect(func(): _handle_pressed(index))
-			
-		node.level_name = name
-		node.level_index = index
-		node.available = true
-
-		%h_flow.add_child(node)
-
+	if details:
+		node.pressed.connect(func(): _handle_pressed(index))
+	node.update(index, true)
+	node.set_custom_level_name(name)
 
 func _handle_pressed(index: int):
 	var router: Router = NodeUtilities.get_parent_of_type(self, Router)

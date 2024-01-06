@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxl3k76j1q2wf"]
+
+[ext_resource type="PackedScene" uid="uid://d0vl7bilauqs6" path="res://prefabs/ui/level_button.tscn" id="1_syux2"]
+
+[sub_resource type="GDScript" id="GDScript_vgemq"]
+script/source = "extends Control
+
+var time: float = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var node = $level as Control
+	node.position = Vector2((sin(time) + 1) / 2 * size.x, node.position.y)
+	time += delta
+	
+	($Label as Label).text = str(node.velocity.x) + '\\n' + str(node.global_position)
+"
+
+[node name="LevelButtonTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_vgemq")
+
+[node name="level" parent="." instance=ExtResource("1_syux2")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 128.0
+offset_right = 200.0
+offset_bottom = 151.0

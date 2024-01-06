@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://c68foivyw1ppg"]
+
+[ext_resource type="Script" path="res://scenes/widgets/grid_view.gd" id="1_ne7w8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqg46"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_umf43"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7yij5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1yeoh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfrrh"]
+
+[sub_resource type="Theme" id="Theme_wg761"]
+HScrollBar/styles/grabber = SubResource("StyleBoxEmpty_nqg46")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_umf43")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_7yij5")
+HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_1yeoh")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_pfrrh")
+
+[node name="GridView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wg761")
+script = ExtResource("1_ne7w8")
+
+[node name="scrollable" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_horizontal_custom_step = 0.0
+scroll_vertical_custom_step = 0.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+scroll_deadzone = 100000
+
+[node name="pages" type="HBoxContainer" parent="scrollable"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
