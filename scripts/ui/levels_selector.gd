@@ -36,14 +36,12 @@ func previous_page():
 		return
 
 	_grid.page -= 1
-	_update_page_view()
 
 func next_page():
 	if _grid.page == _grid.count:
 		return
 
 	_grid.page += 1
-	_update_page_view()
 
 func _handle_page_changed(prev_page: int, next_page: int):
 	if previous_page_button:
