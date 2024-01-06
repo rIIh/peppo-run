@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxh2vbj2yj32m"]
+[gd_scene load_steps=8 format=3 uid="uid://bxh2vbj2yj32m"]
 
 [ext_resource type="PackedScene" uid="uid://c63ta2djiclrb" path="res://scenes/router.tscn" id="1_crt4r"]
 [ext_resource type="PackedScene" uid="uid://d02hdc3ex8irj" path="res://scenes/pages/initial_page.tscn" id="2_4tiq0"]
+[ext_resource type="Texture2D" uid="uid://bwk6ku4joctwh" path="res://assets/core/launch_icon@3x.png" id="3_augrj"]
+[ext_resource type="Script" path="res://scripts/ui/scale_texture_rect.gd" id="4_hh11c"]
+[ext_resource type="Texture2D" uid="uid://dneoxnr8pktpw" path="res://assets/ui/transition_sheet@4x.png" id="5_y4nbu"]
 
 [sub_resource type="GDScript" id="GDScript_bxmhj"]
 script/source = "extends Node
@@ -19,8 +22,71 @@ func _ready():
 	get_window().position = get_window().position - Vector2i(size_delta / 2)
 "
 
+[sub_resource type="GDScript" id="GDScript_qcyjf"]
+script/source = "extends Control
+
+
+func _ready():
+	await get_tree().create_timer(1).timeout
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, 'position', Vector2(position.x, position.y + size.y * 1.5), 0.5)
+"
+
 [node name="root" type="Node"]
 script = SubResource("GDScript_bxmhj")
 
 [node name="router" parent="." instance=ExtResource("1_crt4r")]
 initial_scene = ExtResource("2_4tiq0")
+
+[node name="splash_screen" type="Control" parent="."]
+z_index = 1000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_qcyjf")
+
+[node name="ColorRect" type="ColorRect" parent="splash_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.882353, 0.92549, 1, 1)
+
+[node name="TransitionSheet_4x" type="TextureRect" parent="splash_screen"]
+custom_minimum_size = Vector2(375, 91.5)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -22.0
+offset_bottom = 69.5
+grow_horizontal = 2
+texture = ExtResource("5_y4nbu")
+expand_mode = 1
+script = ExtResource("4_hh11c")
+texture_scale = Vector2(0.25, 0.25)
+
+[node name="LaunchIcon_3x" type="TextureRect" parent="splash_screen"]
+custom_minimum_size = Vector2(128.37, 127.71)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.185
+offset_top = -64.0
+offset_right = 64.185
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_augrj")
+expand_mode = 1
+script = ExtResource("4_hh11c")
+texture_scale = Vector2(0.33, 0.33)
