@@ -13,5 +13,4 @@ func _get_minimum_size():
 	if minimum_size.is_zero_approx():
 		return texture.get_size() * texture_scale
 	
-	print('asd')
 	return minimum_size * texture_scale
