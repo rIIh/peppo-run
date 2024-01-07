@@ -42,20 +42,13 @@ func _ready():
 var _is_dragging := false
 func _input(event):
 	if event is InputEventScreenDrag:
-		print('bla')
-		if event.speed.y < -10:
-			self.get_tree().set_input_as_handled()
-		elif event.speed.y > 10:
-			self.get_tree().set_input_as_handled()
-	elif event is InputEventScreenTouch:
-		print('bla')
-		if event.pressed:
-			self.get_tree().set_input_as_handled()
+		if event.velocity.x < -5:
+			goto_page(page + 1)
+			self.get_viewport().set_input_as_handled()
+		elif event.velocity.x > 5:
+			goto_page(page - 1)
+			self.get_viewport().set_input_as_handled()
 
-	#if event is InputEventMouseButton:
-		#_is_dragging = event.is_pressed()
-		#get_viewport().set_input_as_handled()
-		#
 	if event is InputEventMouseMotion :
 		if not _is_dragging: return
 		
@@ -72,6 +65,7 @@ func _input(event):
 
 var _scroll_tween: Tween
 func goto_page(next_page: int):
+	if next_page < 0 or next_page > (count - 1): return
 	var prev_page = floori(scrollable.scroll_horizontal / size.x)
 	var factor = abs(prev_page - next_page)
 	
