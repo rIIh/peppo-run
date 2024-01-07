@@ -52,7 +52,8 @@ func _ready():
 
 func show_popup():
 	$AnimationPlayer.play("level_end_popup_animation")
-	$AnimationPlayer.animation_finished.connect(_handle_animation_finished)
+	if not ($AnimationPlayer.animation_finished as Signal).is_connected(_handle_animation_finished):
+		$AnimationPlayer.animation_finished.connect(_handle_animation_finished)
 
 
 func hide_popup():

@@ -127,7 +127,7 @@ shader_parameter/fade_threshold = Vector2(450, 1000)
 shader_parameter/fade_strength = 550.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u3if"]
-size = Vector2(116, 58)
+size = Vector2(118, 70)
 
 [node name="car_body" type="StaticBody2D"]
 material = SubResource("ShaderMaterial_wmlo7")

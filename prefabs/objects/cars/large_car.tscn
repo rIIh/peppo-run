@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/objects/car.gd" id="1_uj46i"]
 [ext_resource type="Shader" path="res://materials/shaders/fade_at_threshold.gdshader" id="2_480rj"]
-[ext_resource type="Texture2D" uid="uid://hsbh28e11kh6" path="res://assets/objects/world__big_car@4x.png" id="3_713n0"]
+[ext_resource type="Texture2D" uid="uid://dimkb5olxbonh" path="res://assets/objects/world__green_car@4x.png" id="3_vh3ul"]
 [ext_resource type="Script" path="res://scripts/utility/set_global_transform_shader_parameter.gd" id="4_b4pas"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvoo1"]
@@ -21,8 +21,8 @@ script = ExtResource("1_uj46i")
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jvoo1")
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_713n0")
+texture = ExtResource("3_vh3ul")
 script = ExtResource("4_b4pas")
 
 [node name="collider" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(20, 29, 9, 35, -74, 35, -74, -35, 10, -35, 19, -29, 73, -29, 73, 29)
+polygon = PackedVector2Array(59, 35, 9, 35, -59, 35, -59, -35, 10, -35, 59, -35)
