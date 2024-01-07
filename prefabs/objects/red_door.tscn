@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3g6q4jxyq3s"]
+
+[ext_resource type="PackedScene" uid="uid://c6jojusxf2f87" path="res://prefabs/objects/yellow_door.tscn" id="1_tj70t"]
+[ext_resource type="Material" uid="uid://dfamsyocj733j" path="res://materials/red_door_material.tres" id="2_tu6nn"]
+
+[node name="red_door" instance=ExtResource("1_tj70t")]
+material = ExtResource("2_tu6nn")

@@ -58,15 +58,6 @@ position = Vector2(85, 522)
 x_alignment = 1.0
 width = 318
 
-[node name="Label" type="Label" parent="."]
-offset_left = -192.0
-offset_top = 246.0
-offset_right = -131.0
-offset_bottom = 324.0
-text = "TODO:
-Doors
-Buttons"
-
 [node name="verticall_wall" parent="." instance=ExtResource("7_ia1ds")]
 position = Vector2(290, 121)
 y_alignment = -1.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeightButtonsSprites" load_steps=4 format=3 uid="uid://cuyn61omlpfys"]
+
+[ext_resource type="Texture2D" uid="uid://b6n7yd6815pp5" path="res://assets/objects/red_weight_button__pressed@4x.png" id="1_t2lsb"]
+[ext_resource type="Script" path="res://scripts/resources/weight_button_sprites.gd" id="2_34hnx"]
+[ext_resource type="Texture2D" uid="uid://d4hgey25i0mu" path="res://assets/objects/red_weight_button__unpressed@4x.png" id="3_kuvdm"]
+
+[resource]
+script = ExtResource("2_34hnx")
+pressed_sprite = ExtResource("1_t2lsb")
+unpressed_sprite = ExtResource("3_kuvdm")

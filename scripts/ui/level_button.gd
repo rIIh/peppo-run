@@ -50,7 +50,6 @@ func _physics_process(delta):
 	if _rot_tween: _rot_tween.kill()
 	_rot_tween = create_tween()
 	_rot_tween.tween_property($Control, 'rotation', target_rotation, .1)
-	#$Control.rotation = clampf(velocity.x / rotation_factor, deg_to_rad(-15), deg_to_rad(15))
 	
 
 func _update_text():

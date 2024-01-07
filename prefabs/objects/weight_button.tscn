@@ -1,0 +1,168 @@
+[gd_scene load_steps=16 format=3 uid="uid://doovqsgaxa38v"]
+
+[ext_resource type="Script" path="res://prefabs/objects/weight_button.gd" id="1_4p8rq"]
+[ext_resource type="Resource" uid="uid://b4umqjuffvjjv" path="res://resources/buttons/yellow_button.tres" id="2_blx6y"]
+[ext_resource type="Texture2D" uid="uid://b7xibe1ltewkt" path="res://assets/objects/yellow_weight_button__pressed@4x.png" id="2_r8e76"]
+[ext_resource type="Texture2D" uid="uid://8a2l3doppjov" path="res://assets/objects/yellow_weight_button__unpressed@4x.png" id="3_ays1q"]
+
+[sub_resource type="Animation" id="Animation_q1kn6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pressed_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unpressed_sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_45sbn"]
+resource_name = "pressed"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pressed_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unpressed_sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0pwhp"]
+resource_name = "unpressed"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pressed_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("unpressed_sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0xtl4"]
+_data = {
+"RESET": SubResource("Animation_q1kn6"),
+"pressed": SubResource("Animation_45sbn"),
+"unpressed": SubResource("Animation_0pwhp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g6mpt"]
+animation = &"pressed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2hka"]
+animation = &"unpressed"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0n14v"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uopit"]
+advance_mode = 2
+advance_condition = &"is_pressed"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h6ag2"]
+advance_mode = 2
+advance_condition = &"is_not_pressed"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7mejf"]
+states/Start/position = Vector2(191, 100)
+states/pressed/node = SubResource("AnimationNodeAnimation_g6mpt")
+states/pressed/position = Vector2(612, 72)
+states/unpressed/node = SubResource("AnimationNodeAnimation_g2hka")
+states/unpressed/position = Vector2(402, 116)
+transitions = ["Start", "unpressed", SubResource("AnimationNodeStateMachineTransition_0n14v"), "unpressed", "pressed", SubResource("AnimationNodeStateMachineTransition_uopit"), "pressed", "unpressed", SubResource("AnimationNodeStateMachineTransition_h6ag2")]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fxx4g"]
+radius = 21.0
+height = 48.0
+
+[node name="weight_button" type="Node2D"]
+script = ExtResource("1_4p8rq")
+sprites = ExtResource("2_blx6y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_0xtl4")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+libraries = {
+"": SubResource("AnimationLibrary_0xtl4")
+}
+tree_root = SubResource("AnimationNodeStateMachine_7mejf")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_not_pressed = false
+parameters/conditions/is_pressed = false
+
+[node name="pressed_sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -22)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_r8e76")
+
+[node name="unpressed_sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -24)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ays1q")
+
+[node name="trigger" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trigger"]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_fxx4g")

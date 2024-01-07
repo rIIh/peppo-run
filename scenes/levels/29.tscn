@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://des2ut0ge2umf"]
+[gd_scene load_steps=11 format=3 uid="uid://des2ut0ge2umf"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_uqpoi"]
 [ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_7xv4c"]
 [ext_resource type="PackedScene" uid="uid://cdxd7ajqqv4vb" path="res://prefabs/poop.tscn" id="3_k1s25"]
 [ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_kposj"]
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_411n2"]
+[ext_resource type="PackedScene" uid="uid://c6jojusxf2f87" path="res://prefabs/objects/yellow_door.tscn" id="7_k8s1v"]
 [ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="7_pp4g1"]
+[ext_resource type="PackedScene" uid="uid://b3g6q4jxyq3s" path="res://prefabs/objects/red_door.tscn" id="8_ugj14"]
+[ext_resource type="PackedScene" uid="uid://doovqsgaxa38v" path="res://prefabs/objects/weight_button.tscn" id="9_myneb"]
+[ext_resource type="Resource" uid="uid://cuyn61omlpfys" path="res://resources/buttons/red_button.tres" id="10_s3rrr"]
 
 [node name="level" type="Node"]
 script = ExtResource("1_uqpoi")
@@ -19,7 +23,7 @@ position = Vector2(48, 270)
 speed = 300.0
 
 [node name="poop3" parent="play_area" instance=ExtResource("3_k1s25")]
-position = Vector2(375, 409)
+position = Vector2(375, 449)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_kposj")
@@ -44,14 +48,14 @@ width = 32000
 
 [node name="horizontal_wall2" parent="." instance=ExtResource("7_pp4g1")]
 position = Vector2(222, 319)
-width = 187
+width = 210
 
 [node name="horizontal_wall3" parent="." instance=ExtResource("7_pp4g1")]
 position = Vector2(146, 128)
 width = 96
 
 [node name="horizontal_wall5" parent="." instance=ExtResource("7_pp4g1")]
-position = Vector2(307, 507)
+position = Vector2(296, 507)
 width = 96
 
 [node name="Label" type="Label" parent="."]
@@ -62,3 +66,21 @@ offset_bottom = 324.0
 text = "TODO:
 Doors
 Buttons"
+
+[node name="yellow_door" parent="." instance=ExtResource("7_k8s1v")]
+position = Vector2(307, 231)
+scale = Vector2(1, 1.44)
+
+[node name="red_door" parent="." instance=ExtResource("8_ugj14")]
+position = Vector2(136, 421)
+scale = Vector2(1, 1.44995)
+
+[node name="yellow_weight_button" parent="." instance=ExtResource("9_myneb")]
+position = Vector2(279, 611)
+
+[node name="red_weight_button" parent="." instance=ExtResource("9_myneb")]
+position = Vector2(173, 110)
+sprites = ExtResource("10_s3rrr")
+
+[connection signal="pressed" from="yellow_weight_button" to="yellow_door" method="open"]
+[connection signal="pressed" from="red_weight_button" to="red_door" method="open"]

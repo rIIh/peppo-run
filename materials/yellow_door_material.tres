@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dp50ofnnd0t0t"]
+
+[ext_resource type="Shader" uid="uid://co6nu2vdek7ac" path="res://materials/shaders/stripes_2_shader.tres" id="1_qk3of"]
+
+[resource]
+shader = ExtResource("1_qk3of")
+shader_parameter/Stripe_Bias = 1.5
+shader_parameter/Animation_Speed = 0.0
+shader_parameter/Angle = 45.0
+shader_parameter/Color1 = Color(1, 0.886275, 0.294118, 1)
+shader_parameter/Color2 = Color(1, 1, 1, 1)
+shader_parameter/Stripe_Density = 1.5

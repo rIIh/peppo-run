@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbg1t"]
 resource_local_to_scene = true
-size = Vector2(32, 21)
+size = Vector2(32, 16)
 
 [node name="horizontal_wall" type="StaticBody2D"]
 collision_layer = 8
@@ -15,16 +15,16 @@ script = ExtResource("1_071nf")
 [node name="wall_sprite" type="NinePatchRect" parent="."]
 offset_left = -16.0
 offset_right = 112.0
-offset_bottom = 84.0
+offset_bottom = 64.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_0fint")
-region_rect = Rect2(0, 0, 580, 84)
+region_rect = Rect2(0, 0, 572, 64)
 patch_margin_left = 48
-patch_margin_top = 40
+patch_margin_top = 32
 patch_margin_right = 43
-patch_margin_bottom = 44
+patch_margin_bottom = 32
 metadata/_edit_use_anchors_ = true
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10.5)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_jbg1t")
