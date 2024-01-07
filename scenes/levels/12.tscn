@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwcos0j337ddt"]
+[gd_scene load_steps=11 format=3 uid="uid://bwcos0j337ddt"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_c42yp"]
 [ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_c0ri2"]
@@ -6,6 +6,10 @@
 [ext_resource type="Resource" uid="uid://hj87240wohe6" path="res://resources/poops/purple.tres" id="4_thcah"]
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_2rijo"]
 [ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_2shpg"]
+[ext_resource type="PackedScene" path="res://prefabs/objects/yellow_door.tscn" id="7_28fn0"]
+[ext_resource type="PackedScene" path="res://prefabs/objects/red_door.tscn" id="8_pge3o"]
+[ext_resource type="PackedScene" path="res://prefabs/objects/weight_button.tscn" id="9_ut3k5"]
+[ext_resource type="Resource" uid="uid://cuyn61omlpfys" path="res://resources/buttons/red_button.tres" id="10_bwcdn"]
 
 [node name="level" type="Node"]
 script = ExtResource("1_c42yp")
@@ -28,21 +32,12 @@ style = ExtResource("4_thcah")
 position = Vector2(84, 379)
 
 [node name="toilet2" parent="play_area" instance=ExtResource("5_2rijo")]
-position = Vector2(84, 241)
+position = Vector2(84, 235)
 tag = "purple"
 poop_style = ExtResource("4_thcah")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 501.0
-offset_top = 269.0
-offset_right = 562.0
-offset_bottom = 347.0
-text = "TODO:
-Doors
-Buttons"
-
 [node name="horizontal_wall" parent="." instance=ExtResource("6_2shpg")]
-position = Vector2(211, 131)
+position = Vector2(211, 116)
 x_alignment = -1.0
 width = 32000
 
@@ -55,3 +50,22 @@ width = 32000
 position = Vector2(211, 408)
 x_alignment = -1.0
 width = 32000
+
+[node name="yellow_door" parent="." instance=ExtResource("7_28fn0")]
+position = Vector2(193, 343)
+rotation = -3.14159
+scale = Vector2(1, 1.08)
+
+[node name="red_door" parent="." instance=ExtResource("8_pge3o")]
+position = Vector2(193, 197)
+scale = Vector2(1.08, 1.08)
+
+[node name="red_weight_button" parent="." instance=ExtResource("9_ut3k5")]
+position = Vector2(241, 370)
+sprites = ExtResource("10_bwcdn")
+
+[node name="yellow_weight_button" parent="." instance=ExtResource("9_ut3k5")]
+position = Vector2(331, 212)
+
+[connection signal="pressed" from="red_weight_button" to="red_door" method="open"]
+[connection signal="pressed" from="yellow_weight_button" to="yellow_door" method="open"]
