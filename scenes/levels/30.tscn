@@ -64,11 +64,9 @@ scale = Vector2(1, 1.28)
 
 [node name="yellow_weight_button" parent="." instance=ExtResource("9_eiaxq")]
 position = Vector2(190, 523)
-is_toggle = true
 
 [node name="red_weight_button" parent="." instance=ExtResource("9_eiaxq")]
 position = Vector2(190, 361)
-is_toggle = true
 sprites = ExtResource("10_hm00c")
 
 [connection signal="pressed" from="yellow_weight_button" to="yellow_door" method="open"]

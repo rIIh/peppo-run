@@ -5,7 +5,7 @@ class_name WeightButton extends Node2D
 signal pressed
 signal unpressed
 
-@export var is_toggle := false
+@export var is_toggle := true
 @export var sprites: WeightButtonsSprites:
 	set(value):
 		sprites = value

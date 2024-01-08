@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://djl4nxxn5f3p1"]
+[gd_scene load_steps=12 format=3 uid="uid://djl4nxxn5f3p1"]
 
 [ext_resource type="Script" path="res://scripts/game_mode.gd" id="1_exm01"]
 [ext_resource type="PackedScene" uid="uid://cis5ydtor1qqc" path="res://prefabs/play_area.tscn" id="2_rvli3"]
@@ -7,74 +7,91 @@
 [ext_resource type="PackedScene" uid="uid://ccmuavexb6dbw" path="res://prefabs/toilet.tscn" id="5_2845o"]
 [ext_resource type="PackedScene" uid="uid://ddprdycqwc6cd" path="res://prefabs/horizontal_wall.tscn" id="6_7df4d"]
 [ext_resource type="PackedScene" uid="uid://blli26ilkdy67" path="res://prefabs/verticall_wall.tscn" id="7_o57rb"]
+[ext_resource type="PackedScene" uid="uid://b3g6q4jxyq3s" path="res://prefabs/objects/red_door.tscn" id="8_1373g"]
+[ext_resource type="PackedScene" uid="uid://c6jojusxf2f87" path="res://prefabs/objects/yellow_door.tscn" id="9_uhkmp"]
+[ext_resource type="PackedScene" uid="uid://doovqsgaxa38v" path="res://prefabs/objects/weight_button.tscn" id="10_6il3v"]
+[ext_resource type="Resource" uid="uid://cuyn61omlpfys" path="res://resources/buttons/red_button.tres" id="11_hqtq1"]
 
 [node name="level" type="Node"]
 script = ExtResource("1_exm01")
+metadata/_edit_vertical_guides_ = [143.0, 91.0, 283.0]
 
 [node name="play_area" parent="." instance=ExtResource("2_rvli3")]
-offset_bottom = 570.0
+offset_right = 397.0
+offset_bottom = 603.0
 
 [node name="poop2" parent="play_area" instance=ExtResource("3_c5wkr")]
 position = Vector2(43, 195)
 speed = 300.0
 
 [node name="poop3" parent="play_area" instance=ExtResource("3_c5wkr")]
-position = Vector2(138, 343)
+position = Vector2(147, 343)
 tag = "purple"
 speed = 300.0
 style = ExtResource("4_6sgak")
 
 [node name="toilet2" parent="play_area" instance=ExtResource("5_2845o")]
-position = Vector2(148, 209)
+position = Vector2(152, 209)
 
 [node name="toilet5" parent="play_area" instance=ExtResource("5_2845o")]
-position = Vector2(148, 472)
+position = Vector2(152, 479)
 tag = "purple"
 poop_style = ExtResource("4_6sgak")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -192.0
-offset_top = 246.0
-offset_right = -131.0
-offset_bottom = 324.0
-text = "TODO:
-Doors
-Buttons"
-
 [node name="verticall_wall2" parent="." instance=ExtResource("7_o57rb")]
-position = Vector2(281, 94)
+position = Vector2(291, 89)
 y_alignment = -1.0
 height = 150
 
 [node name="verticall_wall4" parent="." instance=ExtResource("7_o57rb")]
-position = Vector2(101, 94)
+position = Vector2(110, 89)
 y_alignment = -1.0
 height = 150
 
 [node name="horizontal_wall" parent="." instance=ExtResource("6_7df4d")]
-position = Vector2(191, 89)
-width = 195
+position = Vector2(200, 89)
+width = 200
 
 [node name="horizontal_wall2" parent="." instance=ExtResource("6_7df4d")]
-position = Vector2(92, 224)
+position = Vector2(100, 223)
 x_alignment = 1.0
 width = 95
 
 [node name="verticall_wall5" parent="." instance=ExtResource("7_o57rb")]
-position = Vector2(281, 360)
+position = Vector2(291, 359)
 y_alignment = -1.0
 height = 150
 
 [node name="verticall_wall6" parent="." instance=ExtResource("7_o57rb")]
-position = Vector2(101, 360)
+position = Vector2(110, 359)
 y_alignment = -1.0
 height = 150
 
 [node name="horizontal_wall3" parent="." instance=ExtResource("6_7df4d")]
-position = Vector2(191, 490)
-width = 195
+position = Vector2(200, 493)
+width = 200
 
 [node name="horizontal_wall4" parent="." instance=ExtResource("6_7df4d")]
-position = Vector2(92, 359)
+position = Vector2(100, 359)
 x_alignment = 1.0
 width = 95
+
+[node name="red_door" parent="." instance=ExtResource("8_1373g")]
+position = Vector2(238, 230)
+rotation = -1.57079
+scale = Vector2(1, 0.84)
+
+[node name="yellow_door" parent="." instance=ExtResource("9_uhkmp")]
+position = Vector2(238, 367)
+rotation = -1.57079
+scale = Vector2(1, 0.84)
+
+[node name="weight_button" parent="." instance=ExtResource("10_6il3v")]
+position = Vector2(237, 212)
+
+[node name="weight_button2" parent="." instance=ExtResource("10_6il3v")]
+position = Vector2(258, 595)
+sprites = ExtResource("11_hqtq1")
+
+[connection signal="pressed" from="weight_button" to="yellow_door" method="open"]
+[connection signal="pressed" from="weight_button2" to="red_door" method="open"]

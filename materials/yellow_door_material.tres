@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dp50ofnnd0t0t"]
 
-[ext_resource type="Shader" uid="uid://co6nu2vdek7ac" path="res://materials/shaders/stripes_2_shader.tres" id="1_qk3of"]
+[ext_resource type="Shader" path="res://materials/shaders/stripes_2_shader.gdshader" id="1_cv0r7"]
 
 [resource]
-shader = ExtResource("1_qk3of")
+shader = ExtResource("1_cv0r7")
 shader_parameter/Stripe_Bias = 1.5
 shader_parameter/Animation_Speed = 0.0
 shader_parameter/Angle = 45.0
