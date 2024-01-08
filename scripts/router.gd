@@ -23,12 +23,16 @@ func pop() -> bool:
 	if _history.size() == 1:
 		return false
 		
+	return force_pop()
+
+
+func force_pop() -> bool:
 	_history.pop_back().queue_free()
-	_history[-1].visible = true
-	
+	if _history.size() > 0:
+		_history[-1].visible = true
+		
 	popped.emit()
 	return true
-
 
 func push(scene: PackedScene, setup: Callable = Callable()):
 	if _history.size():

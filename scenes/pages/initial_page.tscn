@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d02hdc3ex8irj"]
+[gd_scene load_steps=18 format=3 uid="uid://d02hdc3ex8irj"]
 
 [ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="1_27bfi"]
 [ext_resource type="Texture2D" uid="uid://cpd5tpntbu6a3" path="res://assets/ui/initial_page_face@4x.png" id="2_7uur8"]
@@ -11,6 +11,25 @@
 [ext_resource type="Texture2D" uid="uid://ck7k3rr312sd1" path="res://assets/ui/initial_page_top_logo@4x.png" id="7_f7nfo"]
 [ext_resource type="Texture2D" uid="uid://cb4yrrbpl7tk1" path="res://assets/ui/levels/level__opened@4x.png" id="8_8p73x"]
 [ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/pages/levels_page.tscn" id="10_nc1f3"]
+[ext_resource type="Texture2D" uid="uid://cb1dkoytbis5a" path="res://assets/ui/play_button@4x.png" id="12_phr3t"]
+
+[sub_resource type="GDScript" id="GDScript_nv7ct"]
+script/source = "extends Control
+
+@onready
+var router: Router = NodeUtilities.get_parent_of_type(self, Router)
+
+@export
+var levels_scene: PackedScene
+
+
+func _ready():
+	%start_button.pressed.connect(
+		func(): 
+			router.force_pop()
+			router.push(levels_scene)
+	)
+"
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u6gli"]
 particle_flag_disable_z = true
@@ -62,20 +81,6 @@ top = 24.0
 right = 0.0
 bottom = 34.0
 
-[sub_resource type="GDScript" id="GDScript_x4fi0"]
-script/source = "extends Button
-
-@onready
-var router: Router = NodeUtilities.get_parent_of_type(self, Router)
-
-@export
-var levels_scene: PackedScene
-
-
-func _ready():
-	%start_button.pressed.connect(func(): router.push(levels_scene))
-"
-
 [node name="levels_scene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -83,6 +88,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_nv7ct")
+levels_scene = ExtResource("10_nc1f3")
 metadata/_edit_horizontal_guides_ = [36.0]
 metadata/_edit_vertical_guides_ = [16.0, 188.0]
 
@@ -188,23 +195,23 @@ scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(400, 2.08165e-12)
 texture = ExtResource("7_f7nfo")
 
-[node name="start_button" type="Button" parent="container/safe_area/ui"]
+[node name="start_button" parent="container/safe_area/ui" instance=ExtResource("4_778wh")]
 unique_name_in_owner = true
-z_index = 1
+z_index = 2
+custom_minimum_size = Vector2(155, 62)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+offset_left = -77.5
+offset_top = -62.0
+offset_right = 77.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "START"
-script = SubResource("GDScript_x4fi0")
-levels_scene = ExtResource("10_nc1f3")
+texture_normal = ExtResource("12_phr3t")
+main_texture = ExtResource("12_phr3t")
 
 [node name="TextureRect" type="TextureRect" parent="container"]
 layout_mode = 1
