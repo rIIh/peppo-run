@@ -57,6 +57,7 @@ input_pickable = true
 script = ExtResource("1_4juv6")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+z_index = -1
 material = SubResource("ShaderMaterial_xxvqe")
 position = Vector2(0, 6)
 mesh = SubResource("PlaneMesh_o3b4e")
