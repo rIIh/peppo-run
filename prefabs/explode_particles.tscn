@@ -57,7 +57,7 @@ explosiveness = 1.0
 fixed_fps = 60
 
 [node name="explode_large_slow" type="GPUParticles2D" parent="."]
-texture_filter = 1
+texture_filter = 4
 material = SubResource("CanvasItemMaterial_1o4eh")
 emitting = false
 process_material = ExtResource("3_be6he")
