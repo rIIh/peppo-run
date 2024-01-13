@@ -5,6 +5,7 @@ class_name Worker extends CharacterBody2D
 const SPEED = 300.0
 
 var game_mode: GameMode
+@onready var animation_tree = %AnimationTree
 
 @export
 var speed: float = 100
@@ -103,6 +104,7 @@ func _physics_process(delta):
 		return
 		
 	if game_mode.state != GameMode.State.running:
+		_change_state('is_waiting')
 		velocity = Vector2.ZERO
 		return
 		
@@ -119,6 +121,9 @@ func _physics_process(delta):
 	if not _target:
 		_check_tracked_bodies()
 
+	if not _target:
+		_change_state('is_waiting')
+
 	var target_position = _last_position
 	var direction = (target_position - position).normalized() if _target else Vector2.ZERO
 	velocity = direction * SPEED * (speed / 100)
@@ -128,9 +133,21 @@ func _physics_process(delta):
 		var angle = (-collision.get_normal()).angle_to(velocity) * 2 * PI
 		velocity -= velocity.rotated(PI / 8 * (1 if angle > 0 else -1)).normalized() * 100
 
+	elif velocity.x < 0:
+		_change_state('is_walking_left')
+	elif _target != null:
+		_change_state('is_walking_right')
+
 	move_and_slide()
 	queue_redraw()
 
+
+func _change_state(state: String):
+	animation_tree['parameters/conditions/is_waiting'] = false
+	animation_tree['parameters/conditions/is_walking_left'] = false
+	animation_tree['parameters/conditions/is_walking_right'] = false
+	
+	animation_tree['parameters/conditions/%s' % state] = true
 
 func _draw():
 	return

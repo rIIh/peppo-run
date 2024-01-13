@@ -137,7 +137,7 @@ start_drawing_trigger = NodePath("../../trigger")
 
 [node name="trajectory_renderer" type="Line2D" parent="static"]
 z_index = -1
-texture_filter = 6
+texture_filter = 4
 width = 6.0
 default_color = Color(0.90625, 0.6875, 0.488281, 1)
 begin_cap_mode = 2
@@ -157,7 +157,7 @@ shape = SubResource("RectangleShape2D_0vtkv")
 
 [node name="poop_sprite" type="Sprite2D" parent="."]
 z_index = 1
-texture_filter = 6
+texture_filter = 4
 position = Vector2(0, -42)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_o2m44")

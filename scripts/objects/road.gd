@@ -9,6 +9,8 @@ var offset := 100:
 			return
 
 		offset = value
+		
+		if Engine.is_editor_hint(): await ready
 		_update_cars()
 
 @export
@@ -18,6 +20,8 @@ var cars: Array[PackedScene] = []:
 			return
 
 		cars = value
+		
+		if Engine.is_editor_hint(): await ready
 		_update_cars()
 
 
@@ -28,6 +32,8 @@ var spacing: float = 300:
 			return
 
 		spacing = value
+		
+		if Engine.is_editor_hint(): await ready
 		_update_cars()
 
 

@@ -1,8 +1,162 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk8y5dr01ah2l"]
+[gd_scene load_steps=23 format=3 uid="uid://bk8y5dr01ah2l"]
 
 [ext_resource type="Script" path="res://scripts/worker.gd" id="1_0lypl"]
 [ext_resource type="Script" path="res://scripts/fighter.gd" id="2_7tgi1"]
-[ext_resource type="Texture2D" uid="uid://dlhpv4u5v1l1o" path="res://assets/workers/worker__waiting@4x.png" id="3_8l6ar"]
+[ext_resource type="Texture2D" uid="uid://dr2uqffbb5s3n" path="res://assets/workers/characters__worker.png" id="4_m28rc"]
+
+[sub_resource type="Animation" id="Animation_v5wp1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("worker_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("worker_sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mfmbh"]
+resource_name = "waiting"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("worker_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e3lp6"]
+resource_name = "walking"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("worker_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("worker_sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_os8jd"]
+resource_name = "walking_left"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("worker_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("worker_sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_juy2g"]
+_data = {
+"RESET": SubResource("Animation_v5wp1"),
+"waiting": SubResource("Animation_mfmbh"),
+"walking_left": SubResource("Animation_os8jd"),
+"walking_right": SubResource("Animation_e3lp6")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bixuj"]
+animation = &"waiting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1rxv"]
+animation = &"walking_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jdtoe"]
+animation = &"walking_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_707pf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oa3l0"]
+advance_mode = 2
+advance_condition = &"is_walking_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vuq6v"]
+advance_mode = 2
+advance_condition = &"is_walking_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7ll8t"]
+advance_mode = 2
+advance_condition = &"is_walking_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fmolb"]
+advance_mode = 2
+advance_condition = &"is_walking_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2etj0"]
+advance_mode = 2
+advance_condition = &"is_waiting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5e4gm"]
+advance_mode = 2
+advance_condition = &"is_waiting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sr5vj"]
+states/waiting/node = SubResource("AnimationNodeAnimation_bixuj")
+states/waiting/position = Vector2(397, 80)
+states/walking_left/node = SubResource("AnimationNodeAnimation_f1rxv")
+states/walking_left/position = Vector2(619, 23)
+states/walking_right/node = SubResource("AnimationNodeAnimation_jdtoe")
+states/walking_right/position = Vector2(631, 181)
+transitions = ["Start", "waiting", SubResource("AnimationNodeStateMachineTransition_707pf"), "waiting", "walking_left", SubResource("AnimationNodeStateMachineTransition_oa3l0"), "walking_left", "walking_right", SubResource("AnimationNodeStateMachineTransition_vuq6v"), "waiting", "walking_right", SubResource("AnimationNodeStateMachineTransition_7ll8t"), "walking_right", "walking_left", SubResource("AnimationNodeStateMachineTransition_fmolb"), "walking_right", "waiting", SubResource("AnimationNodeStateMachineTransition_2etj0"), "walking_left", "waiting", SubResource("AnimationNodeStateMachineTransition_5e4gm")]
+graph_offset = Vector2(-236, -32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8rdp0"]
 resource_local_to_scene = true
@@ -29,7 +183,24 @@ script = ExtResource("1_0lypl")
 [node name="Fighter" type="Node" parent="." node_paths=PackedStringArray("body", "sprite_to_hide")]
 script = ExtResource("2_7tgi1")
 body = NodePath("../collide_trigger")
-sprite_to_hide = NodePath("../sprite")
+sprite_to_hide = NodePath("../worker_sprite")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+libraries = {
+"": SubResource("AnimationLibrary_juy2g")
+}
+tree_root = SubResource("AnimationNodeStateMachine_sr5vj")
+anim_player = NodePath("../animation_player")
+parameters/conditions/is_waiting = true
+parameters/conditions/is_walking_left = false
+parameters/conditions/is_walking_right = false
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_juy2g")
+}
 
 [node name="capsule_collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -39)
@@ -52,8 +223,9 @@ collision_mask = 4
 [node name="circle_collider" type="CollisionShape2D" parent="eye_detector"]
 shape = SubResource("CircleShape2D_kcy8g")
 
-[node name="sprite" type="Sprite2D" parent="."]
-texture_filter = 6
-position = Vector2(0, -41)
+[node name="worker_sprite" type="Sprite2D" parent="."]
+texture_filter = 4
+position = Vector2(0, -40)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_8l6ar")
+texture = ExtResource("4_m28rc")
+hframes = 3

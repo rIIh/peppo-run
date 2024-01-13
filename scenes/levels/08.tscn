@@ -35,8 +35,7 @@ poop_style = ExtResource("4_dsmls")
 
 [node name="worker" parent="play_area" instance=ExtResource("6_h2sh7")]
 position = Vector2(56, 144)
-scale = Vector2(1.25, 1.25)
-eye_distance = 200.0
+eye_distance = 250.0
 
 [node name="horizontal_wall" parent="play_area" instance=ExtResource("8_m5gcv")]
 position = Vector2(120, 388)

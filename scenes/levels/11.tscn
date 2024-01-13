@@ -34,8 +34,7 @@ poop_style = ExtResource("4_plfvk")
 
 [node name="worker" parent="play_area" instance=ExtResource("6_uru58")]
 position = Vector2(198, 364)
-scale = Vector2(1.25, 1.25)
-eye_distance = 106.42
+eye_distance = 132.0
 
 [node name="verticall_wall" parent="play_area" instance=ExtResource("8_o3xvs")]
 position = Vector2(106, 312)
