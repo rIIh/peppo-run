@@ -87,6 +87,8 @@ func _handle_state_change(state: GameMode.State):
 		popup.go_pressed.connect(_do_from_popup.bind(popup, go_to_next_level))
 		popup.retry_pressed.connect(_do_from_popup.bind(popup, restart))
 		
+		GameStorage.set_level_unlocked(GameStorage.LevelKey.new(level_group.name, index + 1))
+		
 	elif state == GameMode.State.failed:
 		get_tree().create_timer(2).timeout.connect(func(): failed_popup_waited.emit(true))
 		restarted.connect(func(): failed_popup_waited.emit(false))

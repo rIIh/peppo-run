@@ -28,6 +28,7 @@ var velocity: Vector2 :
 func update(level: int, is_available: bool):
 	_level_index = level
 	_available = is_available
+	%sprite.texture = opened_texture if _available else closed_texture
 	_update_text()
 
 func set_custom_level_name(level_name: String):
@@ -37,7 +38,7 @@ func set_custom_level_name(level_name: String):
 func _ready():
 	_update_text()
 	%sprite.texture = opened_texture if _available else closed_texture
-	%button.pressed.connect(func(): pressed.emit())
+	%button.pressed.connect(func(): if _available: pressed.emit())
 	
 var _rot_tween: Tween
 func _physics_process(delta):
@@ -53,4 +54,5 @@ func _physics_process(delta):
 	
 
 func _update_text():
+	%text.visible = _available
 	%text.text = _level_name if _level_name else str(_level_index + 1)
