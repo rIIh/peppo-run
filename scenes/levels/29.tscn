@@ -58,15 +58,6 @@ width = 96
 position = Vector2(296, 507)
 width = 96
 
-[node name="Label" type="Label" parent="."]
-offset_left = -192.0
-offset_top = 246.0
-offset_right = -131.0
-offset_bottom = 324.0
-text = "TODO:
-Doors
-Buttons"
-
 [node name="yellow_door" parent="." instance=ExtResource("7_k8s1v")]
 position = Vector2(307, 231)
 scale = Vector2(1, 1.44)

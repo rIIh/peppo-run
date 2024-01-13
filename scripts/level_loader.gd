@@ -61,6 +61,8 @@ func restart():
 
 func go_to_next_level():
 	if not level_group.has_next_level(index):
+		var router := NodeUtilities.get_parent_of_type(self, Router) as Router
+		router.pop()
 		return
 
 	_index += 1

@@ -10,6 +10,8 @@
 
 [node name="level" type="Node"]
 script = ExtResource("1_78sxk")
+metadata/_edit_horizontal_guides_ = [389.0]
+metadata/_edit_vertical_guides_ = [413.0, 84.0]
 
 [node name="play_area" parent="." instance=ExtResource("2_467o2")]
 offset_right = 496.0
@@ -36,39 +38,39 @@ poop_style = ExtResource("4_cdfy0")
 [node name="horizontal_wall2" parent="." instance=ExtResource("6_b5x2g")]
 position = Vector2(84, 118)
 x_alignment = 1.0
-width = 212
+width = 214
 
 [node name="horizontal_wall7" parent="." instance=ExtResource("6_b5x2g")]
-position = Vector2(410, 389)
+position = Vector2(412, 389)
 x_alignment = -1.0
-width = 207
+width = 206
 
 [node name="horizontal_wall6" parent="." instance=ExtResource("6_b5x2g")]
 position = Vector2(84, 261)
 x_alignment = 1.0
-width = 212
+width = 214
 
 [node name="horizontal_wall3" parent="." instance=ExtResource("6_b5x2g")]
 position = Vector2(84, -10)
 x_alignment = 1.0
-width = 318
+width = 328
 
 [node name="horizontal_wall8" parent="." instance=ExtResource("6_b5x2g")]
-position = Vector2(85, 522)
+position = Vector2(85, 528)
 x_alignment = 1.0
-width = 318
+width = 328
 
 [node name="verticall_wall" parent="." instance=ExtResource("7_ia1ds")]
-position = Vector2(290, 121)
+position = Vector2(290, 118)
 y_alignment = -1.0
-height = 155
+height = 159
 
 [node name="verticall_wall3" parent="." instance=ExtResource("7_ia1ds")]
-position = Vector2(93, 389)
+position = Vector2(94, 389)
 y_alignment = -1.0
 height = 155
 
 [node name="verticall_wall2" parent="." instance=ExtResource("7_ia1ds")]
-position = Vector2(404, -8)
+position = Vector2(404, -10)
 y_alignment = -1.0
-height = 410
+height = 415

@@ -34,7 +34,7 @@ tag = "purple"
 poop_style = ExtResource("4_ilm6h")
 
 [node name="horizontal_wall8" parent="." instance=ExtResource("6_m2lmo")]
-position = Vector2(212, 94)
+position = Vector2(212, 93)
 width = 430
 
 [node name="horizontal_wall10" parent="." instance=ExtResource("6_m2lmo")]
@@ -43,27 +43,18 @@ x_alignment = 1.0
 width = 300
 
 [node name="horizontal_wall9" parent="." instance=ExtResource("6_m2lmo")]
-position = Vector2(212, 503)
+position = Vector2(212, 507)
 width = 430
 
-[node name="Label" type="Label" parent="."]
-offset_left = -192.0
-offset_top = 246.0
-offset_right = -131.0
-offset_bottom = 324.0
-text = "TODO:
-Doors
-Buttons"
-
 [node name="verticall_wall" parent="." instance=ExtResource("7_p6vxy")]
-position = Vector2(6, 310)
+position = Vector2(6, 308)
 height = 430
 
 [node name="verticall_wall2" parent="." instance=ExtResource("7_p6vxy")]
-position = Vector2(415, 310)
+position = Vector2(419, 308)
 height = 430
 
 [node name="verticall_wall3" parent="." instance=ExtResource("7_p6vxy")]
-position = Vector2(286, 233)
+position = Vector2(290, 232)
 y_alignment = -1.0
 height = 150
