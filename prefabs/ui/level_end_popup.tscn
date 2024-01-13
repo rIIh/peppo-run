@@ -179,6 +179,7 @@ grow_vertical = 2
 color = Color(0, 0.0392157, 0.117647, 0.678431)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 2
 material = SubResource("ShaderMaterial_4xqaf")
 layout_mode = 1
 anchors_preset = 14
