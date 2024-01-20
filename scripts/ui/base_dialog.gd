@@ -13,6 +13,8 @@ func _ready():
 	var last_child = get_children().back() as Node
 	if last_child != dialog_root:
 		last_child.reparent(dialog_root)
+		if last_child is Control:
+			last_child.mouse_filter = Control.MOUSE_FILTER_STOP
 		
 	backdrop.pressed.connect(func(): backdrop_pressed.emit())
 	

@@ -58,6 +58,12 @@ func show_popup():
 
 func hide_popup():
 	$AnimationPlayer.play_backwards()
+	
+	
+func go_home():
+	hide_popup()
+	var router = NodeUtilities.get_parent_of_type(self, Router) as Router
+	router.pop(exit_completed)
 
 
 func _handle_animation_finished(animation: StringName):

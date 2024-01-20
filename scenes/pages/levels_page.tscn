@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3rylxs71laes"]
+[gd_scene load_steps=9 format=3 uid="uid://b3rylxs71laes"]
 
 [ext_resource type="PackedScene" uid="uid://w0uduq3j28cv" path="res://prefabs/background_layer.tscn" id="1_axwfx"]
 [ext_resource type="Script" path="res://scripts/safe_area.gd" id="2_76x4d"]
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="3_8qacw"]
-[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="4_tjbk6"]
-[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="5_1cdqv"]
+[ext_resource type="PackedScene" uid="uid://br7skvebmre2s" path="res://prefabs/ui/settings_button.tscn" id="4_1m53f"]
 [ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="6_s6pai"]
 [ext_resource type="PackedScene" uid="uid://c0dk7edx0lsbi" path="res://prefabs/ui/level_selector.tscn" id="7_rh4mo"]
 
@@ -63,8 +62,7 @@ minimum = SubResource("Resource_yjme5")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="settings_button" parent="container/safe_area/ui" instance=ExtResource("4_tjbk6")]
-custom_minimum_size = Vector2(52, 52)
+[node name="SettingsButton" parent="container/safe_area/ui" instance=ExtResource("4_1m53f")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -74,8 +72,6 @@ offset_top = 8.0
 offset_right = 171.5
 offset_bottom = 60.0
 grow_horizontal = 2
-texture_normal = ExtResource("5_1cdqv")
-main_texture = ExtResource("5_1cdqv")
 
 [node name="back_button" parent="container/safe_area/ui" instance=ExtResource("6_s6pai")]
 layout_mode = 1

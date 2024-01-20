@@ -9,7 +9,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Backdrop:color")
+tracks/0/path = NodePath("CanvasLayer/Backdrop:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DialogRoot:anchor_top")
+tracks/1/path = NodePath("CanvasLayer/DialogRoot:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DialogRoot:anchor_bottom")
+tracks/2/path = NodePath("CanvasLayer/DialogRoot:anchor_bottom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -48,7 +48,7 @@ resource_name = "close"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Backdrop:color")
+tracks/0/path = NodePath("CanvasLayer/Backdrop:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -60,7 +60,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DialogRoot:anchor_top")
+tracks/1/path = NodePath("CanvasLayer/DialogRoot:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -72,7 +72,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DialogRoot:anchor_bottom")
+tracks/2/path = NodePath("CanvasLayer/DialogRoot:anchor_bottom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -87,7 +87,7 @@ resource_name = "open"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Backdrop:color")
+tracks/0/path = NodePath("CanvasLayer/Backdrop:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +99,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DialogRoot:anchor_top")
+tracks/1/path = NodePath("CanvasLayer/DialogRoot:anchor_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,7 +111,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DialogRoot:anchor_bottom")
+tracks/2/path = NodePath("CanvasLayer/DialogRoot:anchor_bottom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -144,29 +144,32 @@ libraries = {
 }
 speed_scale = 5.0
 
-[node name="Backdrop" type="ColorRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.0392157, 0.117647, 0)
-script = ExtResource("2_dw77f")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
-[node name="DialogRoot" type="Control" parent="."]
+[node name="Backdrop" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+color = Color(0, 0.0392157, 0.117647, 0)
+script = ExtResource("2_dw77f")
 
-[node name="Marker2D" type="Marker2D" parent="DialogRoot"]
+[node name="DialogRoot" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Marker2D" type="Marker2D" parent="CanvasLayer/DialogRoot"]
 position = Vector2(187.5, 406)
 script = ExtResource("2_u0e7k")
 
-[connection signal="pressed" from="Backdrop" to="." method="close"]
+[connection signal="pressed" from="CanvasLayer/Backdrop" to="." method="close"]

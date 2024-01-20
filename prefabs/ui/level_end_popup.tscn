@@ -281,3 +281,5 @@ custom_minimum_size = Vector2(82, 82)
 layout_mode = 2
 texture_normal = ExtResource("7_mv8cl")
 main_texture = ExtResource("7_mv8cl")
+
+[connection signal="pressed" from="Control2/Control/AspectRatioContainer/buttons__home" to="." method="go_home"]

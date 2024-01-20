@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://yxf7e1eyjnri"]
+[gd_scene load_steps=11 format=3 uid="uid://yxf7e1eyjnri"]
 
 [ext_resource type="Script" path="res://scripts/route_info.gd" id="1_bgyma"]
 [ext_resource type="PackedScene" uid="uid://dqw0udnalxgfm" path="res://scenes/dialogs/base_dialog.tscn" id="1_r1and"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dgsijelvhrpog" path="res://assets/ui/settings_header@4x.png" id="3_x2j3c"]
 [ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="3_x3ibq"]
 [ext_resource type="Script" path="res://scripts/ui/scale_texture_rect.gd" id="4_8tbib"]
+[ext_resource type="PackedScene" uid="uid://c8g655ji2fp80" path="res://scenes/widgets/switch.tscn" id="6_pnugh"]
 [ext_resource type="Texture2D" uid="uid://cim26am40phha" path="res://assets/ui/circle_buttons/buttons__close@4x.png" id="7_ky7ph"]
 
 [sub_resource type="GDScript" id="GDScript_6lek6"]
@@ -22,7 +23,7 @@ func close():
 	base_dialog.close()
 
 	var router: Router = NodeUtilities.get_parent_of_type(self, Router) as Router
-	router.remove_after(self, base_dialog.closed)
+	router.remove(self, base_dialog.closed)
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67ueb"]
@@ -67,6 +68,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_67ueb")
 
 [node name="MarginContainer" type="MarginContainer" parent="BaseDialog/PanelContainer"]
 layout_mode = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 35
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 35
@@ -103,8 +105,7 @@ text = "Sound"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(76, 40)
+[node name="Switch2" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_pnugh")]
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer"]
@@ -121,8 +122,7 @@ text = "Music"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(76, 40)
+[node name="Switch" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("6_pnugh")]
 layout_mode = 2
 
 [node name="CenterContainer" type="Control" parent="BaseDialog/PanelContainer"]
