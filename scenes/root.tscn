@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxh2vbj2yj32m"]
+[gd_scene load_steps=9 format=3 uid="uid://bxh2vbj2yj32m"]
 
 [ext_resource type="PackedScene" uid="uid://c63ta2djiclrb" path="res://scenes/router.tscn" id="1_crt4r"]
+[ext_resource type="PackedScene" uid="uid://dqt6puasrarjx" path="res://scenes/widgets/cursor.tscn" id="1_jhgry"]
 [ext_resource type="PackedScene" uid="uid://d02hdc3ex8irj" path="res://scenes/pages/initial_page.tscn" id="2_4tiq0"]
 [ext_resource type="Texture2D" uid="uid://bwk6ku4joctwh" path="res://assets/core/launch_icon@3x.png" id="3_augrj"]
 [ext_resource type="Script" path="res://scripts/ui/scale_texture_rect.gd" id="4_hh11c"]
@@ -92,3 +93,9 @@ texture = ExtResource("3_augrj")
 expand_mode = 1
 script = ExtResource("4_hh11c")
 texture_scale = Vector2(0.33, 0.33)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("1_jhgry")]
+scale = Vector2(0.75, 0.75)
