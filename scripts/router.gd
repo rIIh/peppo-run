@@ -36,7 +36,9 @@ func force_pop() -> bool:
 
 func push(scene: PackedScene, setup: Callable = Callable()):
 	if _history.size():
-		_history[-1].visible = false
+		var node = _history[-1]
+		if node.has_method('set_visible'):
+			node.visible = false
 		
 	var node = scene.instantiate()
 	_history.append(node)
