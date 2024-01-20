@@ -69,9 +69,7 @@ func _handle_level_node_created(index: int, node: LevelButton):
 	var is_available = index == 0 || GameStorage.unlocked_levels.any(func(l): return l.group == level_group.name && l.index == index)
 	
 	var _handle_level_unlocked = func(level: GameStorage.LevelKey):
-		print('level % unlocked' % level.index)
 		if level.group == level_group.name && level.index == index:
-			print('level button %s updated' % index)
 			node.update(index, true)
 		
 	GameStorage.level_unlocked.connect(_handle_level_unlocked)
