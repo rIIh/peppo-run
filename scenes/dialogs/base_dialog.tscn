@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqw0udnalxgfm"]
+[gd_scene load_steps=8 format=3 uid="uid://dqw0udnalxgfm"]
 
 [ext_resource type="Script" path="res://scripts/ui/base_dialog.gd" id="1_jjrbv"]
+[ext_resource type="Script" path="res://scripts/router_backdrop.gd" id="2_dw77f"]
 [ext_resource type="Script" path="res://scripts/ui/at_parent_control_center.gd" id="2_u0e7k"]
 
 [sub_resource type="Animation" id="Animation_quwa4"]
@@ -144,6 +145,7 @@ libraries = {
 speed_scale = 5.0
 
 [node name="Backdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,6 +153,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.0392157, 0.117647, 0)
+script = ExtResource("2_dw77f")
 
 [node name="DialogRoot" type="Control" parent="."]
 unique_name_in_owner = true
@@ -160,7 +163,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Marker2D" type="Marker2D" parent="DialogRoot"]
 position = Vector2(187.5, 406)
 script = ExtResource("2_u0e7k")
+
+[connection signal="pressed" from="Backdrop" to="." method="close"]

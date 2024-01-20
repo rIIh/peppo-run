@@ -23,6 +23,7 @@ main_texture = ExtResource("1_is5ds")
 texture_scale = Vector2(0.25, 0.25)
 
 [node name="shadow" type="Panel" parent="."]
+unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
 anchors_preset = 15

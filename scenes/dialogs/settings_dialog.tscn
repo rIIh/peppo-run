@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhg0q2ob5swns"]
+[gd_scene load_steps=10 format=3 uid="uid://yxf7e1eyjnri"]
 
+[ext_resource type="Script" path="res://scripts/route_info.gd" id="1_bgyma"]
 [ext_resource type="PackedScene" uid="uid://dqw0udnalxgfm" path="res://scenes/dialogs/base_dialog.tscn" id="1_r1and"]
+[ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="3_16j1n"]
+[ext_resource type="Texture2D" uid="uid://dgsijelvhrpog" path="res://assets/ui/settings_header@4x.png" id="3_x2j3c"]
+[ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="3_x3ibq"]
+[ext_resource type="Script" path="res://scripts/ui/scale_texture_rect.gd" id="4_8tbib"]
+[ext_resource type="Texture2D" uid="uid://cim26am40phha" path="res://assets/ui/circle_buttons/buttons__close@4x.png" id="7_ky7ph"]
 
 [sub_resource type="GDScript" id="GDScript_6lek6"]
 script/source = "class_name SettingsDialog extends Control
 
-@onready var base_dialog = %BaseDialog
+@onready var base_dialog: BaseDialog = %BaseDialog
 
 func open():
 	if not is_node_ready(): await ready
@@ -14,6 +20,9 @@ func open():
 func close():
 	if not is_node_ready(): await ready
 	base_dialog.close()
+
+	var router: Router = NodeUtilities.get_parent_of_type(self, Router) as Router
+	router.remove_after(self, base_dialog.closed)
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67ueb"]
@@ -32,6 +41,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_6lek6")
+
+[node name="RouteInfo" type="Node" parent="."]
+script = ExtResource("1_bgyma")
+_is_transparent = true
 
 [node name="BaseDialog" parent="." instance=ExtResource("1_r1and")]
 unique_name_in_owner = true
@@ -54,7 +67,83 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_67ueb")
 
 [node name="MarginContainer" type="MarginContainer" parent="BaseDialog/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 58
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseDialog/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SettingsHeader_4x" type="TextureRect" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85.25, 60)
+layout_mode = 2
+texture = ExtResource("3_x2j3c")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_8tbib")
+texture_scale = Vector2(0.25, 0.25)
+
+[node name="Spacer" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(208, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.443137, 0.603922, 0.909804, 1)
+theme_override_fonts/font = ExtResource("3_16j1n")
+text = "Sound"
+
+[node name="Spacer" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(76, 40)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(208, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.443137, 0.603922, 0.909804, 1)
+theme_override_fonts/font = ExtResource("3_16j1n")
+text = "Music"
+
+[node name="Spacer" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="BaseDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(76, 40)
+layout_mode = 2
+
+[node name="CenterContainer" type="Control" parent="BaseDialog/PanelContainer"]
+layout_mode = 2
+
+[node name="circle_button" parent="BaseDialog/PanelContainer/CenterContainer" instance=ExtResource("3_x3ibq")]
+custom_minimum_size = Vector2(62, 62)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_top = -31.0
+offset_right = 30.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("7_ky7ph")
+main_texture = ExtResource("7_ky7ph")
+
+[connection signal="backdrop_pressed" from="BaseDialog" to="." method="close"]
+[connection signal="pressed" from="BaseDialog/PanelContainer/CenterContainer/circle_button" to="." method="close"]

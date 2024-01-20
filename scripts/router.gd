@@ -18,6 +18,21 @@ func _ready():
 func can_pop() -> bool:
 	return _history.size() > 1
 
+# TODO: research influence on z-index
+func remove(route: Node):
+	var index = _history.rfind(route)
+	if index == -1: return
+	
+	_history.pop_at(index).queue_free()
+
+# TODO: research influence on z-index
+func remove_after(route: Node, _signal: Signal):
+	var index = _history.rfind(route)
+	if index == -1: return
+	
+	var node: Node = _history.pop_at(index)
+	await _signal
+	node.queue_free()
 
 func pop() -> bool:
 	if _history.size() == 1:
@@ -35,12 +50,16 @@ func force_pop() -> bool:
 	return true
 
 func push(scene: PackedScene, setup: Callable = Callable()):
-	if _history.size():
-		var node = _history[-1]
-		if node.has_method('set_visible'):
-			node.visible = false
-		
 	var node = scene.instantiate()
+	var route_info = node.get_children().filter(func(n): return n is RouteInfo).front() as RouteInfo
+	if node.has_method('set_z_index'):
+		node.z_index = _history.size() * 100
+	
+	if _history.size() and (not route_info or not route_info.is_transparent):
+		var prev_node = _history[-1]
+		if prev_node.has_method('set_visible'):
+			prev_node.visible = false
+		
 	_history.append(node)
 	
 	if setup:

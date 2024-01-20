@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://scripts/edge_insets.gd" id="3_6utaq"]
 [ext_resource type="Texture2D" uid="uid://c6f8eds6gidfv" path="res://assets/ui/paper@4x.png" id="3_63b1t"]
 [ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="4_778wh"]
-[ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="5_hhndx"]
 [ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="6_hebsk"]
+[ext_resource type="PackedScene" uid="uid://br7skvebmre2s" path="res://prefabs/ui/settings_button.tscn" id="7_effip"]
 [ext_resource type="Texture2D" uid="uid://ck7k3rr312sd1" path="res://assets/ui/initial_page_top_logo@4x.png" id="7_f7nfo"]
 [ext_resource type="Texture2D" uid="uid://cb4yrrbpl7tk1" path="res://assets/ui/levels/level__opened@4x.png" id="8_8p73x"]
 [ext_resource type="PackedScene" uid="uid://b3rylxs71laes" path="res://scenes/pages/levels_page.tscn" id="10_nc1f3"]
@@ -156,20 +156,6 @@ minimum = SubResource("Resource_yjme5")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="settings_button" parent="container/safe_area/ui" instance=ExtResource("4_778wh")]
-custom_minimum_size = Vector2(52, 52)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 119.5
-offset_top = 8.0
-offset_right = 171.5
-offset_bottom = 60.0
-grow_horizontal = 2
-texture_normal = ExtResource("5_hhndx")
-main_texture = ExtResource("5_hhndx")
-
 [node name="back_button" parent="container/safe_area/ui" instance=ExtResource("6_hebsk")]
 layout_mode = 1
 anchors_preset = 5
@@ -208,10 +194,22 @@ anchor_bottom = 1.0
 offset_left = -77.5
 offset_top = -62.0
 offset_right = 77.5
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("12_phr3t")
 main_texture = ExtResource("12_phr3t")
+
+[node name="SettingsButton" parent="container/safe_area/ui" instance=ExtResource("7_effip")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 119.5
+offset_top = 8.0
+offset_right = 171.5
+offset_bottom = 60.0
+grow_horizontal = 2
 
 [node name="TextureRect" type="TextureRect" parent="container"]
 layout_mode = 1

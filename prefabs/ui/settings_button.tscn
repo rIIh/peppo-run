@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d04ggo4vd7xgb"]
+[gd_scene load_steps=4 format=3 uid="uid://br7skvebmre2s"]
 
 [ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="1_fft3p"]
 [ext_resource type="Texture2D" uid="uid://c6pjwloeu4px3" path="res://assets/ui/circle_buttons/buttons__settings@4x.png" id="2_lahov"]

@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bf3aeivawgg0e" path="res://assets/ui/level_header@4x.png" id="8_6blb0"]
 [ext_resource type="FontFile" uid="uid://kwks37ubo70r" path="res://assets/fonts/ChangaOne-Regular.ttf" id="9_kq6nk"]
 [ext_resource type="PackedScene" uid="uid://cgbol7uy0ue5n" path="res://prefabs/ui/circle_button.tscn" id="10_dkikr"]
-[ext_resource type="PackedScene" uid="uid://d04ggo4vd7xgb" path="res://prefabs/ui/settings_button.tscn" id="10_rcj0e"]
+[ext_resource type="PackedScene" uid="uid://br7skvebmre2s" path="res://prefabs/ui/settings_button.tscn" id="10_rcj0e"]
 [ext_resource type="PackedScene" uid="uid://btebir7ijeef6" path="res://prefabs/ui/back_button.tscn" id="12_1p1ln"]
 [ext_resource type="Texture2D" uid="uid://cqcl6f4ps15s8" path="res://assets/ui/bottom_background__main_shape@4x.png" id="13_bw0j8"]
 [ext_resource type="Texture2D" uid="uid://bo5dagvotd67x" path="res://assets/ui/circle_buttons/buttons__hint@4x.png" id="14_ev3nl"]
